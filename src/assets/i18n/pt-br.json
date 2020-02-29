@@ -31,6 +31,28 @@
     },
     "layerControl" : {
         "control1" : "Baselayers",
+        "5e402b12c98e9f0001a7b1cd" : {
+            "name": " Lago de furnas - 2014",
+            "5e402b03c98e9f0001a7b1cc5e402b12c98e9f0001a7b1cd" : "OLI_03_08_14"
+        },
+        "5e49d5446301df00013b98dd" : {
+            "name": " Lago de furnas - 2015",
+            "5e49d3206301df00013b98d45e49d5446301df00013b98dd" : "OLI_23_09_15"
+        },
+        "5e49d55c6301df00013b98de" : {
+            "name": " Lago de furnas - 2016",
+            "5e49d3606301df00013b98d55e49d55c6301df00013b98de" : "OLI_08_08_16"
+        },
+        "5e49d5db6301df00013b98df" : {
+            "name": " Lago de furnas - 2017",
+            "5e49d4bf6301df00013b98dc5e49d5db6301df00013b98df" : "OLI_05_04_17",
+            "5e49d49e6301df00013b98db5e49d5db6301df00013b98df" : "OLI_08_06_17",
+            "5e49d4666301df00013b98da5e49d5db6301df00013b98df" : "OLI_26_07_17",
+            "5e49d4466301df00013b98d95e49d5db6301df00013b98df" : "OLI_27_08_17",
+            "5e49d4136301df00013b98d85e49d5db6301df00013b98df" : "OLI_12_09_17",
+            "5e49d3ef6301df00013b98d75e49d5db6301df00013b98df" : "OLI_28_09_17",
+            "5e49d3c86301df00013b98d65e49d5db6301df00013b98df" : "OLI_14_10_17"
+        },        
         "5c40fe3a0e9b2a14264e03a7" : {
             "name": " Cerrado",
             "5c49f7391a21020001cd663e5c40fe3a0e9b2a14264e03a7": "Estados",
