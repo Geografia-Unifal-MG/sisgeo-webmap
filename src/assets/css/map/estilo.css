@@ -35,6 +35,14 @@ a:focus {
   color: #f9c069;
 }
 
+.azul{
+  color: rgba(0, 0, 255, 0.8);
+}
+
+.marron{
+  color: #A0522D;
+}
+
 /* ---------------------------------------------------
     Material Icons
 ----------------------------------------------------- */
@@ -79,7 +87,7 @@ a:focus {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   align-items: center;
-  background-color: #00796b;
+  background-color:  #2590c3;
   color: #fff !important;
   font-weight: 400;
   font-size: 16px;
@@ -133,7 +141,7 @@ a:focus {
 
 .ferramentas {
   padding: 15px 10px 10px 10px;
-  background-color: #49bc95;
+  background-color: #2590c3;
   color: #fff;
 }
 
@@ -250,7 +258,7 @@ dfn::after {
   font-size: 13px;
   line-height: 1.5em;
   padding: 0.5em 0.8em;
-  background: rgba(16, 141, 111, 0.8);
+  background: rgba(0, 0, 255, 0.8);
   color: #fff;
   pointer-events: none;
   transition: opacity 250ms, top 250ms;
@@ -268,7 +276,7 @@ dfn::before {
   width: 0;
   height: 0;
   border: solid transparent 5px;
-  border-bottom-color: rgba(16, 141, 111, 0.8);
+  border-bottom-color: rgba(0, 0, 255, 0.8);
   transition: opacity 250ms, top 250ms;
 }
 
@@ -326,10 +334,30 @@ dfn:hover::before {
 
 #sidebar .sidebar-header {
   padding: 4px 20px 4px 20px;
-  background-image: url(../../img/map/i-mapa.jpg);
-  /**background: #6d7fcc;*/
-  color: #119789;
+  /*background-image: url(../../img/map/sisgeo.png);*/
+  background: linear-gradient(-45deg,#52eee6, #2590c3, #23a6d5, #52eee6);
+	background-size: 400% 400%;
+	animation: gradientBG 15s ease infinite;
+  color: #1bb6ca;
   height: 200px;
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#sidebar .sidebar-header img{
+  height: 55%;
+  width: 100%;
+  margin-top: 40px;
 }
 
 .descricao {
@@ -392,7 +420,7 @@ dfn:hover::before {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-  color: #00796b;
+  color: #79006f;
   background: #f1f3f4;
 }
 
@@ -453,7 +481,7 @@ a.article:hover {
   font-size: 11px;
   top: -15px;
   margin-left: 36px;
-  color: #14757e !important;
+  color: #0094ff !important;
   overflow: hidden;
   line-height: 1em;
   max-width: 170px;
@@ -857,7 +885,7 @@ a.article:hover {
 ---------------------------------------------------------*/
 
 footer {
-  background-color: #00796b;
+  background-color: #2590c3;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -1020,7 +1048,7 @@ footer {
   color: #fafafa;
   font-weight: 400;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-  background-color: #108d6f !important;
+  background-color: #2590c3 !important;
 }
 
 /* ---------------------------------------------------
@@ -1196,4 +1224,35 @@ footer {
 .leaflet-bar-timecontrol {
   background-color: #fff !important;
   padding: 8px !important;
+}
+
+/* Timeseries Control panel */
+#ts-control-panel{
+  display: block;
+  top: 75px;
+  left: 340px;
+  width: 290px;
+  transition: all 0.3s;
+  position: absolute;
+  z-index: 999;
+}
+
+#ts-control-panel.active{
+  left: 50px;
+}
+
+/* Timeseries Data panel */
+#ts-data-panel{
+  display: block;
+  bottom: -30px;
+  left: 650px;
+  width: calc(100% - 650px);
+  transition: all 0.3s;
+  position: absolute;
+  z-index: 999;
+}
+
+#ts-data-panel.active{
+  left: 350px;
+  width: calc(100% - 350px);
 }

@@ -101,7 +101,7 @@
 * Sidebar customization
 */
 .project-group-opened {padding: 0px !important;}
-.group-title-opened { padding:8px !important; background-color: #009688;
+.group-title-opened { padding:8px !important; background-color: #00d0ff;
 }
 .grp-prj {right: 12px !important;}
 
@@ -114,7 +114,7 @@
     opacity: 0.9 !important;
 }
 .group-title-closed {
-    background-color: #009688 !important;
+    background-color: #2590c3 !important;
 }
 .project-group-closed {
    padding: 0px !important;

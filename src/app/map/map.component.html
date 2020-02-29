@@ -2,15 +2,17 @@
 <div id="content">
     <nav class="navbar navbar-expand-lg materialnav navbar-header"> 
         <i class="material-icons menuicon" id="sidebarCollapse" >menu</i>
-        <a class="navbar-brand" href="http://terrabrasilis.dpi.inpe.br"><span class="amarelo" >Terra</span><span class="verde">Brasilis</span></a>
-        <div class="navbar-nav collapse navbar-collapse justify-content-between"> 
+        <a class="navbar-brand" href="../../SisGeov1/index.html"><span class="azul" >Sis</span><span class="marron">Geo</span></a>
+        <!--Prodes desmatamento-->
+        <!--div class="navbar-nav collapse navbar-collapse justify-content-between"> 
             <a class="nav-item nav-link">| {{ 'app.' + type | translate }}</a> 
-        </div>
+        </div-->
         <button class="navbar-toggler" id="menuanaliseid" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
             <i class="material-icons menuicon">more_vert</i> 
         </button>
         <div class="collapse navbar-collapse flex-column" id="navbarSupportedContent">
             <ul class="navbar-nav navbar-right analises">
+            <!--Menu>
             <li class="nav-item dropdown"> 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons iconmobile">assignment </i> {{ 'menu.map.name' | translate }}                     
@@ -19,7 +21,8 @@
                     <a class="dropdown-item" href="{{ imgPath }}map/deforestation/"><i class="material-icons iconmenu">nature</i>{{ 'menu.map.option1' | translate }}</a>
                     <a class="dropdown-item" href="{{ imgPath }}map/alerts/" target="_blank"><i class="material-icons iconmenu">warning</i>{{ 'menu.map.option2' | translate }}</a> 
                 </div>
-            </li>
+            </li-->
+            <!--Graficos>
             <li class="nav-item dropdown"> 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
                     <i class="material-icons iconmobile">assignment </i> {{ 'menu.analyses.name' | translate }} 
@@ -28,7 +31,7 @@
                     <a class="dropdown-item" target="_blank" href="{{ imgPath }}dashboard/deforestation/biomes/legal_amazon/rates/"><i class="material-icons iconmenu">nature</i>{{ 'menu.analyses.option1' | translate }}</a>
                     <a class="dropdown-item" target="_blank" href="{{ imgPath }}dashboard/alerts/biomes/cerrado/daily/"><i class="material-icons iconmenu">warning</i>{{ 'menu.analyses.option2' | translate }}</a> 
                 </div>
-            </li>
+            </li-->
             <li class="nav-item"> <a class="nav-link" target="_blank" style="cursor: pointer;" href="{{ terraBrasilisAboutURL }}"> <i class="material-icons iconmobile">info</i>{{ 'menu.about' | translate }} </a> </li>
             <li class="nav-item"> <a class="nav-link" style="cursor: pointer;" (click)="showContact()"> <i class="material-icons iconmobile">email</i>{{ 'menu.contact' | translate }}</a> </li>
             <li class="nav-item"> <a class="nav-link" target="_blank" style="cursor: pointer;" href="{{ imgPath }}assets/files/manual-terrabrasilis-v1.pdf"> <i class="material-icons iconmobile">help</i>{{ 'menu.help' | translate }}</a> </li>
@@ -49,12 +52,13 @@
             </label>
             <input class="search-box__input" id="search" type="text" placeholder="cidade, uf">
         </div> -->
-        <a href="http://terrabrasilis.dpi.inpe.br">
+        <!--a href="http://terrabrasilis.dpi.inpe.br">
             <div class="desctxt">
                     <h5><span class="amarelo">Terra</span><span class="verde">Brasilis</span> </h5>
                     <div class="texto">{{ 'app.' + type | translate }}</div>
             </div>
-        </a>
+        </a-->
+        <img class="img-responsive" src="../../assets/img/map/sisgeo.png" alt="Sisgeo">
     </div>
     <!-- ferramentas gerais --> 
     <div class="ferramentas">
