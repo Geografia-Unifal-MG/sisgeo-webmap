@@ -8,7 +8,7 @@ const routes: Routes = [
     { path: 'wms', component: WmsSearchComponent },
     {
         path: "**",
-        redirectTo: "/map/deforestation",
+        redirectTo: "/map/furnas",
         pathMatch: "full"
     }
 ];

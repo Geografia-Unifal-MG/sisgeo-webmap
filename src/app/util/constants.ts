@@ -71,7 +71,8 @@ export class Constants {
     };  
     
     public static get TERRABRASILIS_BUSINESS_API_HOST(): string {
-        let url = 'http://terrabrasilis.dpi.inpe.br/business/api/v1/';
+        //let url = 'http://terrabrasilis.dpi.inpe.br/business/api/v1/';
+        let url = 'http://172.17.0.1:13222/api/v1/';
 
         if(environment.BUILD_TYPE && environment.ENV == 'production') {
             // confirm the 13111 port in docker-stacks/api/business-api-homologation.yaml
