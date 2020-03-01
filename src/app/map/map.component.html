@@ -2,7 +2,7 @@
 <div id="content">
     <nav class="navbar navbar-expand-lg materialnav navbar-header"> 
         <i class="material-icons menuicon" id="sidebarCollapse" >menu</i>
-        <a class="navbar-brand" href="../../SisGeov1/index.html"><span class="azul" >Sis</span><span class="marron">Geo</span> v1.0</a>
+        <a class="navbar-brand" href="../../SisGeov1/index.html"><span class="azul" >Sis</span><span>Geo</span><span style="color: limegreen; font-size: 19px;"> v1.0</span></a>
         <!--Prodes desmatamento-->
         <!--div class="navbar-nav collapse navbar-collapse justify-content-between"> 
             <a class="nav-item nav-link">| {{ 'app.' + type | translate }}</a> 
@@ -79,12 +79,6 @@
         </dfn>
         <dfn attr.data-info="{{ 'tools.addLayer' | translate }}">
             <button type="button" class="btn" (click)="showDialogCapabilities()"><i class="material-icons md-light">add_box</i></button>
-        </dfn>
-        <dfn attr.data-info="{{ 'tools.undo' | translate }}">
-            <button type="button" class="btn" (click)="undo()"><i class="material-icons md-light">undo</i></button>
-        </dfn>
-        <dfn attr.data-info="{{ 'tools.redo' | translate }}">
-            <button type="button" class="btn" (click)="redo()"><i class="material-icons md-light">redo</i></button>
         </dfn>
     </div>
     <!-- Overlayers -->
@@ -188,7 +182,7 @@
 <div id="map" class="container-fluid mapa" style="background-color: #fff !important;"></div>
 
 <!-- Sidebar Legendas -->
-<div id="legend" class="toggled">
+<!--div id="legend" class="toggled">
     <div id="sidebar-legend">
         <div *ngFor="let project of layersToLegend" style="margin-bottom: 1px;">
             <div class="legend-title">{{ project.name }}</div>
@@ -211,6 +205,6 @@
         </div>
     </div>
     <a href class="btn btn-success btn-legend" data-toggle="sidebar">{{ 'tools.legend' | translate }}</a>
-</div>
+</div-->
 <!-- fim --> 
     
