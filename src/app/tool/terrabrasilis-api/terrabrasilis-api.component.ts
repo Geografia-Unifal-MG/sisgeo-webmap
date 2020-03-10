@@ -3,7 +3,8 @@ import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 /**
  *  import terrabrasilis api from node_modules
  */
-import * as Terrabrasilis from 'terrabrasilis-api';
+//import * as Terrabrasilis from 'terrabrasilis-api';
+import * as Terrabrasilis from '../../../terrabrasilis-api/terrabrasilis';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { MatDialog } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
