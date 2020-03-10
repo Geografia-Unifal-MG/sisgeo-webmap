@@ -113,7 +113,9 @@
         "5e5c0f38c5c5c40001859bd3" : {
             "name": "Cartas Topográficas",
             "5e5c0eccc5c5c40001859bd25e5c0f38c5c5c40001859bd3" : "Carta de Alfenas",
-            "5e66cde318eee00001f877365e5c0f38c5c5c40001859bd3" : "Carta de Varginha"
+            "5e66cde318eee00001f877365e5c0f38c5c5c40001859bd3" : "Carta de Varginha",
+            "5e66fdb318eee00001f877375e5c0f38c5c5c40001859bd3" : "Articulação de Furnas(linha)",
+            "5e66fde818eee00001f877385e5c0f38c5c5c40001859bd3" : "Articulação de Furnas(polígono)"
         },
         "control3" : "Outras Camadas",
         "noLegend" : "Para ver legendas, você deve ativar camadas."
