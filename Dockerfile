@@ -9,7 +9,12 @@ ARG ENV
 ARG env=$ENV
 
 COPY package.json /app/
+
+RUN npm cache clean -f
+RUN npm install -g n
+RUN n stable
 RUN npm install
+
 COPY ./src /app/src/
 COPY ./ts*.json /app/
 COPY ./angular.json /app/
