@@ -9,6 +9,6 @@ export const common = {
   FIPCERRADO_OPERACAO: get(process, 'env.FIPCERRADO_OPERACAO', 'http://fipcerrado.dpi.inpe.br:8080/fipcerrado-geoserver/terraamazon/wms'),
   PROXY_OGC: get(process, 'env.PROXY_OGC', 'http://terrabrasilis.dpi.inpe.br/proxy?url='),
   DASHBOARD_API_HOST: get(process, 'env.DASHBOARD_API_HOST', 'http://terrabrasilis.dpi.inpe.br/dashboard/api/v1/redis-cli/'),
-  TERRABRASILIS_API_HOST: get(process, 'env.TERRABRASILIS_API_HOST', 'http://172.17.0.1:13222/api/v1/'),
-  TERRABRASILIS_BUSINESS_API_HOST: get(process, 'env.TERRABRASILIS_BUSINESS_API_HOST', 'http://172.17.0.1:13222/api/v1/')
+  // TERRABRASILIS_API_HOST: get(process, 'env.TERRABRASILIS_API_HOST', 'http://terrabrasilis.dpi.inpe.br/terrabrasilis/api/v1/'),
+  // TERRABRASILIS_BUSINESS_API_HOST: get(process, 'env.TERRABRASILIS_BUSINESS_API_HOST', 'http://terrabrasilis.dpi.inpe.br/business/api/v1/')
 }
