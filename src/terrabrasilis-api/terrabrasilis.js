@@ -3,9 +3,9 @@ const L = require('leaflet')
 require('terrabrasilis-timedimension')
 require('terrabrasilis-map-plugins')
 const leafletEsriGeocoding = require('esri-leaflet-geocoder')
-const utils = require('./src/utils')
+const utils = require('../terrabrasilis-api/utils')
 const { get, set } = require('lodash')
-const turf = require('./src/turf')
+const turf = require('../terrabrasilis-api/turf')
 
 /**
  * This class use the Revealing Module Pattern.
@@ -1348,11 +1348,10 @@ Terrabrasilis = (function () {
         return false
       }
       urls.forEach(url => {
-        const urlToGetInfo = constants.PROXY + '?url=' + encodeURIComponent(url)
         const table = L.DomUtil.create('table', 'table table-striped table-info')
         const tableBody = L.DomUtil.create('tbody', '', table)
 
-        $.get(urlToGetInfo).done(function (data) {
+        $.get(url).done(function (data) {
           if (data.features.length > 0) {
             data.features.forEach(element => {
               /**
@@ -1437,7 +1436,8 @@ Terrabrasilis = (function () {
           width: size.x.toFixed(0),
           layers: layer.wmsParams.layers,
           query_layers: layer.wmsParams.layers,
-          typename: layer.wmsParams.layers
+          typename: layer.wmsParams.layers,
+          srs: 'EPSG:4326'
         }
 
         var paramsOptions = {
