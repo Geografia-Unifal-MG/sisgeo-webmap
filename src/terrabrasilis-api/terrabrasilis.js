@@ -549,7 +549,7 @@ Terrabrasilis = (function () {
     for (const key in overLayersOptions) {
       if (overLayersOptions.hasOwnProperty(key)) {
         const ol = overLayersOptions[key]
-        // console.log(ol);
+      // console.log('ol customized',ol);
         if (!ol.baselayer) {
           const options = {
             layers: ol.workspace + ':' + ol.name,
@@ -576,7 +576,7 @@ Terrabrasilis = (function () {
           const host = ol.datasource.host //.replace('ows', 'gwc/service/wms')
           var overlayer = L.tileLayer.wms(host, options)
           // overlayers[ol.title] = overlayer;
-          overlayers[ol.id] = overlayer
+          overlayers[ol.id] = overlayer          
           if (ol.timeDimension) {
             // Show one button to enable/disable the TimerControl over map.
             console.log('The layer ' + ol.name + ' have time dimension.')
@@ -764,7 +764,7 @@ Terrabrasilis = (function () {
     for (const key in geoJson) {
       if (geoJson.hasOwnProperty(key)) {
         const ol = geoJson[key]
-
+        console.log('Ol mount',ol)
         var overlayer = L.geoJson(ol.features,
           { style: ol.style,
             onEachFeature: onEachFeature })
