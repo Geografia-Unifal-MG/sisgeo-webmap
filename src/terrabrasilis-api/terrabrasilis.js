@@ -764,7 +764,6 @@ Terrabrasilis = (function () {
     for (const key in geoJson) {
       if (geoJson.hasOwnProperty(key)) {
         const ol = geoJson[key]
-        console.log('Ol mount',ol)
         var overlayer = L.geoJson(ol.features,
           { style: ol.style,
             onEachFeature: onEachFeature })

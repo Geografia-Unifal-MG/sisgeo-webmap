@@ -5,6 +5,12 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 @import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 
+:root {
+  --sidebar-primary-color: #2590c3;
+  --sidebar-second-color: #00d0ff;
+  --navbar-color: #0c2461;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background: #fafafa;
@@ -27,21 +33,10 @@ a:focus {
   transition: all 0.3s;
 }
 
-.verde {
-  color: #96c964;
-}
-
-.amarelo {
-  color: #f9c069;
-}
-
 .azul{
-  color: rgba(0, 206, 255, 0.8);
+  color: var(--sidebar-second-color);
 }
 
-.marron{
-  color: #A0522D;
-}
 
 /* ---------------------------------------------------
     Material Icons
@@ -64,8 +59,8 @@ a:focus {
 }
 
 .material-icons.md-light.md-off {
-  text-shadow: #a4f4d9 1px 1px 0;
-  color: #367a6b;
+  text-shadow: var(--sidebar-second-color) 1px 1px 0;
+  color: var(--navbar-color);
 }
 
 .material-icons.md-light.md-on {
@@ -87,7 +82,7 @@ a:focus {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   align-items: center;
-  background-color:  #1b3548;
+  background-color: var(--navbar-color);
   color: #fff !important;
   font-weight: 400;
   font-size: 16px;
@@ -127,21 +122,21 @@ a:focus {
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #006950;
-  border-color: #108d6f;
+  background-color: var(--navbar-color);
+  border-color: var(--sidebar-primary-color);
   box-shadow: none;
   outline: none;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #108d6f;
-  border-color: #108d6f;
+  background-color: var(--sidebar-primary-color);
+  border-color: var(--navbar-color);
 }
 
 .ferramentas {
   padding: 15px 10px 10px 10px;
-  background-color: #2590c3;
+  background-color: var(--sidebar-primary-color);
   color: #fff;
 }
 
@@ -192,12 +187,12 @@ a:focus {
 }
 
 .analises a[aria-expanded="true"] {
-  background-color: #00796b !important;
+  background-color: var(--sidebar-primary-color) !important;
 }
 
 .analises a:active {
   background-color: transparent !important;
-  color: #49bc95 !important;
+  color: var(--sidebar-second-color) !important;
 }
 
 .submenu a { color: #33333d !important; min-width: 230px;}
@@ -501,9 +496,17 @@ a.article:hover {
   top: -20px;
 }
 
+#sidebar .txtcamada:hover {
+  color: var(--sidebar-primary-color);
+}
+
 .configura {
   position: relative;
   top: 6px;
+}
+
+.configura:hover{
+  color: var(--sidebar-primary-color);
 }
 
 /*--------------------------------------------------------
@@ -763,7 +766,7 @@ a.article:hover {
 }
 
 .material-switch>input[type="checkbox"]:checked+label::after {
-  background: #90dd8a;
+  background: var(--sidebar-primary-color);
   /* Cor ativa ou usar classe bg do bootstrap*/
   left: 20px;
 }
@@ -885,7 +888,7 @@ a.article:hover {
 ---------------------------------------------------------*/
 
 footer {
-  background-color: #2590c3;
+  background-color: var(--sidebar-primary-color);
   position: fixed;
   bottom: 0;
   left: 0;
@@ -1048,7 +1051,7 @@ footer {
   color: #fafafa;
   font-weight: 400;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-  background-color: #2590c3 !important;
+  background-color: var(--sidebar-primary-color) !important;
 }
 
 /* ---------------------------------------------------

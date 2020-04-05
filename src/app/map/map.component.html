@@ -2,7 +2,7 @@
 <div id="content">
     <nav class="navbar navbar-expand-lg materialnav navbar-header"> 
         <i class="material-icons menuicon" id="sidebarCollapse" >menu</i>
-        <a class="navbar-brand" href="../../SisGeov1/index.html"><span class="azul" >Sis</span><span>Geo</span><span style="color: limegreen; font-size: 19px;"> v1.0</span></a>
+        <a class="navbar-brand" href="../../SisGeov1/index.html"><span class="azul">Sis</span><span>Geo</span><span style="font-size: 19px;"> v1.0</span></a>
         <!--Prodes desmatamento-->
         <!--div class="navbar-nav collapse navbar-collapse justify-content-between"> 
             <a class="nav-item nav-link">| {{ 'app.' + type | translate }}</a> 
@@ -74,12 +74,12 @@
         <dfn attr.data-info="{{ 'tools.fullscreen' | translate }}">
             <button type="button" class="btn" (click)="fullScreen()"><i class="material-icons md-light">fullscreen</i></button>
         </dfn>
-        <dfn attr.data-info="{{ 'tools.download' | translate }}">
+        <!--dfn attr.data-info="{{ 'tools.download' | translate }}">
             <button type="button" class="btn" (click)="showDialogDownloadOptions()"><i class="material-icons md-light">cloud_download</i></button>
         </dfn>
         <dfn attr.data-info="{{ 'tools.addLayer' | translate }}">
             <button type="button" class="btn" (click)="showDialogCapabilities()"><i class="material-icons md-light">add_box</i></button>
-        </dfn>
+        </dfn-->
     </div>
     <!-- Overlayers -->
     <div *ngFor="let project of overlayers">
