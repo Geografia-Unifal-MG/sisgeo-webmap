@@ -18,12 +18,12 @@
     /* 
     * Add terrabrasilis.gif
     */
-    background: url(../../img/sisgeo.png) no-repeat;
+    background: url(../../img/water.gif) no-repeat;
     background-position-x: 50%;
     background-position-y: 45%;
 }
 .loading-overlay.loading-theme-light {
-    background-color: #E5FAEE;
+    background-color: white;
     color: #000;
 }
 .loading-overlay.loading-theme-dark {
