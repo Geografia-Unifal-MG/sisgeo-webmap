@@ -2,6 +2,12 @@
 /* CSS Document */
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
+:root {
+  --sidebar-primary-color: #2590c3;
+  --sidebar-second-color: #00d0ff;
+  --navbar-color: #0c2461;
+}
+
 /* Baselayers */
 .btnbaselayer {
     position:absolute;
@@ -13,7 +19,7 @@
 .baselayer {
     width:50px;
     height:50px;
-    background:#367a6b;
+    background:var(--sidebar-second-color);
     border-radius:5px;
     box-sizing:border-box;
     text-align:center;
@@ -24,7 +30,7 @@
     height:60px;
     text-align:left;
     padding:0 15px;
-    background:#367a6b;
+    background:var(--sidebar-second-color);
     transform:translateY(-50%);
     transform:translateX(43%);
     border-bottom-left-radius:0;
@@ -138,7 +144,7 @@
   width: 23px;
   height: 23px;
   display: inline-block;
-  background-color: #367a6b;	
+  background-color: var(--sidebar-primary-color);
 }
 
 
