@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 /**
  *  import terrabrasilis api from node_modules
  */
-import * as Terrabrasilis from 'terrabrasilis-api';
+import * as Terrabrasilis from '../../../terrabrasilis-api/terrabrasilis';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { MatDialog } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -38,7 +38,7 @@ export class TerrabrasilisApiComponent implements OnInit {
     //// MapBuilder
     ////////////////////////////////////////////////
     public map(points: any, baselayers: any, overlayers: any ): void  {
-        Terrabrasilis.map(points.longitude, points.latitude)
+        Terrabrasilis.map(points.longitude, points.latitude, 9)
             .addCustomizedBaseLayers(JSON.parse(JSON.stringify(baselayers)))
             .addCustomizedOverLayers(JSON.parse(JSON.stringify(overlayers)))
             // .addBaseLayers(JSON.parse(JSON.stringify(this.baselayers)))

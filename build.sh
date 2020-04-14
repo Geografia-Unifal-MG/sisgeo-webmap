@@ -41,7 +41,7 @@ echo "Building $BUILD_TYPE mode..."
 echo "........................"
 
 # --no-cache
-docker build --build-arg ENV=$ENV --build-arg BUILD_TYPE=$BUILD_TYPE -t terrabrasilis/webmap:$VERSION -f Dockerfile .
+docker build --build-arg ENV=$ENV --build-arg BUILD_TYPE=$BUILD_TYPE -t geografiaunifal/sisgeo:$VERSION -f Dockerfile .
 
 echo "The building was finished! Do you want sending this new image to Docker HUB? Type yes to continue." ; read SEND_TO_HUB
 if [[ ! "$SEND_TO_HUB" = "yes" ]]; then

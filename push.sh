@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker push terrabrasilis/webmap:$1
+docker push geografiaunifal/sisgeo:$1
