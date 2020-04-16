@@ -97,7 +97,8 @@
             </ng-template>
             <div class="material-switch grp-prj pull-right">
                 <input id="{{(project.id | cleanWhiteSpace) + '_grp-crtl' }}" name="someSwitchOption002" type="checkbox" (change)="projectGroupOnOff($event.srcElement, project)" checked="{{ (project.enabled) ? 'checked' : null }}"/>
-                <label for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label>
+                <!--label class="bg-white" style="cursor: default;"></label-->
+                <label for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label> <!--Habilita todos se remover comentarios de projectGroupOnOff -->
             </div>
 
             <div class="grid-stack" id="{{ 'grid-stack-' + project.id }}">
@@ -171,7 +172,7 @@
                   (change)="layerBaseLayerChange(layer)">
                 <label for="{{layer.title}}"><span></span></label>              
                 <span class="text">{{layer.title}}<br *ngIf="layer.description" />
-                    <div *ngIf="layer.description" style="font-size: small;">{{layer.description}}</div>
+                    <div *ngIf="layer.description" style="font-size: small;">{{ 'layerControl.baselayer.warning' | translate}}</div>
                 </span>
             </li>                                      
         </ul>
