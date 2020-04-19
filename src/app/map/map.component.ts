@@ -385,10 +385,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.terrabrasilisApi.fullScreen();
     }
 
-    drawSimpleShape() {
-        this.showDialog('Terrabrasilis web application.');
-    }
-
     showDialogCapabilities() {
         this.cdRef.detectChanges();
         this.dialog.open(WmsSearchComponent, {
@@ -463,7 +459,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      */
     private mapLayerOnOff(layerObject: any) {
         if (layerObject.active) {
-            this.showWarning(layerObject); // TODO: it's a hard coded information for Pampa and Pantanal. Will be disabled in the future!
+            //this.showWarning(layerObject); // TODO: it's a hard coded information for Pampa and Pantanal. Will be disabled in the future!
             this.terrabrasilisApi.activeLayer(layerObject);
         } else if (this.terrabrasilisApi.isLayerActived(layerObject)) {
             this.terrabrasilisApi.deactiveLayer(layerObject);
@@ -623,7 +619,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
     }
 
-    showWarning(layerObject: any) {
+    /*showWarning(layerObject: any) {
         if (layerObject.name == 'pampa_accumulated_deforestation_up_to_2016' || layerObject.name == 'pantanal_accumulated_deforestation_up_to_2016') {
             const msg = '<b>Atenção, este é um dado preliminar.</b><br />' +
                 'Ele mostra o desmatamento acumulado até 2016 para o bioma.<br />' +
@@ -631,7 +627,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 '<a href=\'' + layerObject.metadata + '\' style=\'color:#007bff;text-decoration: underline;\'>Confira aqui o metadado da camada.</a>';
             this.showDialog(msg);
         }
-    }
+    }*/
 
     showContact() {
         this.cdRef.detectChanges();
@@ -653,9 +649,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         window.open(url, '_blank');
     }
 
-    showDialogDownloadOptions() {
+    /*showDialogDownloadOptions() {
         this.showDialog(this.getDownloadHtmlOptions());
-    }
+    }*/
 
     processLegendForLayers(layers: any): Promise<any> {
         const promises = layers.map((layer) => {
@@ -721,7 +717,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         }
     }
 
-    private getDownloadHtmlOptions(): string {
+    /*private getDownloadHtmlOptions(): string {
         let downloadHtml = '<div class="container">';
 
         const match = /terrabrasilis.dpi.inpe.br\/download/;
@@ -740,7 +736,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         });
         downloadHtml += '</div>';
         return downloadHtml;
-    }
+    }*/
 
     private buildOverlayersAndBaselayers(values: any): void {
         const baselayers = new Array<any>();
