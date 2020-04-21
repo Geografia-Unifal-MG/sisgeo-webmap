@@ -2,7 +2,7 @@
 <div id="content">
     <nav class="navbar navbar-expand-lg materialnav navbar-header"> 
         <i class="material-icons menuicon" id="sidebarCollapse" >menu</i>
-        <a class="navbar-brand" href="../../SisGeov1/index.html"><span class="azul">Sis</span><span>Geo</span><span style="font-size: 19px;"> v1.0</span></a>
+        <a class="navbar-brand" href="#"><span class="azul">Sis</span><span>Geo</span><span style="font-size: 19px;"> v1.0</span></a>
         <button class="navbar-toggler" id="menuanaliseid" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
             <i class="material-icons menuicon">more_vert</i> 
         </button>
@@ -55,8 +55,8 @@
             </ng-template>
             <div class="material-switch grp-prj pull-right">
                 <input id="{{(project.id | cleanWhiteSpace) + '_grp-crtl' }}" name="someSwitchOption002" type="checkbox" (change)="projectGroupOnOff($event.srcElement, project)" checked="{{ (project.enabled) ? 'checked' : null }}"/>
-                <!--label class="bg-white" style="cursor: default;"></label-->
-                <label for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label> <!--Habilita todos se remover comentarios de projectGroupOnOff -->
+                <label *ngIf="!overlayerChecked" class="bg-white" style="cursor: default;"></label>
+                <label *ngIf="overlayerChecked" for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label>
             </div>
 
             <div class="grid-stack" id="{{ 'grid-stack-' + project.id }}">

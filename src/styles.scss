@@ -6,10 +6,6 @@
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-:root {
-    --primary-color: #2590c3;
-}
-
 body {
     margin: 0;
     font-family: Roboto, sans-serif;
@@ -42,7 +38,7 @@ mat-toolbar-row {
 }
 
 .mat-slider {
-    color: var(--primary-color) !important;
+    color: var(--sidebar-primary-color) !important;
 }
 
 .mat-dialog-container {

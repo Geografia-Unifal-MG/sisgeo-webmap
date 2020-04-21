@@ -77,7 +77,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     /**
      * toggle slide
      */
-    public overlayerChecked = false;
+    public overlayerChecked = true;
 
     /**
      * Slider value
@@ -451,6 +451,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         }
         this.mapLayerOnOff(layerObject);
         this.updateOverlayerLegends();
+        if(!this.overlayerChecked) this.overlayerChecked = true
     }
 
     /**
@@ -493,7 +494,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      * @param vision The vision reference to access the active property
      */
     projectGroupOnOff(input: HTMLInputElement, vision: Vision) {
-        if (!input.checked) {   //Se o input for false eu seto tudo pra false
+        if (!input.checked) {
+            this.overlayerChecked = false
             vision.enabled = input.checked;
             vision.layers.forEach(layer => {
                 layer.active = vision.enabled;

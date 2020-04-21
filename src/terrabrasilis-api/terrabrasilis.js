@@ -549,7 +549,6 @@ Terrabrasilis = (function () {
     for (const key in overLayersOptions) {
       if (overLayersOptions.hasOwnProperty(key)) {
         const ol = overLayersOptions[key]
-      // console.log('ol customized',ol);
         if (!ol.baselayer) {
           const options = {
             layers: ol.workspace + ':' + ol.name,
