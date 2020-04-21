@@ -1347,13 +1347,10 @@ Terrabrasilis = (function () {
         return false
       }
       urls.forEach(url => {
-        //const urlToGetInfo = constants.PROXY + '?url=' + encodeURIComponent(url)
-        const urlToGetInfo = url
         const table = L.DomUtil.create('table', 'table table-striped table-info')
         const tableBody = L.DomUtil.create('tbody', '', table)
-        console.log(urlToGetInfo);
-        $.get(urlToGetInfo).done(function (data) {
-          console.log(data);
+
+        $.get(url).done(function (data) {
           if (data.features.length > 0) {
             data.features.forEach(element => {
               /**
@@ -1385,7 +1382,7 @@ Terrabrasilis = (function () {
           if (data.features.length < 0) {
             popupTemplate.append('<p>No data to show!</p>')
           }
-        }).fail(function (e) {
+        }).fail(function () {
           popupTemplate.append('<p>The server is not responding the request!</p>')
         }).always(function () {
           if (popupTemplate.getElementsByClassName(loading.className).length) {
@@ -1414,8 +1411,6 @@ Terrabrasilis = (function () {
     const point = map.latLngToContainerPoint(event.latlng, map.getZoom())
     const size = map.getSize()
     const bounds = map.getBounds()
-    const teste = map.getPixelBounds()
-    console.log(map);
 
     const result = []; const ctrlReplication = []
     map.eachLayer(layer => {
@@ -1436,11 +1431,12 @@ Terrabrasilis = (function () {
           service: 'WMS',
           version: layer.wmsParams.version,
           bbox: bounds.toBBoxString(),
-          height: size.y,
-          width: size.x,
+          height: size.y.toFixed(0),
+          width: size.x.toFixed(0),
           layers: layer.wmsParams.layers,
           query_layers: layer.wmsParams.layers,
-          typename: layer.wmsParams.layers
+          typename: layer.wmsParams.layers,
+          srs: 'EPSG:4326'
         }
 
         var paramsOptions = {
