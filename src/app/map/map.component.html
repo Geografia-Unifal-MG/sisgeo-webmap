@@ -2,7 +2,7 @@
 <div id="content">
     <nav class="navbar navbar-expand-lg materialnav navbar-header"> 
         <i class="material-icons menuicon" id="sidebarCollapse" >menu</i>
-        <a class="navbar-brand" href="#"><span class="azul">Sis</span><span>Geo</span><span style="font-size: 19px;"> v1.0</span></a>
+        <span class="azul">Sis</span><span>Geo</span><span style="font-size: 19px;"> v1.0</span>
         <button class="navbar-toggler" id="menuanaliseid" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
             <i class="material-icons menuicon">more_vert</i> 
         </button>
@@ -22,7 +22,7 @@
 <!-- Sidebar Holder -->
 <nav id="sidebar">
     <div class="sidebar-header">
-        <img class="img-responsive" src="../../assets/img/map/sisgeo.png" alt="Sisgeo">
+        <img class="img-responsive" src="{{ imgPath }}assets/img/map/sisgeo.png" alt="Sisgeo">
     </div>
     <!-- ferramentas gerais --> 
     <div class="ferramentas">
@@ -127,7 +127,7 @@
                   (change)="layerBaseLayerChange(layer)">
                 <label for="{{layer.title}}"><span></span></label>              
                 <span class="text">{{layer.title}}<br *ngIf="layer.description" />
-                    <div *ngIf="layer.description" style="font-size: small;">{{ 'layerControl.baselayer.warning' | translate}}</div>
+                    <div *ngIf="layer.description" style="font-size: small;">{{layer.description}}</div>
                 </span>
             </li>                                      
         </ul>

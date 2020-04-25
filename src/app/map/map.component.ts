@@ -460,7 +460,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      */
     private mapLayerOnOff(layerObject: any) {
         if (layerObject.active) {
-            //this.showWarning(layerObject); // TODO: it's a hard coded information for Pampa and Pantanal. Will be disabled in the future!
             this.terrabrasilisApi.activeLayer(layerObject);
         } else if (this.terrabrasilisApi.isLayerActived(layerObject)) {
             this.terrabrasilisApi.deactiveLayer(layerObject);
@@ -621,16 +620,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
     }
 
-    /*showWarning(layerObject: any) {
-        if (layerObject.name == 'pampa_accumulated_deforestation_up_to_2016' || layerObject.name == 'pantanal_accumulated_deforestation_up_to_2016') {
-            const msg = '<b>Atenção, este é um dado preliminar.</b><br />' +
-                'Ele mostra o desmatamento acumulado até 2016 para o bioma.<br />' +
-                'O dado definitivo será consolidado após conclusão dos mapeamentos previstos para os anos que compõem a série histórica de 2004 a 2018.<br /><br />' +
-                '<a href=\'' + layerObject.metadata + '\' style=\'color:#007bff;text-decoration: underline;\'>Confira aqui o metadado da camada.</a>';
-            this.showDialog(msg);
-        }
-    }*/
-
     showContact() {
         this.cdRef.detectChanges();
         this.dialog.open(ContactComponent, { width: '450px' });
@@ -650,10 +639,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     goTo(url: string) {
         window.open(url, '_blank');
     }
-
-    /*showDialogDownloadOptions() {
-        this.showDialog(this.getDownloadHtmlOptions());
-    }*/
 
     processLegendForLayers(layers: any): Promise<any> {
         const promises = layers.map((layer) => {
@@ -718,27 +703,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             listToRemoveObject.splice(index, 1);
         }
     }
-
-    /*private getDownloadHtmlOptions(): string {
-        let downloadHtml = '<div class="container">';
-
-        const match = /terrabrasilis.dpi.inpe.br\/download/;
-
-        this.downloads.forEach(download => {
-            const link = match.test(download.link) == false ?
-                '<a href=\'' + download.link + '\' target="_blank" class="btn btn-primary btn-success">Acesso aos Dados</a>' :
-                '<a href=\'' + download.link + '\' class="btn btn-primary btn-success">Download</a>';
-
-            downloadHtml += '    <div class="card mt-3">' +
-                '     <div class="card-body">' +
-                '        <h5 class="card-title">' + download.description + '</h5>' +
-                '        <p class="card-text">' + download.name + '</p>' + link +
-                '     </div>' +
-                '    </div>';
-        });
-        downloadHtml += '</div>';
-        return downloadHtml;
-    }*/
 
     private buildOverlayersAndBaselayers(values: any): void {
         const baselayers = new Array<any>();

@@ -347,7 +347,7 @@ dfn:hover::before {
 	}
 }
 
-#sidebar .sidebar-header img{
+.sidebar-header img{
   height: 55%;
   width: 100%;
   margin-top: 40px;
@@ -385,7 +385,7 @@ dfn:hover::before {
 
 }
 
-#sidebar .CTAs .btn {
+.CTAs .btn {
   padding-bottom: 10px !important;
 }
 
@@ -501,7 +501,7 @@ a.article:hover {
 }
 
 /*Adicionado */
-#sidebar .txtcamada {
+.txtcamada {
   position: relative;
   overflow: hidden;
   line-height: 1.2em;
@@ -511,7 +511,7 @@ a.article:hover {
   top: -20px;
 }
 
-#sidebar .txtcamada:hover {
+.txtcamada:hover {
   color: var(--sidebar-primary-color);
 }
 
@@ -1184,93 +1184,20 @@ footer {
   }
 }
 
-/**
-* TimeDimension tool customization
-*/
-.timecontrol-backward:before {
-  color: #009688 !important;
+footer {
+  background-color: var(--navbar-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
+  text-align: center;
+  z-index: 1;
 }
 
-.timecontrol-play:before {    
-  color: #009688 !important;
-}
-
-.timecontrol-forward:before {
-  color: #009688 !important;
-}
-
-.leaflet-touch .leaflet-bar-timecontrol .leaflet-control-timecontrol {
-  font-weight: bold !important;
-  color: #1d757f !important;
-}
-
-.timecontrol-slider .knob:after {
-  background: #90dd8a !important;
-  border-radius: 16px !important;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3) !important;
-  height: 20px !important;
-  transition: all 0.3s ease-in-out !important; 
-  top: 0px !important;
-}
-
-.timecontrol-slider .knob {
-  width: 0px !important;
-  height: 15px !important;
-  border: 1px solid #fff !important;
-}
-
-.timecontrol-slider .slider {
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.4) !important;
-  border-radius: 8px !important;
-}
-
-.timecontrol-aggregate-toggle {
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-  font-weight: bold !important;
-  color: #1d757f !important;
-}
-
-.leaflet-bar-timecontrol .leaflet-control-timecontrol {
-  border: 0px !important
-}
-
-.leaflet-bar-timecontrol .timecontrol-speed .speed {
- margin-right: 10px !important;
-}
-
-.leaflet-bar-timecontrol {
-  background-color: #fff !important;
-  padding: 8px !important;
-}
-
-/* Timeseries Control panel */
-#ts-control-panel{
-  display: block;
-  top: 75px;
-  left: 340px;
-  width: 290px;
-  transition: all 0.3s;
-  position: absolute;
-  z-index: 999;
-}
-
-#ts-control-panel.active{
-  left: 50px;
-}
-
-/* Timeseries Data panel */
-#ts-data-panel{
-  display: block;
-  bottom: -30px;
-  left: 650px;
-  width: calc(100% - 650px);
-  transition: all 0.3s;
-  position: absolute;
-  z-index: 999;
-}
-
-#ts-data-panel.active{
-  left: 350px;
-  width: calc(100% - 350px);
+.footer p {
+  padding: 15.5px;
+  line-height: 100%;
+  margin: 0;
+  color: #fff !important;
 }
