@@ -2,12 +2,6 @@
 /* CSS Document */
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-:root {
-  --sidebar-primary-color: #2590c3;
-  --sidebar-second-color: #00d0ff;
-  --navbar-color: #0c2461;
-}
-
 /* Baselayers */
 .btnbaselayer {
     position:absolute;
