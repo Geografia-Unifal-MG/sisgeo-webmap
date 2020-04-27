@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 
-<!-- slide -->
+<!-- slide >
 <div class="container">
     <div class="row">
         <div class="modal fade" id="firstNotice">
@@ -9,14 +9,13 @@
                     <div class="modal-header fechar">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
                     </div> 					
-                    <!-- / modal-header -->
                     <div class="modal-body ">						
                         <div id="carouselExampleIndicators" class="carousel slide sobre" data-ride="carousel">
-                            <!-- <ol class="carousel-indicators">
+                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" id="" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                            </ol> -->
+                            </ol> >
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <img class="d-block w-100" src="{{ imgPath }}assets/img/map/slider7.jpg" alt="Primeiro slide">
@@ -34,39 +33,29 @@
                             </a>
                         </div>				
                     </div>                    
-                    <!-- / modal-body -->
                     <div class="modal-footer">
                         <div class="checkbox pull-right">
                             <label>
                                 <input id="notice" class="modal-check" name="modal-check" type="checkbox"><span class="textoc">{{ 'tools.notice' | translate }}.</span>
                             </label>
                         </div>
-                        <!--/ checkbox -->
                     </div>
-                    <!--/ modal-footer -->
                 </div>
-                <!-- / modal-content -->
             </div>
-            <!--/ modal-dialog -->
         </div>
-        <!-- / modal -->
     </div>
-    <!-- / row -->
-</div>
-<!-- / container -->
+</div-->
 
-<!-- Carousel Slider --> 
-<script>
+<!--script>
     $(document).ready(function() {
         $('#carouselExampleIndicators').modal('show');
         $('.carousel').carousel({
             interval: 2000
         })
     });
-</script>
+</script-->
 
-<!--Footer-->
 <footer class="footer">
-    <p><a href="http://terrabrasilis.dpi.inpe.br"> TerraBrasilis</a>&nbsp;<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a></p>
+    <p><a href="#">Sisgeo</a>&nbsp;<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a></p>
+    <div class="version_style">ver: {{version}}</div>
 </footer>
-<!--/.Footer-->

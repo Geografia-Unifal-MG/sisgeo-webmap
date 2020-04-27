@@ -13,7 +13,7 @@
 .baselayer {
     width:50px;
     height:50px;
-    background:#367a6b;
+    background:var(--sidebar-second-color);
     border-radius:5px;
     box-sizing:border-box;
     text-align:center;
@@ -24,7 +24,7 @@
     height:60px;
     text-align:left;
     padding:0 15px;
-    background:#367a6b;
+    background:var(--sidebar-second-color);
     transform:translateY(-50%);
     transform:translateX(43%);
     border-bottom-left-radius:0;
@@ -92,7 +92,7 @@
 }
 .baselayer ul li:hover .text {
     font-weight:bold;
-    color:#367a6b;
+    color: var(--sidebar-primary-color);
 }
 
 
@@ -138,7 +138,7 @@
   width: 23px;
   height: 23px;
   display: inline-block;
-  background-color: #367a6b;	
+  background-color: var(--sidebar-primary-color);
 }
 
 

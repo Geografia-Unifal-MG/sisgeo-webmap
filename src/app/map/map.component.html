@@ -2,33 +2,12 @@
 <div id="content">
     <nav class="navbar navbar-expand-lg materialnav navbar-header"> 
         <i class="material-icons menuicon" id="sidebarCollapse" >menu</i>
-        <a class="navbar-brand" href="http://terrabrasilis.dpi.inpe.br"><span class="amarelo" >Terra</span><span class="verde">Brasilis</span></a>
-        <div class="navbar-nav collapse navbar-collapse justify-content-between"> 
-            <a class="nav-item nav-link">| {{ 'app.' + type | translate }}</a> 
-        </div>
+        <span class="azul">Sis</span><span>Geo</span><span style="font-size: 19px;"> v1.0</span>
         <button class="navbar-toggler" id="menuanaliseid" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
             <i class="material-icons menuicon">more_vert</i> 
         </button>
         <div class="collapse navbar-collapse flex-column" id="navbarSupportedContent">
             <ul class="navbar-nav navbar-right analises">
-            <li class="nav-item dropdown"> 
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons iconmobile">assignment </i> {{ 'menu.map.name' | translate }}                     
-                </a>
-                <div class="dropdown-menu submenu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ imgPath }}map/deforestation/"><i class="material-icons iconmenu">nature</i>{{ 'menu.map.option1' | translate }}</a>
-                    <a class="dropdown-item" href="{{ imgPath }}map/alerts/" target="_blank"><i class="material-icons iconmenu">warning</i>{{ 'menu.map.option2' | translate }}</a> 
-                </div>
-            </li>
-            <li class="nav-item dropdown"> 
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                    <i class="material-icons iconmobile">assignment </i> {{ 'menu.analyses.name' | translate }} 
-                </a>
-                <div class="dropdown-menu submenu" aria-labelledby="navbarDropdownMenuLink"> 
-                    <a class="dropdown-item" target="_blank" href="{{ imgPath }}dashboard/deforestation/biomes/legal_amazon/rates/"><i class="material-icons iconmenu">nature</i>{{ 'menu.analyses.option1' | translate }}</a>
-                    <a class="dropdown-item" target="_blank" href="{{ imgPath }}dashboard/alerts/biomes/cerrado/daily/"><i class="material-icons iconmenu">warning</i>{{ 'menu.analyses.option2' | translate }}</a> 
-                </div>
-            </li>
             <li class="nav-item"> <a class="nav-link" target="_blank" style="cursor: pointer;" href="{{ terraBrasilisAboutURL }}"> <i class="material-icons iconmobile">info</i>{{ 'menu.about' | translate }} </a> </li>
             <li class="nav-item"> <a class="nav-link" style="cursor: pointer;" (click)="showContact()"> <i class="material-icons iconmobile">email</i>{{ 'menu.contact' | translate }}</a> </li>
             <li class="nav-item"> <a class="nav-link" target="_blank" style="cursor: pointer;" href="{{ imgPath }}assets/files/manual-terrabrasilis-v1.pdf"> <i class="material-icons iconmobile">help</i>{{ 'menu.help' | translate }}</a> </li>
@@ -43,18 +22,7 @@
 <!-- Sidebar Holder -->
 <nav id="sidebar">
     <div class="sidebar-header">
-        <!-- <div class="row">
-            <label class="search-box__label" for="search">
-                <i class="search-box__icon material-icons">search</i>
-            </label>
-            <input class="search-box__input" id="search" type="text" placeholder="cidade, uf">
-        </div> -->
-        <a href="http://terrabrasilis.dpi.inpe.br">
-            <div class="desctxt">
-                    <h5><span class="amarelo">Terra</span><span class="verde">Brasilis</span> </h5>
-                    <div class="texto">{{ 'app.' + type | translate }}</div>
-            </div>
-        </a>
+        <img class="img-responsive" src="{{ imgPath }}assets/img/map/sisgeo.png" alt="Sisgeo">
     </div>
     <!-- ferramentas gerais --> 
     <div class="ferramentas">
@@ -69,18 +37,6 @@
         </dfn>
         <dfn attr.data-info="{{ 'tools.fullscreen' | translate }}">
             <button type="button" class="btn" (click)="fullScreen()"><i class="material-icons md-light">fullscreen</i></button>
-        </dfn>
-        <dfn attr.data-info="{{ 'tools.download' | translate }}">
-            <button type="button" class="btn" (click)="showDialogDownloadOptions()"><i class="material-icons md-light">cloud_download</i></button>
-        </dfn>
-        <dfn attr.data-info="{{ 'tools.addLayer' | translate }}">
-            <button type="button" class="btn" (click)="showDialogCapabilities()"><i class="material-icons md-light">add_box</i></button>
-        </dfn>
-        <dfn attr.data-info="{{ 'tools.undo' | translate }}">
-            <button type="button" class="btn" (click)="undo()"><i class="material-icons md-light">undo</i></button>
-        </dfn>
-        <dfn attr.data-info="{{ 'tools.redo' | translate }}">
-            <button type="button" class="btn" (click)="redo()"><i class="material-icons md-light">redo</i></button>
         </dfn>
     </div>
     <!-- Overlayers -->
@@ -99,7 +55,8 @@
             </ng-template>
             <div class="material-switch grp-prj pull-right">
                 <input id="{{(project.id | cleanWhiteSpace) + '_grp-crtl' }}" name="someSwitchOption002" type="checkbox" (change)="projectGroupOnOff($event.srcElement, project)" checked="{{ (project.enabled) ? 'checked' : null }}"/>
-                <label for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label>
+                <label *ngIf="!overlayerChecked" class="bg-white" style="cursor: default;"></label>
+                <label *ngIf="overlayerChecked" for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label>
             </div>
 
             <div class="grid-stack" id="{{ 'grid-stack-' + project.id }}">
@@ -154,9 +111,6 @@
             </div>
         </div>
     </div>
-    <!-- <ul class="list-unstyled CTAs">        
-        <li><a href="#"><br /></a></li>
-    </ul> -->
 </nav>
 
  <!-- start customized base layer menu -->
@@ -182,31 +136,3 @@
 
 <!-- map -->
 <div id="map" class="container-fluid mapa" style="background-color: #fff !important;"></div>
-
-<!-- Sidebar Legendas -->
-<div id="legend" class="toggled">
-    <div id="sidebar-legend">
-        <div *ngFor="let project of layersToLegend" style="margin-bottom: 1px;">
-            <div class="legend-title">{{ project.name }}</div>
-            <div *ngIf="project.isOpened" id="{{ (project.name | cleanWhiteSpace) + '_leg' }}" class="legend-body">
-                <div *ngIf="!project.enabled" class="card-legend">
-                    <h2>{{ 'layerControl.noLegend' | translate }}</h2>
-                </div>
-                <div *ngFor="let layer of project.layers">
-                    <div *ngIf="layer.active" class="card-legend">
-                       <div *ngIf="layer.hasTranslate; else templateTitle" title="{{ 'layerControl.' + project.id + '.' + layer.id | translate }}">
-                            <h2>{{ 'layerControl.' + project.id + '.' + layer.id | translate }}</h2>
-                        </div>
-                        <ng-template #templateTitle>
-                            <div title="{{ layer.title }}"><h2>{{ layer.title | slice:0:21 }}{{ (layer.title.length>21)?('...'):('') }}</h2></div>
-                        </ng-template>
-                        <img [src]="layer.legendURL" alt="{{layer.title}}">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href class="btn btn-success btn-legend" data-toggle="sidebar">{{ 'tools.legend' | translate }}</a>
-</div>
-<!-- fim --> 
-    

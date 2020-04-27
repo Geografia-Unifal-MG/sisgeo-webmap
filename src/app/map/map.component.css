@@ -61,7 +61,7 @@
   cursor: pointer;
 }
 .badge-light {
-  color: #1e757e;
+  color: var(--sidebar-primary-color);
   background-color: #ffffff;
   position: relative;
   left: 1px;
@@ -101,7 +101,7 @@
 * Sidebar customization
 */
 .project-group-opened {padding: 0px !important;}
-.group-title-opened { padding:8px !important; background-color: #009688;
+.group-title-opened { padding:8px !important; background-color: var(--sidebar-second-color);
 }
 .grp-prj {right: 12px !important;}
 
@@ -110,11 +110,11 @@
 }
 
 .material-switch>input[type="checkbox"]:checked+label::before {
-    background: #49bc95 !important;
+    background: var(--navbar-color) !important;
     opacity: 0.9 !important;
 }
 .group-title-closed {
-    background-color: #009688 !important;
+    background-color: var(--sidebar-primary-color) !important;
 }
 .project-group-closed {
    padding: 0px !important;

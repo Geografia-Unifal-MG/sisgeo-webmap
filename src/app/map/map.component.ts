@@ -44,13 +44,13 @@ import { OpenUrl } from '../util/open-url';
 import * as _ from 'lodash'; // using the _.uniqueId() method
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
-    imgPath: string = ( process.env.ENV === 'production' ) ? ('/app/') : ('');
+    imgPath: string = (process.env.ENV === 'production') ? ('/app/') : ('');
 
     /**
      * FAB Speed Dial Button
@@ -77,7 +77,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     /**
      * toggle slide
      */
-    public overlayerChecked = false;
+    public overlayerChecked = true;
 
     /**
      * Slider value
@@ -109,7 +109,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         , private _translate: TranslateService
         , private localStorageService: LocalStorageService
         , @Inject(NgZone) private zone: NgZone
-    ) {}
+    ) { }
 
     ///////////////////////////////////////////////////////////////
     /// Terrabrasilis component
@@ -130,7 +130,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         const urlParams = combineLatest(
             this.activeRoute.params,
             this.activeRoute.queryParams,
-            (params, queryParams) => ({ ...params, ...queryParams})
+            (params, queryParams) => ({ ...params, ...queryParams })
         );
 
         /**
@@ -139,7 +139,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         urlParams.subscribe(routeParams => {
             this.type = routeParams.type;
             this.language = routeParams.hl !== 'undefined' ? routeParams.hl : null;
-            this.terraBrasilisAboutURL="http://terrabrasilis.dpi.inpe.br/sobre/";
+            this.terraBrasilisAboutURL = "http://terrabrasilis.dpi.inpe.br/sobre/";
 
             this.visionService.getVisionAndAllRelationshipmentByName(this.type)
                 .subscribe(visions => {
@@ -155,9 +155,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
                     this.zone.runOutsideAngular(() => {
                         this.terrabrasilisApi.map({
-                                longitude: -45.784149169921875,
-                                latitude: -20.926810577365917
-                            }, this.baselayers, layersToMap);
+                            longitude: -45.784149169921875,
+                            latitude: -20.926810577365917
+                        }, this.baselayers, layersToMap);
                     });
                     this.updateOverlayerLegends();
                     this.swapGroupLayer(this.overlayers[0]);
@@ -167,9 +167,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 });
 
             this.localStorageService.getValue(this.languageKey)
-                .subscribe((item:any) => {
+                .subscribe((item: any) => {
                     let toUse = JSON.parse(item);
-                    this.changeAboutURL((toUse === null)?('pt-br'):(toUse.value));
+                    this.changeAboutURL((toUse === null) ? ('pt-br') : (toUse.value));
                 });
         });
 
@@ -178,7 +178,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
          */
         this.mapWmsSearchDialogService.change.subscribe((l: any) => {
             let wmsVision: Vision,
-            abort = false;
+                abort = false;
             this.overlayers.forEach(vision => {
                 if (this.hasElement(vision.layers, l)) {
                     abort = true;
@@ -200,9 +200,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
             const tools = new Array<Tool>();
             tools.push(
-                    new Tool().addTarget('<app-transparency-tool [shared]="layer"></app-transparency-tool>'),
-                    new Tool().addTarget('<app-basic-info-tool [shared]="layer"></app-basic-info-tool>')
-                );
+                new Tool().addTarget('<app-transparency-tool [shared]="layer"></app-transparency-tool>'),
+                new Tool().addTarget('<app-basic-info-tool [shared]="layer"></app-basic-info-tool>')
+            );
 
             const datasource = new Datasource().addHost(l.geospatialHost);
             const nLayer = new Layer(Date.now().toString() + _.uniqueId())
@@ -228,7 +228,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             if (wmsVision.layers.length == 1) {
                 this.gridStackInstance(wmsVision);
             } else {
-                setTimeout(function() {
+                setTimeout(function () {
                     const gsId = '#grid-stack-' + wmsVision.id;
                     const gsStack: any = $(gsId);
                     const grid = gsStack.data('gridstack');
@@ -251,7 +251,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     ngOnDestroy() {
         this.cdRef.detach();
         this._subscription.forEach(s => {
-           s.unsubscribe();
+            s.unsubscribe();
         });
     }
 
@@ -259,7 +259,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         // this.terrabrasilisApi.disableLoading();
     }
 
-    ngDoCheck() {}
+    ngDoCheck() { }
 
     ///////////////////////////////////////////////////////////////
     /// GridStack interactions
@@ -274,7 +274,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.initGrid(gsId);
 
         const layers = vision.layers,
-        rLayers: Array<Layer> = new Array();
+            rLayers: Array<Layer> = new Array();
         layers.forEach(layer => {
             // Define the initial state of the toggle button for layers group.
             vision.enabled = (layer.active && !vision.enabled) ? (true) : (vision.enabled);
@@ -312,7 +312,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      */
     initGrid(gridId: string): void {
         const self = this;
-        $(function() {
+        $(function () {
 
             // define options for gridstack
             const options = {
@@ -323,11 +323,11 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             // define grid
             const gsStack: any = $(gridId);
             gsStack.gridstack(options);
-            gsStack.on('change', function(event: any, items: any) {
+            gsStack.on('change', function (event: any, items: any) {
                 self.gridStackOnChange(this.id, items);
                 self.updateOverlayerLegends();
             });
-            gsStack.on('removed', function(event: any, items: any) {
+            gsStack.on('removed', function (event: any, items: any) {
                 self.gridStackOnRemoved(this.id, items);
             });
         });
@@ -385,14 +385,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.terrabrasilisApi.fullScreen();
     }
 
-    drawSimpleShape() {
-        this.showDialog('Terrabrasilis web application.');
-    }
-
     showDialogCapabilities() {
         this.cdRef.detectChanges();
         this.dialog.open(WmsSearchComponent, {
-            width : '950px',
+            width: '950px',
             minWidth: '690px',
             height: '630px',
             minHeight: '400px'
@@ -429,14 +425,14 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     ///////////////////////////////////////////////////////////////
     layerBaseLayerChange(layerObject: any) {
         let layer = this.getLayerByName(layerObject.name);
-        if (typeof(layer) == 'undefined' || layer === null) { layer = null; }
+        if (typeof (layer) == 'undefined' || layer === null) { layer = null; }
 
         if (layer == null) {
             const activeBaselayers = this.terrabrasilisApi.getTerrabrasilisBaselayers();
             activeBaselayers.forEach((bl: any) => {
 
-                const baselayer = this.baselayers.find(function(l) {
-                    if (l.name == bl.options._name) {return true; }
+                const baselayer = this.baselayers.find(function (l) {
+                    if (l.name == bl.options._name) { return true; }
                 });
                 this.terrabrasilisApi.deactiveLayer(baselayer);
             });
@@ -455,6 +451,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         }
         this.mapLayerOnOff(layerObject);
         this.updateOverlayerLegends();
+        if(!this.overlayerChecked) this.overlayerChecked = true
     }
 
     /**
@@ -463,7 +460,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      */
     private mapLayerOnOff(layerObject: any) {
         if (layerObject.active) {
-            this.showWarning(layerObject); // TODO: it's a hard coded information for Pampa and Pantanal. Will be disabled in the future!
             this.terrabrasilisApi.activeLayer(layerObject);
         } else if (this.terrabrasilisApi.isLayerActived(layerObject)) {
             this.terrabrasilisApi.deactiveLayer(layerObject);
@@ -497,12 +493,16 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      * @param vision The vision reference to access the active property
      */
     projectGroupOnOff(input: HTMLInputElement, vision: Vision) {
-        vision.enabled = input.checked;
-        vision.layers.forEach(layer => {
-            layer.active = vision.enabled;
-            // apply layer status on map
-            this.mapLayerOnOff(layer);
-        });
+        if (!input.checked) {
+            this.overlayerChecked = false
+            vision.enabled = input.checked;
+            vision.layers.forEach(layer => {
+                layer.active = vision.enabled;
+                // apply layer status on map
+                this.mapLayerOnOff(layer);
+            });
+
+        }
         this.updateOverlayerLegends();
     }
 
@@ -516,13 +516,13 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         const groupName = vision.id;
 
         let grpLayers = $('.project-group-opened');
-        grpLayers.each(function(i, t) {
+        grpLayers.each(function (i, t) {
             if (t.id != groupName + '_group') {
                 t.className = 'project-group-closed';
             }
         });
         grpLayers = $('.group-title-opened');
-        grpLayers.each(function(i, t) {
+        grpLayers.each(function (i, t) {
             if (t.id != groupName + '_titlegroup') {
                 t.className = 'group-title-closed';
             }
@@ -554,13 +554,13 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      * @param layerName The layer name to compose the identifier of grid stack item.
      */
     changeHeightLayerItem(layerName: string, projectId: string) {
-        setTimeout(function() {
+        setTimeout(function () {
             const lname = layerName.replace(/\s/g, '');
             const el = $('#' + lname + '_gslayer');
             const gsItemHeight = ($('#' + layerName + '_gstoggle').attr('aria-expanded') === 'true') ? (2) : (1);
 
             const gsId = '#grid-stack-' + projectId,
-            gsStack: any = $(gsId);
+                gsStack: any = $(gsId);
             const grid = gsStack.data('gridstack');
             grid.resize(el[0], null, gsItemHeight);
             grid.batchUpdate();
@@ -569,12 +569,12 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     }
 
     removeLayerFromTreeView(layer: any, projectId: string) {
-        $(function() {
+        $(function () {
             const layerId = layer.id;
             const el = $('#' + layerId + '_gslayer');
 
             const gsId = '#grid-stack-' + projectId,
-            gsStack: any = $(gsId);
+                gsStack: any = $(gsId);
             const grid = gsStack.data('gridstack');
             grid.removeWidget(el[0]);
             grid.batchUpdate();
@@ -616,23 +616,13 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     /// Tools to use directly on map.component
     ///////////////////////////////////////////////////
     showDialog(content: string): void {
-        const dialogRef = this.dialog.open(DialogComponent, { width : '450px' });
+        const dialogRef = this.dialog.open(DialogComponent, { width: '450px' });
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
-    }
-
-    showWarning(layerObject: any) {
-        if (layerObject.name == 'pampa_accumulated_deforestation_up_to_2016' || layerObject.name == 'pantanal_accumulated_deforestation_up_to_2016') {
-            const msg = '<b>Atenção, este é um dado preliminar.</b><br />' +
-            'Ele mostra o desmatamento acumulado até 2016 para o bioma.<br />' +
-            'O dado definitivo será consolidado após conclusão dos mapeamentos previstos para os anos que compõem a série histórica de 2004 a 2018.<br /><br />' +
-            '<a href=\'' + layerObject.metadata + '\' style=\'color:#007bff;text-decoration: underline;\'>Confira aqui o metadado da camada.</a>';
-            this.showDialog(msg);
-        }
     }
 
     showContact() {
         this.cdRef.detectChanges();
-        this.dialog.open(ContactComponent, { width : '450px' });
+        this.dialog.open(ContactComponent, { width: '450px' });
     }
 
     changeLanguage(value: string) {
@@ -643,24 +633,20 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     }
 
     changeAboutURL(value: string) {
-        this.terraBrasilisAboutURL=(value=='en')?("http://terrabrasilis.dpi.inpe.br/en/about/"):("http://terrabrasilis.dpi.inpe.br/sobre/");
+        this.terraBrasilisAboutURL = (value == 'en') ? ("http://terrabrasilis.dpi.inpe.br/en/about/") : ("http://terrabrasilis.dpi.inpe.br/sobre/");
     }
 
     goTo(url: string) {
         window.open(url, '_blank');
     }
 
-    showDialogDownloadOptions() {
-        this.showDialog(this.getDownloadHtmlOptions());
-    }
-
     processLegendForLayers(layers: any): Promise<any> {
         const promises = layers.map((layer) => {
-          return this.terrabrasilisApi.getLegend(layer, false)
-            .then((url) => {
-              layer.addLegendURL(url)
-              return layer
-            })
+            return this.terrabrasilisApi.getLegend(layer, false)
+                .then((url) => {
+                    layer.addLegendURL(url)
+                    return layer
+                })
         });
 
         return Promise.all(promises)
@@ -696,17 +682,17 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.layersToLegend = [];
 
         this.overlayers.forEach(vision => {
-          const l = vision.layers.slice();
-          const p = new Vision(vision.id, vision.name, '', vision.enabled, '', [], l, vision.downloads, true, vision.stackOrder, vision.isOpened);
+            const l = vision.layers.slice();
+            const p = new Vision(vision.id, vision.name, '', vision.enabled, '', [], l, vision.downloads, true, vision.stackOrder, vision.isOpened);
 
-          self.processLegendForLayers(p.layers)
-            .then((layers) => {
-              p.layers = layers.sort(function(a, b) {
-                if (a.uiOrder > b.uiOrder) { return 1; } else { return -1; }
-              });
-            })
+            self.processLegendForLayers(p.layers)
+                .then((layers) => {
+                    p.layers = layers.sort(function (a, b) {
+                        if (a.uiOrder > b.uiOrder) { return 1; } else { return -1; }
+                    });
+                })
 
-          self.layersToLegend.push(p);
+            self.layersToLegend.push(p);
         });
     }
 
@@ -718,31 +704,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         }
     }
 
-    private getDownloadHtmlOptions(): string {
-        let downloadHtml = '<div class="container">';
-
-        const match = /terrabrasilis.dpi.inpe.br\/download/;
-
-        this.downloads.forEach(download => {
-            const link =  match.test(download.link) == false ?
-                        '<a href=\'' + download.link + '\' target="_blank" class="btn btn-primary btn-success">Acesso aos Dados</a>' :
-                        '<a href=\'' + download.link + '\' class="btn btn-primary btn-success">Download</a>';
-
-            downloadHtml += '    <div class="card mt-3">' +
-                            '     <div class="card-body">' +
-                            '        <h5 class="card-title">' + download.description + '</h5>' +
-                            '        <p class="card-text">' + download.name + '</p>' + link +
-                            '     </div>' +
-                            '    </div>';
-        });
-        downloadHtml += '</div>';
-        return downloadHtml;
-    }
-
     private buildOverlayersAndBaselayers(values: any): void {
         const baselayers = new Array<any>();
         const visions = new Array<any>(),
-        visions_ctrl = new Array<any>();
+            visions_ctrl = new Array<any>();
 
         values.forEach((e: any) => {
             e.vision.layers.forEach((l: any) => {
@@ -767,7 +732,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         });
 
         // Implements the sort Visions by stackOrder
-        visions.sort( (a: any, b: any) => {
+        visions.sort((a: any, b: any) => {
             return a.stackOrder - b.stackOrder;
         });
 
@@ -814,7 +779,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     .addDownloads(l.downloads)
                     .addMetadata(l.metadata)
                     .isBaselayer(l.baselayer)
-                    .isActive( isVisionEnabled ? l.active : isVisionEnabled )
+                    .isActive(isVisionEnabled ? l.active : isVisionEnabled)
                     .isEnable(l.enabled)
                     .isTranslatable(true)
                     .isTimeDimension(l.timeDimension)
