@@ -6,8 +6,12 @@
         "alerts": "DETER (Alerts)",
         "text": "TerraBrasilis is a platform developed by INPE for the organization, access and use through a web portal of the geographic data produced by its environmental monitoring programs"
     },
-    "dialog": {
-        "text": "General Informations"
+    "dialog":{
+        "title": {
+            "default": "General Informations",
+            "download": "Layer Download",
+            "metadata": "Metadata"
+        }
     },
     "menu" : {
         "analyses": {
@@ -104,13 +108,12 @@
         "featureInfo": "Feature Info",
         "showCoordinates": "Coordinates",
         "fullscreen": "Fullscreen",
-        "download": "Downloads",
+        "download": "Layer Download",
         "addLayer": "Add Others Layers",
         "undo": "Zoom undo",
         "redo": "Zoom redo",
         "notice": "Do not show again",
         "layerOptions": "Layer Tools",
-        "basicInfo": "Basic Info",
         "metadata": "Metadata",
         "fitBounds": "Zoom to fit layer",
         "dashboard": "Graphics",

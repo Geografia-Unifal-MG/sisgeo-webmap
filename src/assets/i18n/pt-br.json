@@ -6,8 +6,12 @@
         "alerts": "DETER (Alertas)",
         "text": "O TerraBrasilis é uma plataforma desenvolvida pelo INPE para organização, acesso e uso através de um portal web dos dados geográficos produzidos pelos seus programas de monitoramento ambiental"
     },
-    "dialog": {
-        "text": "Informações Gerais"
+    "dialog":{
+        "title": {
+            "default": "Informações Gerais",
+            "download": "Download da Camada",
+            "metadata": "Metadados"
+        }
     },
     "menu" : {
         "analyses": {
@@ -103,13 +107,12 @@
         "featureInfo": "Informações da camada",
         "showCoordinates": "Coordenadas",
         "fullscreen": "Tela ampliada",
-        "download": "Downloads",
+        "download": "Download da Camada",
         "addLayer": "Adicionar Outras Camadas",
         "undo": "Desfazer zoom",
         "redo": "Refazer zoom",
         "notice": "Não mostrar novamente",
         "layerOptions": "Ferramentas da Camada",
-        "basicInfo": "Informação Básica",
         "metadata": "Metadados",
         "fitBounds": "Zoom para camada",
         "dashboard": "Gráficos",

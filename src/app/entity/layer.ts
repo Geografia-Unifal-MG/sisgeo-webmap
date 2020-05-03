@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import { Subdomain } from './subdomain';
 import { Tool } from './tool';
 import { Datasource, Download } from './datasource';
+import { Metadata } from './metadata';
 
 /**
  * Layer define the parameters to mount automatically the layers (Baselayer and Overlayer)
@@ -25,13 +26,14 @@ export class Layer {
     created = '';
     timeDimension = false;
     legendURL = '';
+    date = '';
 
     datasource: Datasource = null;
     tools: Tool[] = [];
     subdomains: Subdomain[] = [];
     downloads: Download[] = [];
+    metadata: Metadata = null;
 
-    metadata: string = null;
     dashboard: string = null;
     thirdHost = '';
 
@@ -60,7 +62,8 @@ export class Layer {
                     .isTimeDimension(l.timeDimension)
                     .typeOfData(l.aggregatable)
                     .addStackOrder(l.stackOrder)
-                    .isTranslatable(l.hasTranslate);
+                    .isTranslatable(l.hasTranslate)
+                    .addDate(l.date);
     }
 
     // addId(id:string) {
@@ -148,7 +151,7 @@ export class Layer {
         return this;
     }
 
-    addMetadata(metadata: string) {
+    addMetadata(metadata: Metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -166,6 +169,11 @@ export class Layer {
     addStackOrder(stackOrder: number) {
         this.stackOrder = stackOrder;
         this.uiOrder = stackOrder;
+        return this;
+    }
+
+    addDate(date: string) {
+        this.date = date != null ? new Date(date).toLocaleDateString('pt-br') : '';
         return this;
     }
 

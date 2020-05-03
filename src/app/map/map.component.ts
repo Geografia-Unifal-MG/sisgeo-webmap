@@ -201,7 +201,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             const tools = new Array<Tool>();
             tools.push(
                 new Tool().addTarget('<app-transparency-tool [shared]="layer"></app-transparency-tool>'),
-                new Tool().addTarget('<app-basic-info-tool [shared]="layer"></app-basic-info-tool>')
+                new Tool().addTarget('<app-metadata-tool [shared]="layer"></app-metadata-tool>')
             );
 
             const datasource = new Datasource().addHost(l.geospatialHost);
@@ -289,9 +289,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     .addCapabilitiesUrl(layer.capabilitiesUrl)
                     .addOpacity(layer.opacity)
                     .addDashboardUrl(layer.dashboard)
-                    .addMetadata(layer.metadata)
                     .addDatasource(layer.datasource)
-                    // .addTools([])
                     .addTools(layer.tools)
                     .isBaselayer(layer.baselayer)
                     .isActive(layer.active)
@@ -785,7 +783,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     .isTimeDimension(l.timeDimension)
                     .typeOfData(l.aggregatable)
                     .addStackOrder(l.stackOrder)
-                    .addDashboardUrl(l.dashboard);
+                    .addDashboardUrl(l.dashboard)
+                    .addDate(l.date);
 
                 layers.push(layer);
             });

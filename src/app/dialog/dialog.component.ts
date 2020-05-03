@@ -9,6 +9,7 @@ import { SafeHtml } from '@angular/platform-browser';
 })
 export class DialogComponent implements OnInit {
   content: SafeHtml;
+  title: string = "dialog.title.default";
 
   constructor(private dialogRef: MatDialogRef<DialogComponent>) { }
 

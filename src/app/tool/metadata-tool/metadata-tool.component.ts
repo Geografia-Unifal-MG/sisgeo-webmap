@@ -7,22 +7,22 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { OnMount } from '../../core-modules/dynamic-html';
 
 /**
- * BasicInfoToolComponent
- * <app-basic-info-tool [shared]="layer"></app-basic-info-tool>
+ * MetadataToolComponent
+ * <app-metadata-tool [shared]="layer"></app-metadata-tool>
  */
 @Component({
-  selector: 'app-basic-info-tool',
+  selector: 'app-metadata-tool',
   template: 
             `
-            <dfn attr.data-info="{{ 'tools.basicInfo' | translate }}">
-              <button type="button" class="btn" (click)="getBasicLayerInfo(layer)">
+            <dfn attr.data-info="{{ 'tools.metadata' | translate }}">
+              <button type="button" class="btn" (click)="getLayerInfo(layer)">
                 <i class="material-icons md-dark">info</i>
               </button>
             </dfn>
             `  
 })
 @RegisterComponent
-export class BasicInfoToolComponent extends ToolComponent implements OnInit, OnMount {  
+export class MetadataToolComponent extends ToolComponent implements OnInit, OnMount {  
   @Input() shared: any;  
   @ViewChild('innerContent', {static: true}) innerContent: ElementRef;
   
@@ -42,10 +42,10 @@ export class BasicInfoToolComponent extends ToolComponent implements OnInit, OnM
 
   ngOnInit() {
     this.layer = this.shared;
-    //console.log("BasicInfoToolComponent OnInit", this.layer);
+    //console.log("MetadataToolComponent OnInit", this.layer);
   }
 
-  getBasicLayerInfo(layer:any) {
-    this.terrabrasilisApi.getBasicLayerInfo(layer);
+  getLayerInfo(layer:any) {
+    this.terrabrasilisApi.getLayerInfo(layer);
   }
 }

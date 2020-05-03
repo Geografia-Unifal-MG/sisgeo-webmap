@@ -11,6 +11,7 @@ import { Layer } from '../../entity/layer';
 import { Utils } from '../../util/utils';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { get } from 'lodash' 
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-terrabrasilis-api',
@@ -110,7 +111,7 @@ export class TerrabrasilisApiComponent implements OnInit {
         '        </div>' +
         '    </div>' +
         '</div>';
-        this.showDialog(html);
+        this.showDialog(html, "dialog.title.download");
     }
 
     getLegend(layer: any, urlOrCompleteSrcImgElement: boolean): Promise<any> {
@@ -122,31 +123,33 @@ export class TerrabrasilisApiComponent implements OnInit {
     }
 
 
-    getBasicLayerInfo(layerObject: any) {
+    getLayerInfo(layer: any) {
+
         this.cdRef.detectChanges();
-
-        console.log(layerObject);
-
         const match = /gwc\/service\/wms/;
 
-        const source = layerObject.datasource != null ?
-            (match.test(layerObject.datasource.host) == true ?
-                layerObject.datasource.host.replace('gwc/service/wms', 'ows') : layerObject.datasource.host) :
-            layerObject.thirdHost;
+        const source = layer.datasource != null ?
+            (match.test(layer.datasource.host) == true ?
+                layer.datasource.host.replace('gwc/service/wms', 'ows') : layer.datasource.host) :
+            layer.thirdHost;
 
-        const layerBasicInfo = {
-            title: layerObject.title,
-            layer: layerObject.name,
-            workspace: layerObject.workspace,
-            source
-        };
+        var htmlTable = '<table class="table-responsive table "><tr class="table-active"><th colspan="3">' + layer.title + '</th></tr>'
+                        + ' <tr> <td><b>Layer</b></td><td colspan="2">' + layer.name + '</td></tr>'
+                        + '<tr><td><b>Workspace</b></td><td colspan="2">' + layer.workspace + '</td></tr>'
+                        + '<tr><td><b>Source</b></td><td colspan="2">' + source + '</td></tr>'
+                        + '<tr> <td><b>Data</b></td><td colspan="2">' + layer.date + '</td></tr>'; 
 
-        const infoTable = '<table class="table-responsive table "><tr class="table-active"><th colspan="3">' + layerBasicInfo.title + '</th></tr>'
-                        + ' <tr> <td><b>Layer</b></td><td colspan="2">' + layerBasicInfo.layer + '</td></tr>'
-                        + '<tr><td><b>Workspace</b></td><td colspan="2">' + layerBasicInfo.workspace + '</td></tr>'
-                        + '<tr><td><b>Source</b></td><td colspan="2">' + layerBasicInfo.source + '</td></tr></table>';
+        if (!isUndefined(layer.metadata)){
+            htmlTable += '<tr> <td><b>Projeção</b></td><td colspan="2">' + layer.metadata.projecao + '</td></tr>'
+            + '<tr> <td><b>Datum horizontal</b></td><td colspan="2">' + layer.metadata.datumHorizontal + '</td></tr>'
+            + '<tr> <td><b>Fonte do dado</b></td><td colspan="2">' + layer.metadata.fonte + '</td></tr>'
+            + '<tr> <td><b>Autor(es)</b></td><td colspan="2">' + layer.metadata.autor + '</td></tr>'
+            + '<tr> <td><b>Informações adicionais</b></td><td colspan="2">' + layer.metadata.informacoesAdicionais + '</td></tr>';
+        }
 
-        this.showDialog(infoTable);
+        htmlTable = htmlTable.concat('</table>');
+
+        this.showDialog(htmlTable, "dialog.title.metadata");
     }
 
     ////////////////////////////////////////////////
@@ -203,8 +206,11 @@ export class TerrabrasilisApiComponent implements OnInit {
     ////////////////////////////////////////////////
     //// General use dialog
     ////////////////////////////////////////////////
-    showDialog(content: string): void {
-        const dialogRef = this.dialog.open(DialogComponent, { width : '450px' });
+    showDialog(content: string, title?: string): void {
+        const dialogRef = this.dialog.open(DialogComponent, { width : '500px' });
+        if(!isUndefined(title))
+            dialogRef.componentInstance.title = title;
+
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
     }
 
