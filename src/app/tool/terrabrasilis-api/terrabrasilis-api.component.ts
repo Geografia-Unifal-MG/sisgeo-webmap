@@ -139,12 +139,21 @@ export class TerrabrasilisApiComponent implements OnInit {
                         + '<tr><td><b>Source</b></td><td colspan="2">' + source + '</td></tr>'
                         + '<tr> <td><b>Data</b></td><td colspan="2">' + layer.date + '</td></tr>'; 
 
-        if (!isUndefined(layer.metadata)){
-            htmlTable += '<tr> <td><b>Projeção</b></td><td colspan="2">' + layer.metadata.projecao + '</td></tr>'
-            + '<tr> <td><b>Datum horizontal</b></td><td colspan="2">' + layer.metadata.datumHorizontal + '</td></tr>'
-            + '<tr> <td><b>Fonte do dado</b></td><td colspan="2">' + layer.metadata.fonte + '</td></tr>'
-            + '<tr> <td><b>Autor(es)</b></td><td colspan="2">' + layer.metadata.autor + '</td></tr>'
-            + '<tr> <td><b>Informações adicionais</b></td><td colspan="2">' + layer.metadata.informacoesAdicionais + '</td></tr>';
+        if (layer.metadata){
+            if (layer.metadata.projecao)
+                htmlTable += '<tr> <td><b>Projeção</b></td><td colspan="2">' + layer.metadata.projecao + '</td></tr>';
+            
+            if (layer.metadata.datumHorizontal)
+                htmlTable += '<tr> <td><b>Datum horizontal</b></td><td colspan="2">' + layer.metadata.datumHorizontal + '</td></tr>';
+
+            if (layer.metadata.fonte)
+                htmlTable += '<tr> <td><b>Fonte do dado</b></td><td colspan="2">' + layer.metadata.fonte + '</td></tr>';
+
+            if (layer.metadata.autor)
+                htmlTable += '<tr> <td><b>Autor(es)</b></td><td colspan="2">' + layer.metadata.autor + '</td></tr>';
+
+            if (layer.metadata.informacoesAdicionais)
+                htmlTable += '<tr> <td><b>Informações adicionais</b></td><td colspan="2">' + layer.metadata.informacoesAdicionais + '</td></tr>';
         }
 
         htmlTable = htmlTable.concat('</table>');

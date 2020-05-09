@@ -13,7 +13,7 @@ import { Layer } from '../../entity/layer';
 @Component({
   selector: 'app-layer-download-tool',
   template: `
-              <dfn attr.data-info="{{ 'tools.download' | translate }}" #innerContent>
+              <dfn class="layer-tool" attr.data-info="{{ 'tools.download' | translate }}" #innerContent>
                 <button type="button" class="btn" *ngIf="layer.downloads.length > 0" (click)="download(layer)"><i class="material-icons md-dark">cloud_download</i></button>
                 <ng-content></ng-content>
               </dfn>

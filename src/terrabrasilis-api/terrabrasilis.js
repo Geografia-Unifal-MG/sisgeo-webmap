@@ -1152,7 +1152,7 @@ Terrabrasilis = (function () {
       decimals: 6,
       decimalSeperator: '.',
       labelTemplateLat: 'Lat: {y}',
-      labelTemplateLng: 'Lng: {x}'
+      labelTemplateLng: 'Long: {x}'
     }).addTo(map)
 
     return this

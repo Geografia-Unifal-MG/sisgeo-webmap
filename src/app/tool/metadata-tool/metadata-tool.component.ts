@@ -14,7 +14,7 @@ import { OnMount } from '../../core-modules/dynamic-html';
   selector: 'app-metadata-tool',
   template: 
             `
-            <dfn attr.data-info="{{ 'tools.metadata' | translate }}">
+            <dfn class="layer-tool" attr.data-info="{{ 'tools.metadata' | translate }}">
               <button type="button" class="btn" (click)="getLayerInfo(layer)">
                 <i class="material-icons md-dark">info</i>
               </button>

@@ -13,7 +13,8 @@ $(document).ready(function () {
      * Sidebar
      */
     $("#sidebar").mCustomScrollbar({
-        theme: "minimal"
+        theme: "sisgeo-theme",
+        scrollInertia: 0,
     });
 
     $("#sidebar-legend").mCustomScrollbar({

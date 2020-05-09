@@ -23,6 +23,7 @@
 <nav id="sidebar">
     <div class="sidebar-header">
         <img class="img-responsive" src="{{ imgPath }}assets/img/map/sisgeo.png" alt="Sisgeo">
+        <p>Sistema de compartilhamento de dados geoespaciais (Versão 1.0)</p>
     </div>
     <!-- ferramentas gerais --> 
     <div class="ferramentas">
@@ -62,14 +63,13 @@
             <div class="grid-stack" id="{{ 'grid-stack-' + project.id }}">
                 <div *ngFor="let layer of project.layers" class="grid-stack-item" id="{{ (layer.id | cleanWhiteSpace) + '_gslayer' }}" data-gs-x="0" data-gs-y="{{ layer.uiOrder }}" data-gs-width="12" data-gs-height="1">
                     <div class="grid-stack-item-content">
-
-                        <ul class="list-unstyled components list">
+                        <ul class="list-unstyled components list h-100 layer-list">
                             <li>
-                                <a href="{{'#' + (layer.id | cleanWhiteSpace)}}" id="{{ (layer.id | cleanWhiteSpace) + '_gstoggle' }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" (click)="changeHeightLayerItem(layer.id,project.id)">
-                                    <dfn attr.data-info="{{ 'tools.layerOptions' | translate }}">
-                                        <i class="material-icons configura">settings</i>
+                                <a href="{{'#' + (layer.id | cleanWhiteSpace)}}" id="{{ (layer.id | cleanWhiteSpace) + '_gstoggle' }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dropdown-layer" (click)="changeHeightLayerItem(layer.id,project.id)">
+                                    <dfn class="ferramenta-camada" attr.data-info="{{ 'tools.layerOptions' | translate }}">
+                                        <i class="material-icons layer-settings">settings</i>
                                     </dfn>
-                                    <div class="txtcamada">
+                                    <div class="layer-title">
                                         <div *ngIf="layer.hasTranslate; else templateTitle" title="{{ 'layerControl.' + project.id + '.' + layer.id | translate }}">
                                             {{ 'layerControl.' + project.id + '.' + layer.id | translate }}
                                         </div>
@@ -77,33 +77,19 @@
                                             <div title="{{ layer.title }}">{{ layer.title | slice:0:21 }}{{ (layer.title.length>21)?('...'):('') }}</div>
                                         </ng-template>
                                     </div>
-                                    <div class="fontecamada">
-                                        <div *ngIf="layer.source; else templateSource">
-                                            {{layer.source}}
-                                        </div>
-                                        <ng-template #templateSource>
-                                            {{layer.workspace}}
-                                        </ng-template>
-                                    </div>
                                 </a>
                                 <div class="material-switch pull-right">
                                     <input id="{{(layer.id | cleanWhiteSpace) + '_1' }}" name="someSwitchOption001" type="checkbox" (change)="layerOnOff($event.srcElement, layer, project)" checked="{{ (layer.active) ? 'checked' : null }}"/>
                                     <label for="{{(layer.id | cleanWhiteSpace)  + '_1' }}" class="bg-white"></label>
-                                </div>
-                                <ul class="collapse list-unstyled dropdown" id="{{(layer.id | cleanWhiteSpace)}}">
-                                    <li style="width:100%;">
-                                        <div class="fe-camadas">  
-                                            <div *ngFor="let tool of layer.tools">
-                                                <div *dynamicComponent="tool.target; context: { layer: layer };"></div>
-                                            </div>
-                                            <dfn attr.data-info="{{ 'tools.removeLayer' | translate }}">
-                                                <button type="button" class="btn" *ngIf="layer.isRemovable" 
-                                                    (click)="removeLayer(layer, project)"><i class="material-icons md-dark">delete</i></button>
-                                            </dfn>  
-                                        </div>
-                                    </li>                   
-                                </ul>                
+                                </div>               
                             </li>
+                            <li class="collapse list-unstyled dropdown" id="{{(layer.id | cleanWhiteSpace)}}" style="border-bottom: none;">
+                                <div class="fe-camadas">  
+                                    <div *ngFor="let tool of layer.tools">
+                                        <div *dynamicComponent="tool.target; context: { layer: layer };"></div>
+                                    </div>
+                                </div>
+                            </li> 
                         </ul>
                     </div>
                 </div>

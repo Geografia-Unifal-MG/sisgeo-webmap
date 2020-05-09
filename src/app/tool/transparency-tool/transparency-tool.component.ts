@@ -15,7 +15,7 @@ import { OnMount } from '../../core-modules/dynamic-html';
   selector: 'app-transparency-tool',
   template: 
             `
-            <dfn attr.data-info="{{ 'tools.transparency' | translate }}" #innerContent>    
+            <dfn class="layer-tool" attr.data-info="{{ 'tools.transparency' | translate }}" #innerContent>    
                 <button class="btn" type="button" data-toggle="collapse" attr.href="#{{(layer.name | cleanWhiteSpace) + '_opacity'}}" 
                     role="button" aria-expanded="false" attr.aria-controls="{{(layer.name | cleanWhiteSpace) + '_opacity'}}">
                         <i class="material-icons md-dark">brightness_6</i>

@@ -103,7 +103,7 @@
 .project-group-opened {padding: 0px !important;}
 .group-title-opened { padding:8px !important; background-color: var(--sidebar-second-color);
 }
-.grp-prj {right: 12px !important;}
+.grp-prj {right: 5px !important;}
 
 .material-switch>label::before {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1) !important;

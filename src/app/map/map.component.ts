@@ -152,7 +152,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     this.overlayers.forEach(vision => {
                         layersToMap = layersToMap.concat(this.gridStackInstance(vision));
                     });
-
+                    
                     this.zone.runOutsideAngular(() => {
                         this.terrabrasilisApi.map({
                             longitude: -45.784149169921875,
@@ -160,8 +160,11 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                         }, this.baselayers, layersToMap);
                     });
                     this.updateOverlayerLegends();
-                    this.swapGroupLayer(this.overlayers[0]);
                     this.terrabrasilisApi.disableLoading();
+
+                    let firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
+                    if (firstLayer !== undefined)
+                        this.terrabrasilisApi.fitBounds(firstLayer);
 
                     if (this.language != null) { this.changeLanguage(this.language); }
                 });
@@ -314,8 +317,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
             // define options for gridstack
             const options = {
-                cellHeight: 80,
-                verticalMargin: 1,
+                cellHeight: 58,
+                verticalMargin: 0,
                 disableResize: true
             };
             // define grid
