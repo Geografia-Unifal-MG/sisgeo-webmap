@@ -184,6 +184,10 @@ export class TerrabrasilisApiComponent implements OnInit {
         Terrabrasilis.deactiveLayer(layer);
     }
 
+    deactiveBaselayer(layer: any): void {
+        Terrabrasilis.deactiveBaselayer(layer);
+    }
+
     activeLayer(layer: any): void {
         Terrabrasilis.activeLayer(layer);
     }
@@ -194,6 +198,10 @@ export class TerrabrasilisApiComponent implements OnInit {
 
     getLayerByName(layerName: string): any {
         return Terrabrasilis.getLayerByName(layerName);
+    }
+
+    getBaselayerByName(name: string): any {
+        return Terrabrasilis.getBaselayerByName(name);
     }
 
     addGetLayerFeatureInfoEventToMap(event: any): void {

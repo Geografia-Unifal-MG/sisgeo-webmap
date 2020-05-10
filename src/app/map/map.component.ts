@@ -424,11 +424,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.terrabrasilisApi.addShowCoordinatesEventToMap(event);
     }
 
-    ///////////////////////////////////////////////////////////////
-    /// Layers interactions
-    ///////////////////////////////////////////////////////////////
     layerBaseLayerChange(layerObject: any) {
-        let layer = this.getLayerByName(layerObject.name);
+        let layer = this.terrabrasilisApi.getBaselayerByName(layerObject.name);
         if (typeof (layer) == 'undefined' || layer === null) { layer = null; }
 
         if (layer == null) {
@@ -438,7 +435,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 const baselayer = this.baselayers.find(function (l) {
                     if (l.name == bl.options._name) { return true; }
                 });
-                this.terrabrasilisApi.deactiveLayer(baselayer);
+                this.terrabrasilisApi.deactiveBaselayer(baselayer);
             });
             this.terrabrasilisApi.activeLayer(layerObject);
         }
@@ -649,10 +646,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     ///////////////////////////////////////////////////
     /// Private methods
     ///////////////////////////////////////////////////
-
-    private getLayerByName(layerName: string): any {
-        return this.terrabrasilisApi.getLayerByName(layerName);
-    }
 
     private hasElement(list: any, toCompare: any): boolean {
         let hasElement = false;

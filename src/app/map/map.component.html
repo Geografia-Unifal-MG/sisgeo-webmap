@@ -128,9 +128,7 @@
                   checked="{{ (layer.active) ? 'checked' : null }}"
                   (change)="layerBaseLayerChange(layer)">
                 <label for="{{layer.title}}"><span></span></label>              
-                <span class="text">{{layer.title}}<br *ngIf="layer.description" />
-                    <div *ngIf="layer.description" style="font-size: small;">{{layer.description}}</div>
-                </span>
+                <span class="text">{{layer.title}}<br *ngIf="layer.description" /></span>
             </li>                                      
         </ul>
     </div>
