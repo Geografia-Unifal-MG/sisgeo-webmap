@@ -122,9 +122,6 @@
         "legend": "Legend",
         "timeDimension": "Time Dimension"
     },
-    "contact" : {
-        "title":"Send suggestions or questions to"
-    },
     "about" : {
         "description": "TerraBrasilis is a platform developed by INPE to organize, access and use spatial data produced by its environmental monitoring programs. Throughout a web portal, it focuses mainly on the Amazon Program, but the concept and software packages produced can be adapted and customized to meet other projects that produce spatial data and aim to be accessible in the internet environment.",
         "more": "More information about TerraBrasilis",

@@ -26,7 +26,7 @@ $(document).ready(function () {
     });
     
     $('#sidebarCollapse').on('click', function () {
-        $('#sidebar, #content, #sidebar-legend, .btn-legend, #menuanaliseid, .navbar-brand, #map').toggleClass('active');
+        $('#sidebar, #content, #sidebar-legend, .btn-legend, .navbar-brand, #map').toggleClass('active');
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });

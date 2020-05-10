@@ -121,9 +121,6 @@
         "legend": "Legenda",
         "timeDimension": "Dimensão temporal"
     },
-    "contact" : {
-        "title":"Envie sugestões ou perguntas para"
-    },
     "about" : {
         "description": "O TerraBrasilis é uma plataforma desenvolvida pelo INPE para organização, acesso e uso através de um portal web dos dados geográficos produzidos pelos seus programas de monitoramento ambiental. Em um primeiro momento visa atender principalmente ao Programa Amazônia, mas o conceito e os pacotes de software produzidos podem ser adaptados e customizados para atender a outros projetos que produzam dados geográficos e que pretendem que esses possam ser acessados no ambiente da internet. ",
         "more": "Leia mais informações sobre o TerraBrasilis",

@@ -15,7 +15,6 @@ import { MatDialog } from '@angular/material';
  */
 import { DialogComponent } from '../dialog/dialog.component';
 import { WmsSearchComponent } from '../wms/wms-search/wms-search.component';
-import { ContactComponent } from '../contact/contact.component';
 
 /**
  * services
@@ -67,7 +66,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     public type = '';
     public language = '';
     public template: any;
-    public terraBrasilisAboutURL: string;
+    public sisgeoAboutUrl: string;
+    public sisgeoContactUrl: string;
+    public sisgeoHelpUrl: string;
 
     /**
      * radio button
@@ -139,7 +140,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         urlParams.subscribe(routeParams => {
             this.type = routeParams.type;
             this.language = routeParams.hl !== 'undefined' ? routeParams.hl : null;
-            this.terraBrasilisAboutURL = "http://terrabrasilis.dpi.inpe.br/sobre/";
+            this.sisgeoAboutUrl = "https://sisgeo.unifal-mg.edu.br";
+            this.sisgeoContactUrl = 'https://sisgeo.unifal-mg.edu.br';
+            this.sisgeoHelpUrl = 'https://sisgeo.unifal-mg.edu.br';
+
 
             this.visionService.getVisionAndAllRelationshipmentByName(this.type)
                 .subscribe(visions => {
@@ -172,7 +176,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             this.localStorageService.getValue(this.languageKey)
                 .subscribe((item: any) => {
                     let toUse = JSON.parse(item);
-                    this.changeAboutURL((toUse === null) ? ('pt-br') : (toUse.value));
                 });
         });
 
@@ -621,20 +624,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
     }
 
-    showContact() {
-        this.cdRef.detectChanges();
-        this.dialog.open(ContactComponent, { width: '450px' });
-    }
-
     changeLanguage(value: string) {
         this.localStorageService.setValue(this.languageKey, value);
         this._translate.use(value);
-        this.changeAboutURL(value);
         this.updateOverlayerLegends();
-    }
-
-    changeAboutURL(value: string) {
-        this.terraBrasilisAboutURL = (value == 'en') ? ("http://terrabrasilis.dpi.inpe.br/en/about/") : ("http://terrabrasilis.dpi.inpe.br/sobre/");
     }
 
     goTo(url: string) {
