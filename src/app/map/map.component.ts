@@ -170,6 +170,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     if (firstLayer !== undefined)
                         this.terrabrasilisApi.fitBounds(firstLayer);
 
+                    this.addLayerCollapseEvents();
+
                     if (this.language != null) { this.changeLanguage(this.language); }
                 });
 
@@ -322,7 +324,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             const options = {
                 cellHeight: 58,
                 verticalMargin: 0,
-                disableResize: true
+                disableResize: true,
+                animate: true
             };
             // define grid
             const gsStack: any = $(gridId);
@@ -550,25 +553,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.updateOverlayerLegends();
     }
 
-    /**
-     * Change the height of a grid stack layer item.
-     * @param layerName The layer name to compose the identifier of grid stack item.
-     */
-    changeHeightLayerItem(layerName: string, projectId: string) {
-        setTimeout(function () {
-            const lname = layerName.replace(/\s/g, '');
-            const el = $('#' + lname + '_gslayer');
-            const gsItemHeight = ($('#' + layerName + '_gstoggle').attr('aria-expanded') === 'true') ? (2) : (1);
-
-            const gsId = '#grid-stack-' + projectId,
-                gsStack: any = $(gsId);
-            const grid = gsStack.data('gridstack');
-            grid.resize(el[0], null, gsItemHeight);
-            grid.batchUpdate();
-            grid.commit();
-        }, 250);
-    }
-
     removeLayerFromTreeView(layer: any, projectId: string) {
         $(function () {
             const layerId = layer.id;
@@ -680,6 +664,28 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 })
 
             self.layersToLegend.push(p);
+        });
+    }
+
+    private addLayerCollapseEvents() {
+        var handleColapse = function (event: JQuery.TriggeredEvent<any>, movable: boolean, dataHeigth: number) {
+            var projectId = $(event.target).data("projectid");
+            var gridStack = $('#grid-stack-' + projectId);
+            const el = $('#' + $(event.target).attr("id") + '_gslayer');
+
+            const grid = gridStack.data('gridstack');
+            grid.batchUpdate();
+            grid.resize(el[0], null, dataHeigth);
+            grid.movable('.grid-stack-item', movable);
+            grid.commit();
+        };
+
+        $(".list-collapsible").on("shown.bs.collapse", function(event) {
+            handleColapse(event, false, 2);
+        });
+
+        $(".list-collapsible").on("hidden.bs.collapse", function(event) {
+            handleColapse(event, true, 1);
         });
     }
 

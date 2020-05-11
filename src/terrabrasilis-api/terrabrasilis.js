@@ -554,6 +554,7 @@ Terrabrasilis = (function () {
             layers: ol.workspace + ':' + ol.name,
             format: 'image/png',
             transparent: true,
+            opacity: ol.opacity,
             tiled: true,
             _name: ol.name,
             _baselayer: ol.baselayer,

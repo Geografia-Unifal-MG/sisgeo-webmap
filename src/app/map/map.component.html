@@ -81,7 +81,7 @@
                     <div class="grid-stack-item-content">
                         <ul class="list-unstyled components list h-100 layer-list">
                             <li>
-                                <a href="{{'#' + (layer.id | cleanWhiteSpace)}}" id="{{ (layer.id | cleanWhiteSpace) + '_gstoggle' }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dropdown-layer" (click)="changeHeightLayerItem(layer.id,project.id)">
+                                <a href="{{'#' + (layer.id | cleanWhiteSpace)}}" id="{{ (layer.id | cleanWhiteSpace) + '_gstoggle' }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dropdown-layer">
                                     <dfn class="ferramenta-camada" attr.data-info="{{ 'tools.layerOptions' | translate }}">
                                         <i class="material-icons layer-settings">settings</i>
                                     </dfn>
@@ -99,7 +99,7 @@
                                     <label for="{{(layer.id | cleanWhiteSpace)  + '_1' }}" class="bg-white"></label>
                                 </div>               
                             </li>
-                            <li class="collapse list-unstyled dropdown" id="{{(layer.id | cleanWhiteSpace)}}" style="border-bottom: none;">
+                            <li class="collapse list-unstyled dropdown list-collapsible" id="{{(layer.id | cleanWhiteSpace)}}" style="border-bottom: none;" [attr.data-projectid]="project.id">
                                 <div class="fe-camadas">  
                                     <div *ngFor="let tool of layer.tools">
                                         <div *dynamicComponent="tool.target; context: { layer: layer };"></div>
