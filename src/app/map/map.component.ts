@@ -15,7 +15,6 @@ import { MatDialog } from '@angular/material';
  */
 import { DialogComponent } from '../dialog/dialog.component';
 import { WmsSearchComponent } from '../wms/wms-search/wms-search.component';
-import { ContactComponent } from '../contact/contact.component';
 
 /**
  * services
@@ -67,7 +66,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     public type = '';
     public language = '';
     public template: any;
-    public terraBrasilisAboutURL: string;
+    public sisgeoAboutUrl: string;
+    public sisgeoContactUrl: string;
+    public sisgeoHelpUrl: string;
 
     /**
      * radio button
@@ -139,7 +140,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         urlParams.subscribe(routeParams => {
             this.type = routeParams.type;
             this.language = routeParams.hl !== 'undefined' ? routeParams.hl : null;
-            this.terraBrasilisAboutURL = "http://terrabrasilis.dpi.inpe.br/sobre/";
+            this.sisgeoAboutUrl = "https://sisgeo.unifal-mg.edu.br";
+            this.sisgeoContactUrl = 'https://sisgeo.unifal-mg.edu.br';
+            this.sisgeoHelpUrl = 'https://sisgeo.unifal-mg.edu.br';
+
 
             this.visionService.getVisionAndAllRelationshipmentByName(this.type)
                 .subscribe(visions => {
@@ -152,7 +156,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     this.overlayers.forEach(vision => {
                         layersToMap = layersToMap.concat(this.gridStackInstance(vision));
                     });
-
+                    
                     this.zone.runOutsideAngular(() => {
                         this.terrabrasilisApi.map({
                             longitude: -45.784149169921875,
@@ -160,8 +164,13 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                         }, this.baselayers, layersToMap);
                     });
                     this.updateOverlayerLegends();
-                    this.swapGroupLayer(this.overlayers[0]);
                     this.terrabrasilisApi.disableLoading();
+
+                    let firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
+                    if (firstLayer !== undefined)
+                        this.terrabrasilisApi.fitBounds(firstLayer);
+
+                    this.addLayerCollapseEvents();
 
                     if (this.language != null) { this.changeLanguage(this.language); }
                 });
@@ -169,7 +178,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             this.localStorageService.getValue(this.languageKey)
                 .subscribe((item: any) => {
                     let toUse = JSON.parse(item);
-                    this.changeAboutURL((toUse === null) ? ('pt-br') : (toUse.value));
                 });
         });
 
@@ -201,7 +209,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             const tools = new Array<Tool>();
             tools.push(
                 new Tool().addTarget('<app-transparency-tool [shared]="layer"></app-transparency-tool>'),
-                new Tool().addTarget('<app-basic-info-tool [shared]="layer"></app-basic-info-tool>')
+                new Tool().addTarget('<app-metadata-tool [shared]="layer"></app-metadata-tool>')
             );
 
             const datasource = new Datasource().addHost(l.geospatialHost);
@@ -289,9 +297,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     .addCapabilitiesUrl(layer.capabilitiesUrl)
                     .addOpacity(layer.opacity)
                     .addDashboardUrl(layer.dashboard)
-                    .addMetadata(layer.metadata)
                     .addDatasource(layer.datasource)
-                    // .addTools([])
                     .addTools(layer.tools)
                     .isBaselayer(layer.baselayer)
                     .isActive(layer.active)
@@ -316,9 +322,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
             // define options for gridstack
             const options = {
-                cellHeight: 80,
-                verticalMargin: 1,
-                disableResize: true
+                cellHeight: 58,
+                verticalMargin: 0,
+                disableResize: true,
+                animate: true
             };
             // define grid
             const gsStack: any = $(gridId);
@@ -420,11 +427,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.terrabrasilisApi.addShowCoordinatesEventToMap(event);
     }
 
-    ///////////////////////////////////////////////////////////////
-    /// Layers interactions
-    ///////////////////////////////////////////////////////////////
     layerBaseLayerChange(layerObject: any) {
-        let layer = this.getLayerByName(layerObject.name);
+        let layer = this.terrabrasilisApi.getBaselayerByName(layerObject.name);
         if (typeof (layer) == 'undefined' || layer === null) { layer = null; }
 
         if (layer == null) {
@@ -434,7 +438,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 const baselayer = this.baselayers.find(function (l) {
                     if (l.name == bl.options._name) { return true; }
                 });
-                this.terrabrasilisApi.deactiveLayer(baselayer);
+                this.terrabrasilisApi.deactiveBaselayer(baselayer);
             });
             this.terrabrasilisApi.activeLayer(layerObject);
         }
@@ -549,25 +553,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.updateOverlayerLegends();
     }
 
-    /**
-     * Change the height of a grid stack layer item.
-     * @param layerName The layer name to compose the identifier of grid stack item.
-     */
-    changeHeightLayerItem(layerName: string, projectId: string) {
-        setTimeout(function () {
-            const lname = layerName.replace(/\s/g, '');
-            const el = $('#' + lname + '_gslayer');
-            const gsItemHeight = ($('#' + layerName + '_gstoggle').attr('aria-expanded') === 'true') ? (2) : (1);
-
-            const gsId = '#grid-stack-' + projectId,
-                gsStack: any = $(gsId);
-            const grid = gsStack.data('gridstack');
-            grid.resize(el[0], null, gsItemHeight);
-            grid.batchUpdate();
-            grid.commit();
-        }, 250);
-    }
-
     removeLayerFromTreeView(layer: any, projectId: string) {
         $(function () {
             const layerId = layer.id;
@@ -620,20 +605,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
     }
 
-    showContact() {
-        this.cdRef.detectChanges();
-        this.dialog.open(ContactComponent, { width: '450px' });
-    }
-
     changeLanguage(value: string) {
         this.localStorageService.setValue(this.languageKey, value);
         this._translate.use(value);
-        this.changeAboutURL(value);
         this.updateOverlayerLegends();
-    }
-
-    changeAboutURL(value: string) {
-        this.terraBrasilisAboutURL = (value == 'en') ? ("http://terrabrasilis.dpi.inpe.br/en/about/") : ("http://terrabrasilis.dpi.inpe.br/sobre/");
     }
 
     goTo(url: string) {
@@ -655,10 +630,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     ///////////////////////////////////////////////////
     /// Private methods
     ///////////////////////////////////////////////////
-
-    private getLayerByName(layerName: string): any {
-        return this.terrabrasilisApi.getLayerByName(layerName);
-    }
 
     private hasElement(list: any, toCompare: any): boolean {
         let hasElement = false;
@@ -693,6 +664,28 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 })
 
             self.layersToLegend.push(p);
+        });
+    }
+
+    private addLayerCollapseEvents() {
+        var handleColapse = function (event: JQuery.TriggeredEvent<any>, movable: boolean, dataHeigth: number) {
+            var projectId = $(event.target).data("projectid");
+            var gridStack = $('#grid-stack-' + projectId);
+            const el = $('#' + $(event.target).attr("id") + '_gslayer');
+
+            const grid = gridStack.data('gridstack');
+            grid.batchUpdate();
+            grid.resize(el[0], null, dataHeigth);
+            grid.movable('.grid-stack-item', movable);
+            grid.commit();
+        };
+
+        $(".list-collapsible").on("shown.bs.collapse", function(event) {
+            handleColapse(event, false, 2);
+        });
+
+        $(".list-collapsible").on("hidden.bs.collapse", function(event) {
+            handleColapse(event, true, 1);
         });
     }
 
@@ -785,7 +778,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     .isTimeDimension(l.timeDimension)
                     .typeOfData(l.aggregatable)
                     .addStackOrder(l.stackOrder)
-                    .addDashboardUrl(l.dashboard);
+                    .addDashboardUrl(l.dashboard)
+                    .addDate(l.date);
 
                 layers.push(layer);
             });

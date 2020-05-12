@@ -1,0 +1,34 @@
+.mCSB_outside + .mCS-sisgeo-theme.mCSB_scrollTools_vertical{
+    right: 0; 
+    margin: 12px 0; 
+}
+
+.mCS-dir-rtl > .mCSB_outside + .mCS-sisgeo-theme.mCSB_scrollTools_vertical{
+    left: 0; 
+    right: auto;
+}
+
+.mCS-sisgeo-theme.mCSB_scrollTools .mCSB_draggerRail{ background-color: transparent; }
+
+.mCS-sisgeo-theme.mCSB_scrollTools_vertical .mCSB_dragger{ height: 50px; }
+
+.mCS-sisgeo-theme.mCSB_scrollTools_horizontal .mCSB_dragger{ width: 50px; }
+
+.mCS-sisgeo-theme.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+    background-color: rgba(0,0,0,1); background-color: rgba(0,0,0,0.3);
+    filter: "alpha(opacity=20)"; -ms-filter: "alpha(opacity=20)"; 
+}
+
+.mCS-sisgeo-theme.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+.mCS-sisgeo-theme.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+    background-color: rgba(0,0,0,1); background-color: rgba(0,0,0,0.6);
+    filter: "alpha(opacity=50)"; -ms-filter: "alpha(opacity=50)"; 
+}
+
+.mCSB_container {
+    margin-right: 0px !important;
+}
+
+.mCSB_dragger_bar {
+    width: 10px !important;
+}

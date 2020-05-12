@@ -554,6 +554,7 @@ Terrabrasilis = (function () {
             layers: ol.workspace + ':' + ol.name,
             format: 'image/png',
             transparent: true,
+            opacity: ol.opacity,
             tiled: true,
             _name: ol.name,
             _baselayer: ol.baselayer,
@@ -1152,7 +1153,7 @@ Terrabrasilis = (function () {
       decimals: 6,
       decimalSeperator: '.',
       labelTemplateLat: 'Lat: {y}',
-      labelTemplateLng: 'Lng: {x}'
+      labelTemplateLng: 'Long: {x}'
     }).addTo(map)
 
     return this
@@ -1460,19 +1461,37 @@ Terrabrasilis = (function () {
      *
      * @param {*} layerName is the name of layer including the workspace ("workspace:layername")
      */
-  const getLayerByName = function (layerName) {
-    if (typeof (layerName) === 'undefined' || layerName === null) {
-      // console.log("layerName must not be null!");
-      // return this;
+    const getLayerByName = function (layerName) {
+      if (typeof (layerName) === 'undefined' || layerName === null) {
+        return null
+      }
+  
+      let layer = null
+      map.eachLayer(l => {
+        if (l.options.layers && l.options.layers === layerName && !layer) {
+          layer = l
+        }
+      })
+  
+      return layer
+    }
+
+  /**
+   * This method try to find the baselayer identified by name.
+   *
+   * @param {*} name is the name of baselayer
+   */
+  const getBaselayerByName = function (name) {
+    if (typeof (name) === 'undefined' || name === null) {
       return null
     }
 
     let layer = null
     map.eachLayer(l => {
-      if (l.options.layers && l.options.layers === layerName && !layer) {
+      if (l.options && l.options._name === name) {
         layer = l
       }
-    })
+    });
 
     return layer
   }
@@ -1498,19 +1517,36 @@ Terrabrasilis = (function () {
      */
   const deactiveLayer = function (layer) {
     if (!layer || !layer.name) {
-      // console.log("layer must not be null!");
       return false
     }
+
     // if time dimension is enabled for this layer, remove it.
     let layerName=layer.workspace+':'+layer.name;
     if (layerName === _ctrlTimer.layerName) {
       removeTimerControl()
     }
+
     const ll = getLayerByName(layerName)
     if (ll) {
       map.removeLayer(ll)
     }
   }
+
+    /**
+     * This method remove baselayer from the map
+     *
+     * @param {*} layer
+     */
+    const deactiveBaselayer = function (layer) {
+      if (!layer || !layer.name) {
+        return false
+      }
+  
+      const ll = getBaselayerByName(layer.name)
+      if (ll) {
+        map.removeLayer(ll)
+      }
+    }
 
   /**
      * This method add one layer to the map.
@@ -2095,8 +2131,10 @@ Terrabrasilis = (function () {
     getTerrabrasilisOverlayers: getTerrabrasilisOverlayers,
     getTerrabrasilisBaselayers: getTerrabrasilisBaselayers,
     getLayerByName: getLayerByName,
+    getBaselayerByName: getBaselayerByName,
     isLayerActived: isLayerActived,
     deactiveLayer: deactiveLayer,
+    deactiveBaselayer: deactiveBaselayer,
     activeLayer: activeLayer,
     setOpacityToLayer: setOpacityToLayer,
     moveLayerToBack: moveLayerToBack,

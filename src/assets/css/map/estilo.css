@@ -33,10 +33,6 @@ a:focus {
   transition: all 0.3s;
 }
 
-.azul{
-  color: var(--sidebar-second-color);
-}
-
 
 /* ---------------------------------------------------
     Material Icons
@@ -164,15 +160,17 @@ a:focus {
 }
 
 .fe-camadas {
-  padding: 10px 0px 10px 0px;
-  display: -webkit-box;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
 }
 
 .fe-camadas .btn {
   background-color: transparent;
   padding: 0px;
   border: 0px;
-  margin-left: 10px;
 }
 
 .texto {
@@ -290,6 +288,78 @@ dfn:hover::before {
   top: 20px;
 }
 
+.ferramenta-camada::after {
+  top: unset;
+  bottom: -10px !important;
+  left: 25px;
+  transition: opacity 250ms, left 250ms;
+}
+
+.ferramenta-camada::before {
+  top: 9px;
+  left: 15px;
+  transition: opacity 250ms, left 250ms;
+  transform: rotate(270deg);
+}
+
+.ferramenta-camada:hover::after {
+  top: unset;
+  bottom: -10px !important;
+  left: 35px;
+}
+
+.ferramenta-camada:hover::before {
+  top: 9px;
+  left: 25px;
+}
+
+.layer-tool {
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.layer-tool button {
+  display: flex;
+}
+
+.layer-tool::after {
+  top: unset !important;
+  transition: opacity 250ms, bottom 250ms;
+  bottom: 25px !important;
+  line-height: 0.9rem !important;
+  text-align: center;
+}
+
+.layer-tool::before {
+  transition: opacity 250ms, bottom 250ms;
+  transform: rotate(180deg);
+  top: unset;
+  left: unset;
+  bottom: 16px !important;
+}
+
+.layer-tool:hover::after {
+  bottom: 35px !important;
+  text-align: center;
+}
+
+.layer-tool:hover:before {
+  top: unset;
+  bottom: 26px !important;
+}
+
+.dropdown-layer {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.layer-list li {
+  height: 58px;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -353,6 +423,12 @@ dfn:hover::before {
   object-fit: contain;
 }
 
+.sidebar-header p {
+  text-align: center;
+  font-size: 0.65rem;
+  color: white;
+}
+
 .descricao {
   top: 50px !important;
   color: #fff;
@@ -378,7 +454,7 @@ dfn:hover::before {
 }
 
 #sidebar ul li a {
-  padding: 10px 10px 0px 10px;
+  padding: 10px 10px 10px 10px;
   font-size: 0.9em;
   display: block;
 
@@ -410,7 +486,6 @@ dfn:hover::before {
 
 #sidebar ul li a i {
   margin-right: 12px;
-  vertical-align: -7px;
 
 }
 
@@ -429,13 +504,12 @@ dfn:hover::before {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-  color: #79006f;
-  background: #f1f3f4;
+  background: #c2c5c7;
+  color: #212529;
 }
 
 a[data-toggle="collapse"] {
   position: relative;
-
 }
 
 #sidebar .dropdown-toggle::after {
@@ -444,8 +518,6 @@ a[data-toggle="collapse"] {
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-
-
 }
 
 
@@ -457,7 +529,6 @@ a[data-toggle="collapse"] {
 
 #sidebar ul li ul li {
   width: 230px;
-
 }
 
 
@@ -499,27 +570,22 @@ a.article:hover {
 
 }
 
-/*Adicionado */
-.txtcamada {
+.layer-title {
   position: relative;
   overflow: hidden;
   line-height: 1.2em;
   max-width: 170px;
   max-height: 2.2em;
-  margin-left: 36px;
-  top: -20px;
+  top: 0 !important;
+  margin-left: 0 !important;
 }
 
-.txtcamada:hover {
-  color: var(--sidebar-primary-color);
-}
-
-.configura {
+.layer-settings {
   position: relative;
-  top: 6px;
+  top: 2px;
 }
 
-.configura:hover{
+.layer-settings:hover{
   color: var(--sidebar-primary-color);
 }
 
@@ -531,14 +597,6 @@ a.article:hover {
 :after,
 :before {
   box-sizing: border-box
-}
-
-.pull-left {
-  float: left
-}
-
-.pull-right {
-  float: right
 }
 
 .clearfix:after,
@@ -665,60 +723,8 @@ a.article:hover {
   width: 100%;
 }
 
-.navbar-toggler {
-  border: none;
-  background: transparent !important;
-}
-
-.navbar-toggler:focus {
-  outline: none;
-  background: transparent !important;
-}
-
-.navbar-toggler .icon-bar {
-  background-color: #fff;
-  transform: rotate(0deg) translate(0px, 0px);
-  transition: ease all .2s;
-}
-
-.navbar-toggler .icon-bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  border-radius: 1px;
-}
-
-.navbar-toggler .icon-bar+.icon-bar {
-  margin-top: 4px;
-}
-
 .icon-bar:nth-child(2) {
   width: 16px;
-  transition: ease all .2s;
-}
-
-.navbar-toggler:hover>.icon-bar:nth-child(2) {
-  width: 22px;
-  transition: ease all .2s;
-}
-
-.navbar-toggler:active>.icon-bar:nth-child(2) {
-  width: 22px;
-  transition: ease all .2s;
-}
-
-.navbar-toggler:not(.collapsed) .icon-bar:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 4px);
-  transition: ease all .2s;
-}
-
-.navbar-toggler:not(.collapsed) .icon-bar:nth-child(2) {
-  opacity: 0;
-  transition: ease all .2s;
-}
-
-.navbar-toggler:not(.collapsed) .icon-bar:nth-child(3) {
-  transform: rotate(-45deg) translate(4px, -4px);
   transition: ease all .2s;
 }
 
@@ -728,11 +734,8 @@ a.article:hover {
 
 .material-switch {
   position: relative;
-  /*add*/
-  top: -40px;
-  /*add*/
-  right: 15px;
-  /*add*/
+  top: -35px;
+  right: 5px;
 }
 
 .material-switch>input[type="checkbox"] {
@@ -773,7 +776,6 @@ a.article:hover {
   width: 20px;
 }
 
-
 .material-switch>input[type="checkbox"]:checked+label::before {
   background: var(--sidebar-primary-color) !important;
   opacity: 0.6 !important;
@@ -784,7 +786,6 @@ a.article:hover {
   /* Cor ativa ou usar classe bg do bootstrap*/
   left: 20px;
 }
-
 
 /*----------------------------------------------------------
  Busca
@@ -1149,10 +1150,6 @@ footer {
     border-color: #108d6f !important;
   }
 
-  #menuanaliseid.active {
-    margin-right: -155px !important;
-  }
-
   .navbar-brand.active {
     margin-right: -155px !important;
   }
@@ -1199,4 +1196,28 @@ footer {
   line-height: 100%;
   margin: 0;
   color: #fff !important;
+}
+
+.transparency-slider {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background: #f1f3f4;
+}
+
+.slider-back {
+  width: 15%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+.slider-bar {
+  width: 85%;
+  top: 0 !important;
+  position: absolute;
+  right: 0;
 }

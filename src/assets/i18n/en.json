@@ -6,8 +6,12 @@
         "alerts": "DETER (Alerts)",
         "text": "TerraBrasilis is a platform developed by INPE for the organization, access and use through a web portal of the geographic data produced by its environmental monitoring programs"
     },
-    "dialog": {
-        "text": "General Informations"
+    "dialog":{
+        "title": {
+            "default": "General Informations",
+            "download": "Layer Download",
+            "metadata": "Metadata"
+        }
     },
     "menu" : {
         "analyses": {
@@ -86,15 +90,15 @@
         "5e5ae3ef4656e10001090aa9" : {
             "name": "Bacia de Furnas",
             "5e5ae2774656e10001090aa65e5ae3ef4656e10001090aa9": "Bacia Hidrográfica de Furnas",
-            "5e5ae2c04656e10001090aa75e5ae3ef4656e10001090aa9": "Lago de Furnas na Cota Máxima",
-            "5e5ae2fa4656e10001090aa85e5ae3ef4656e10001090aa9": "Rios Principais de Furnas"
+            "5e5ae2c04656e10001090aa75e5ae3ef4656e10001090aa9": "Lago de Furnas (99,2% do volume útil) - 28/04/2008",
+            "5e5ae2fa4656e10001090aa85e5ae3ef4656e10001090aa9": "Rios Principais"
         },
         "5e5c0f38c5c5c40001859bd3" : {
             "name": "Cartas Topográficas",
             "5e5c0eccc5c5c40001859bd25e5c0f38c5c5c40001859bd3" : "Carta de Alfenas",
             "5e66cde318eee00001f877365e5c0f38c5c5c40001859bd3" : "Carta de Varginha",
             "5e66fdb318eee00001f877375e5c0f38c5c5c40001859bd3" : "Articulação de Furnas(linha)",
-            "5e66fde818eee00001f877385e5c0f38c5c5c40001859bd3" : "Articulação de Furnas(polígono)"            
+            "5ea8c615e60860000117d1b75e5c0f38c5c5c40001859bd3" : "Bacia Hidrográfica de Furnas (linha)"
         },
         "control3" : "Others Layers",
         "noLegend" : "To see legends, you should enable layers."
@@ -104,13 +108,12 @@
         "featureInfo": "Feature Info",
         "showCoordinates": "Coordinates",
         "fullscreen": "Fullscreen",
-        "download": "Downloads",
+        "download": "Layer Download",
         "addLayer": "Add Others Layers",
         "undo": "Zoom undo",
         "redo": "Zoom redo",
         "notice": "Do not show again",
         "layerOptions": "Layer Tools",
-        "basicInfo": "Basic Info",
         "metadata": "Metadata",
         "fitBounds": "Zoom to fit layer",
         "dashboard": "Graphics",
@@ -118,9 +121,6 @@
         "removeLayer": "Remove Layer",
         "legend": "Legend",
         "timeDimension": "Time Dimension"
-    },
-    "contact" : {
-        "title":"Send suggestions or questions to"
     },
     "about" : {
         "description": "TerraBrasilis is a platform developed by INPE to organize, access and use spatial data produced by its environmental monitoring programs. Throughout a web portal, it focuses mainly on the Amazon Program, but the concept and software packages produced can be adapted and customized to meet other projects that produce spatial data and aim to be accessible in the internet environment.",

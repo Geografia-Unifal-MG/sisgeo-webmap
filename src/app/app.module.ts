@@ -4,7 +4,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -28,7 +27,6 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
-import { ContactComponent } from './contact/contact.component';
 import { TerrabrasilisApiComponent } from './tool/terrabrasilis-api/terrabrasilis-api.component';
 import { MapComponent } from './map/map.component';
 
@@ -39,7 +37,6 @@ import { UserProviderService } from './services/user-provider.service';
 import { LayerInfoProviderService } from './services/layer-info-provider.service'; 
 import { WmsCapabilitiesProviderService } from './services/wms-capabilities-provider.service';
 import { MapWmsSearchDialogService } from './services/map-wms-search-dialog.service';
-import { ContactService } from './services/contact.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { DatasourceService } from './services/datasource.service';
 import { LayerService } from './services/layer.service';
@@ -78,7 +75,6 @@ import * as gridstack from 'gridstack';
     UserComponent,
     DialogComponent,
     WmsSearchComponent,
-    ContactComponent,
     TerrabrasilisApiComponent
   ],
   imports: [
@@ -87,8 +83,6 @@ import * as gridstack from 'gridstack';
     BrowserAnimationsModule,
     MaterialCoreModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
     /**
@@ -121,7 +115,6 @@ import * as gridstack from 'gridstack';
     LayerInfoProviderService,
     WmsCapabilitiesProviderService,
     MapWmsSearchDialogService,
-    ContactService,
     LocalStorageService,
     localStorageProviders({ prefix: 'TBV01_' }),
     DatasourceService,
@@ -137,7 +130,6 @@ import * as gridstack from 'gridstack';
   ],
   entryComponents: [
     DialogComponent,
-    ContactComponent,
     TerrabrasilisApiComponent
   ],
   exports: [

@@ -103,7 +103,7 @@ const Utils = {
   },
 
   configureUrlWorkspace: (layerConfig) => {
-    let baseUrl = layerConfig.datasource.host.replace('ows', layerConfig.workspace + '/' + layerConfig.name + '/ows')
+    let baseUrl = layerConfig.datasource.host.replace('wms', layerConfig.workspace + '/' + layerConfig.name + '/wms')
     baseUrl += `?REQUEST=GetCapabilities&VERSION=1.3.0&SERVICE=wms` 
     return baseUrl
   },
