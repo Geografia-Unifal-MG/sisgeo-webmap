@@ -402,6 +402,8 @@ dfn:hover::before {
 	animation: gradientBG 15s ease infinite;
   color: #1bb6ca;
   height: 200px;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 @keyframes gradientBG {
@@ -416,17 +418,17 @@ dfn:hover::before {
 	}
 }
 
-.sidebar-header img{
-  height: 55%;
+.sidebar-header img {
   width: 100%;
-  margin-top: 40px;
   object-fit: contain;
+  padding-bottom: 10px;
 }
 
 .sidebar-header p {
   text-align: center;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   color: white;
+  margin: 0;
 }
 
 .descricao {
@@ -587,6 +589,10 @@ a.article:hover {
 
 .layer-settings:hover{
   color: var(--sidebar-primary-color);
+}
+
+.pull-right {
+  float: right
 }
 
 /*--------------------------------------------------------
