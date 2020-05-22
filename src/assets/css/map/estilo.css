@@ -7,8 +7,7 @@
 
 :root {
   --sidebar-primary-color: #2590c3;
-  --sidebar-second-color: #00d0ff;
-  --navbar-color: #0c2461;
+  --sidebar-second-color: #00d0ff;--navbar-color: #0c2461;
 }
 
 body {
@@ -401,7 +400,7 @@ dfn:hover::before {
 	background-size: 400% 400%;
 	animation: gradientBG 15s ease infinite;
   color: #1bb6ca;
-  height: 200px;
+  height: 185px;
   display: table-cell;
   vertical-align: middle;
 }
@@ -1037,17 +1036,17 @@ footer {
     Table Styles
 ----------------------------------------------------- */
 .table-info tr {
-  border-top: 1px solid #00796b;
-  border-bottom: 1px solid #00796b;
+  border-top: 1px solid var(--sidebar-second-color);
+  border-bottom: 1px solid var(--sidebar-second-color);
   color: #666B85;
   font-weight: normal;
   text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
 }
 
 .table-info tr:hover td {
-  background: #49bc95;
+  background: var(--sidebar-second-color);
   color: #FFFFFF;
-  border-top: 1px solid #00796b;
+  border-top: 1px solid var(--sidebar-second-color);
 }
 
 .table-info tr:nth-child(odd) td {
@@ -1055,7 +1054,7 @@ footer {
 }
 
 .table-info tr:nth-child(odd):hover td {
-  background: #49bc95;
+  background: var(--sidebar-second-color);
 }
 
 
@@ -1091,8 +1090,8 @@ footer {
     height: 46px;
     margin: 1px;
     border-radius: 50%;  
-    border: 5px solid #045743;
-    border-color: #045743 transparent #045743 transparent;
+    border: 5px solid var(--sidebar-primary-color);
+    border-color: var(--sidebar-primary-color) transparent var(--sidebar-primary-color) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @keyframes lds-dual-ring {
@@ -1226,4 +1225,10 @@ footer {
   top: 0 !important;
   position: absolute;
   right: 0;
+}
+
+.loading-text {
+  font-size: 1.5rem;
+  color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
 }

@@ -18,6 +18,7 @@ import { LocalStorageModule } from '@ngx-pwa/local-storage';
 import { DynamicComponentModule } from './core-modules/dynamic-component';
 import { SharedModule } from './core-modules/shared.module';
 import { PipeSharedModule } from './core-modules/pipe-shared.module';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 /**
  * Custom component imports
@@ -66,6 +67,7 @@ import * as _ from 'lodash';
 import 'gridstack';
 
 import * as gridstack from 'gridstack';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,8 @@ import * as gridstack from 'gridstack';
     UserComponent,
     DialogComponent,
     WmsSearchComponent,
-    TerrabrasilisApiComponent
+    TerrabrasilisApiComponent,
+    AboutComponent
   ],
   imports: [
     PipeSharedModule,
@@ -85,6 +88,7 @@ import * as gridstack from 'gridstack';
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
+    NgxSpinnerModule,
     /**
      * Active the translate tool for entire app
      */

@@ -39,7 +39,7 @@ export class TerrabrasilisApiComponent implements OnInit {
     //// MapBuilder
     ////////////////////////////////////////////////
     public map(points: any, baselayers: any, overlayers: any ): void  {
-        Terrabrasilis.map(points.longitude, points.latitude, 9)
+        Terrabrasilis.map(points.latitude, points.longitude, 9)
             .addCustomizedBaseLayers(JSON.parse(JSON.stringify(baselayers)))
             .addCustomizedOverLayers(JSON.parse(JSON.stringify(overlayers)))
             // .addBaseLayers(JSON.parse(JSON.stringify(this.baselayers)))
@@ -53,6 +53,10 @@ export class TerrabrasilisApiComponent implements OnInit {
             // .enableInvalidateSize()
             .hideStandardLayerControl()
             .enableGeocodingTool();
+    }
+
+    getMap() {
+        return this.Terrabrasilis.getCurrentlyMap();
     }
 
     ////////////////////////////////////////////////
@@ -241,7 +245,7 @@ export class TerrabrasilisApiComponent implements OnInit {
     }
 
     fitBounds(layer: Layer) {
-        Terrabrasilis.fitBounds(layer).then(console.log).catch(console.error)
+        return Terrabrasilis.fitBounds(layer);
     }
 
     ////////////////////////////////////////////////
