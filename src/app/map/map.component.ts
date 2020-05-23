@@ -14,7 +14,6 @@ import { MatDialog } from '@angular/material';
  * components
  */
 import { DialogComponent } from '../dialog/dialog.component';
-import { WmsSearchComponent } from '../wms/wms-search/wms-search.component';
 
 /**
  * services
@@ -41,6 +40,8 @@ import { TerrabrasilisApiComponent } from '../tool/terrabrasilis-api/terrabrasil
 import { Tool } from '../entity/tool';
 import { OpenUrl } from '../util/open-url';
 import * as _ from 'lodash'; // using the _.uniqueId() method
+import { map } from 'rxjs/operators';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
     selector: 'app-map',
@@ -66,9 +67,11 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     public type = '';
     public language = '';
     public template: any;
-    public sisgeoAboutUrl: string;
-    public sisgeoContactUrl: string;
-    public sisgeoHelpUrl: string;
+    public sisgeoAboutUrl = "https://sisgeo.unifal-mg.edu.br";
+    public sisgeoContactUrl = 'https://sisgeo.unifal-mg.edu.br';
+    public sisgeoHelpUrl: 'https://sisgeo.unifal-mg.edu.br';
+    public mainVision = 'furnas';
+    public firstLayer = null;
 
     /**
      * radio button
@@ -110,6 +113,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         , private _translate: TranslateService
         , private localStorageService: LocalStorageService
         , @Inject(NgZone) private zone: NgZone
+        , private spinner: NgxSpinnerService
     ) { }
 
     ///////////////////////////////////////////////////////////////
@@ -121,6 +125,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     /// Angular lifeCycle hooks
     ///////////////////////////////////////////////////////////////
     ngOnInit() {
+        this.spinner.show();
         this.cdRef.detectChanges();
 
         /**
@@ -128,25 +133,17 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
          *
          * https://kamranahmed.info/blog/2018/02/28/dealing-with-route-params-in-angular-5/
          */
-        const urlParams = combineLatest(
-            this.activeRoute.params,
-            this.activeRoute.queryParams,
-            (params, queryParams) => ({ ...params, ...queryParams })
+
+        const combinedResult$ = combineLatest(this.activeRoute.queryParams,).pipe(
+            map(r => ({ queryParams: r[0] }))
         );
 
-        /**
-         * Identify the routeParams to load the specific layers
-         */
-        urlParams.subscribe(routeParams => {
-            this.type = routeParams.type;
-            this.language = routeParams.hl !== 'undefined' ? routeParams.hl : null;
-            this.sisgeoAboutUrl = "https://sisgeo.unifal-mg.edu.br";
-            this.sisgeoContactUrl = 'https://sisgeo.unifal-mg.edu.br';
-            this.sisgeoHelpUrl = 'https://sisgeo.unifal-mg.edu.br';
+        combinedResult$.subscribe(result => {
+            this.language = result.queryParams.hl !== 'undefined' ? result.queryParams.hl : null;
 
-
-            this.visionService.getVisionAndAllRelationshipmentByName(this.type)
+            this.visionService.getVisionAndAllRelationshipmentByName(this.mainVision)
                 .subscribe(visions => {
+
                     this.buildOverlayersAndBaselayers(visions);
 
                     /**
@@ -156,23 +153,28 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     this.overlayers.forEach(vision => {
                         layersToMap = layersToMap.concat(this.gridStackInstance(vision));
                     });
-                    
+
                     this.zone.runOutsideAngular(() => {
                         this.terrabrasilisApi.map({
-                            longitude: -45.784149169921875,
-                            latitude: -20.926810577365917
+                            latitude: -20.926810577365917,
+                            longitude: -45.784149169921875
                         }, this.baselayers, layersToMap);
                     });
+
                     this.updateOverlayerLegends();
-                    this.terrabrasilisApi.disableLoading();
-
-                    let firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
-                    if (firstLayer !== undefined)
-                        this.terrabrasilisApi.fitBounds(firstLayer);
-
                     this.addLayerCollapseEvents();
+                    if (this.language != null)
+                        this.changeLanguage(this.language);
+                    
+                    this.firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
+                    if(this.firstLayer === undefined){
+                        this.spinner.hide();
+                        return;
+                    }
 
-                    if (this.language != null) { this.changeLanguage(this.language); }
+                    this.terrabrasilisApi.fitBounds(this.firstLayer).then(result => {
+                        this.spinner.hide();
+                    });
                 });
 
             this.localStorageService.getValue(this.languageKey)
@@ -392,17 +394,11 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.terrabrasilisApi.fullScreen();
     }
 
-    showDialogCapabilities() {
-        this.cdRef.detectChanges();
-        this.dialog.open(WmsSearchComponent, {
-            width: '950px',
-            minWidth: '690px',
-            height: '630px',
-            minHeight: '400px'
-        });
-    }
-
     resetMap() {
+        if (this.firstLayer !== undefined){
+            this.terrabrasilisApi.fitBounds(this.firstLayer);   
+            return;
+        }
         this.terrabrasilisApi.resetMap();
     }
 

@@ -1,5 +1,3 @@
-$("body").loading();
-
 $(document).ready(function () {
     /**
      * sidebar legend button
@@ -71,11 +69,4 @@ $(document).ready(function () {
     if (cookieFirstNotice === null) {
         $('#firstNotice').modal('show');
     }
-
-    /**
-    * Loading effect 
-    */
-    window.setTimeout(function() {
-        $('body').loading('stop');
-    }, 5000);
 });

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MapComponent } from './map/map.component';
-import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
-    { path: 'map/:type', component : MapComponent },
-    { path: 'wms', component: WmsSearchComponent },
+    { path: '', component: AboutComponent},
+    { path: 'webmap', component : MapComponent },
     {
         path: "**",
-        redirectTo: "/map/furnas",
+        redirectTo: "webmap",
         pathMatch: "full"
     }
 ];
@@ -22,4 +22,5 @@ exports: [
 ],
 declarations: []
 })
+
 export class AppRoutingModule { }

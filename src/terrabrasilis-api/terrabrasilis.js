@@ -100,7 +100,7 @@ Terrabrasilis = (function () {
         icon: 'assets/img/leaflet/context.menu/info.png',
         callback: getLayerFeatureInfo
       }]
-    }).setView([lon, lat], zoom)
+    }).setView({ lat: lat, lng: lon }, zoom)
 
     localStorage.setItem('lat', lat)
     localStorage.setItem('lon', lon)
@@ -1195,10 +1195,10 @@ Terrabrasilis = (function () {
      * this method allow to resetView to the initial lat, lon and zoom given by user
      */
   const resetMapToInitialView = function () {
-    map.setView([
-      localStorage.getItem('lon'),
-      localStorage.getItem('lat')],
-    localStorage.getItem('zoom'))
+    map.setView({
+      lat: localStorage.getItem('lat'),
+      lng: localStorage.getItem('lon')
+    }, localStorage.getItem('zoom'));
 
     mapScaleStack.reset()
     redoScaleQueue.reset()
@@ -1234,7 +1234,7 @@ Terrabrasilis = (function () {
      */
   const showCoordinates = function (event) {
     const popupTemplate = L.DomUtil.create('div', '')
-    popupTemplate.innerHTML = 'Lat: ' + event.latlng.lat + '<br/>Lng: ' + event.latlng.lng
+    popupTemplate.innerHTML = 'Lat: ' + event.latlng.lat + '<br/>Long: ' + event.latlng.lng
     const copyInfo = L.DomUtil.create('div', '', popupTemplate)
     copyInfo.innerHTML = 'Click to copy: '
 
@@ -1267,7 +1267,10 @@ Terrabrasilis = (function () {
      * @param event
      */
   const centerMap = function (event) {
-    this.setView([event.latlng.lat, event.latlng.lng], localStorage.getItem('zoom'))
+    this.setView({
+      lat: event.latlng.lat,
+      lng: event.latlng.lng
+    }, localStorage.getItem('zoom'))
   }
 
   /**
@@ -1282,10 +1285,10 @@ Terrabrasilis = (function () {
 
     if (letsGoTo !== 'undefined') {
       if (letsGoTo.zoom === map.getZoom()) { letsGoTo = mapScaleStack.remove() }
-      map.setView([
-        letsGoTo.lng,
-        letsGoTo.lat]
-      , letsGoTo.zoom)
+      map.setView({
+        lat: letsGoTo.lat,
+        lng: letsGoTo.lng
+      }, letsGoTo.zoom);
     }
   }
 
@@ -1301,10 +1304,10 @@ Terrabrasilis = (function () {
 
     if (letsGoTo !== 'undefined') {
       if (letsGoTo.zoom === map.getZoom()) { letsGoTo = redoScaleQueue.remove() }
-      map.setView([
-        letsGoTo.lng,
-        letsGoTo.lat]
-      , letsGoTo.zoom)
+      map.setView({
+        lat: letsGoTo.lat,
+        lng: letsGoTo.lng
+      }, letsGoTo.zoom);      
     }
   }
 
