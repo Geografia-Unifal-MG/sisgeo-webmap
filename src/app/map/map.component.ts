@@ -174,6 +174,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
                     this.terrabrasilisApi.fitBounds(this.firstLayer).then(result => {
                         this.spinner.hide();
+                    }).catch(error => {
+                        this.spinner.hide();
                     });
                 });
 
