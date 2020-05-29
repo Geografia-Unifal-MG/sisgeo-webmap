@@ -28,7 +28,6 @@ import { MatAutocompleteModule
   , MatSidenavModule
   , MatSliderModule
   , MatSlideToggleModule
-  , MatTabChangeEvent
   , MatTableModule
   , MatTabsModule
   , MatToolbarModule
