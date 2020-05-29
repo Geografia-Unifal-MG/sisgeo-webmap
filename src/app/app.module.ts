@@ -30,6 +30,10 @@ import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
 import { TerrabrasilisApiComponent } from './tool/terrabrasilis-api/terrabrasilis-api.component';
 import { MapComponent } from './map/map.component';
+import { TopografiaComponent } from './topografia/topografia.component';
+import { HomeComponent } from './home/home.component';
+import { BaciaComponent } from './bacia/bacia.component';
+import { MapeamentoComponent } from './mapeamento/home/mapeamento.component';
 
 /**
  * Services
@@ -67,7 +71,6 @@ import * as _ from 'lodash';
 import 'gridstack';
 
 import * as gridstack from 'gridstack';
-import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,10 @@ import { AboutComponent } from './about/about.component';
     DialogComponent,
     WmsSearchComponent,
     TerrabrasilisApiComponent,
-    AboutComponent
+    TopografiaComponent,
+    HomeComponent,
+    BaciaComponent,
+    MapeamentoComponent
   ],
   imports: [
     PipeSharedModule,
