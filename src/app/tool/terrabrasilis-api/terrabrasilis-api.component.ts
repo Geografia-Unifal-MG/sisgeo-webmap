@@ -5,7 +5,7 @@ import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
  */
 import * as Terrabrasilis from '../../../terrabrasilis-api/terrabrasilis';
 import { DialogComponent } from '../../dialog/dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Layer } from '../../entity/layer';
 import { Utils } from '../../util/utils';

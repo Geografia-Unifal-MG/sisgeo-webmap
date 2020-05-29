@@ -8,7 +8,7 @@ import {
     , HostBinding
     , DoCheck
 } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 /**
  * components

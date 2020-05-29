@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SafeHtml } from '@angular/platform-browser';
 
 @Component({

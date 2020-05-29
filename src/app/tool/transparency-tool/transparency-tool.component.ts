@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, ViewContainerRef, ViewChild, Inpu
 import { ToolComponent } from '../tool-component-interface';
 import { RegisterComponent } from '../../util/component-decorator';
 import { TerrabrasilisApiComponent } from '../terrabrasilis-api/terrabrasilis-api.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Layer } from '../../entity/layer';
 import { OnMount } from '../../core-modules/dynamic-html';

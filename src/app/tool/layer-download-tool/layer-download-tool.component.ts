@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { OnMount } from '../../core-modules/dynamic-html';
 import { ToolComponent } from '../tool-component-interface';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TerrabrasilisApiComponent } from '../terrabrasilis-api/terrabrasilis-api.component';
 import { Layer } from '../../entity/layer';

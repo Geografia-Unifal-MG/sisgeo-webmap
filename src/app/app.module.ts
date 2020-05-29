@@ -56,7 +56,6 @@ import { HttpLoaderFactory } from "./factory/httpLoaderFactory";
 import * as Jsonix from 'terrabrasilis-jsonix';
 import * as ogcSchemas from 'ogc-schemas';
 import * as w3cSchemas from 'w3c-schemas';
-import 'hammerjs';
 
 import * as d3 from 'd3';
 import * as $ from 'jquery';
