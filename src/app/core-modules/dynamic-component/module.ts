@@ -28,7 +28,7 @@ export function createJitCompiler(options?: CompilerOptions[]) {
     exports: [DynamicComponentDirective],
 })
 export class DynamicComponentModule {
-    static forRoot(metadata: NgModule): ModuleWithProviders {
+    static forRoot(metadata: NgModule): ModuleWithProviders<DynamicComponentModule> {
         return {
             ngModule: DynamicComponentModule,
             providers: [
