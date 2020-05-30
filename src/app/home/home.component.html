@@ -1,32 +1,5 @@
 <div class="content">
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#about">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#projects">Projetos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#technologies">Tecnologias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#team">Desenvolvedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#footer">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    <app-navbar></app-navbar>
     <header>
         <img src="../../assets/img/page/backgroud-image.jpg" alt="">
         <div class="caption">
@@ -167,11 +140,12 @@
             <div class="row">
                 <div class="col-md-4 mb-5 text-center">
                     <div class="card">
-                        <a href="mapeamento.html" target="_blank"><img class="project-img img-fluid card-img-top"
-                                src="../../assets/img/page/mapeamento.png" alt=""></a>
+                        <a [routerLink]="['/mapeamento']" target="_blank"><img
+                                class="project-img img-fluid card-img-top" src="../../assets/img/page/mapeamento.png"
+                                alt=""></a>
                     </div>
                     <div class="bg-project">
-                        <a href="mapeamento.html" target="_blank">
+                        <a [routerLink]="['/mapeamento']" target="_blank">
                             <h4 class="text-blue mb-2">Mapeamento do lago de furnas</h4>
                         </a>
                         <p class="text-muted mb-0">Monitoramento da área do espelho d' água e volume útil por imagens de
@@ -181,11 +155,11 @@
                 </div>
                 <div class="col-md-4 mb-5 text-center">
                     <div class="card">
-                        <a href="bacia-de-furnas.html" target="_blank"><img class="project-img img-fluid card-img-top"
+                        <a [routerLink]="['/bacia']" target="_blank"><img class="project-img img-fluid card-img-top"
                                 src="../../assets/img/page/bacia.png" alt=""></a>
                     </div>
                     <div class="bg-project">
-                        <a href="bacia-de-furnas.html" target="_blank">
+                        <a [routerLink]="['/bacia']" target="_blank">
                             <h4 class="text-blue mb-2">Bacia Hidrográfica de Furnas</h4>
                         </a>
                         <p class="text-muted mb-0">Repositório de dados cartográficos da bacia hidrográfica de Furnas
@@ -194,11 +168,12 @@
                 </div>
                 <div class="col-md-4 mb-5 text-center">
                     <div class="card">
-                        <a href="topografia.html" target="_blank"><img class="project-img img-fluid card-img-top"
+                        <a [routerLink]="['/topografia']" target="_blank"><img
+                                class="project-img img-fluid card-img-top"
                                 src="../../assets/img/page/projeto-topografia.png" alt=""></a>
                     </div>
                     <div class="bg-project">
-                        <a href="topografia.html" target="_blank">
+                        <a [routerLink]="['/topografia']" target="_blank">
                             <h4 class="text-blue mb-2">Topografia de Furnas</h4>
                         </a>
                         <p class="text-muted mb-0">Repositório de dados topográficos da bacia hidrográfica de Furnas</p>
@@ -356,8 +331,8 @@
                 <div class="col-lg-3 col-md-6">
                     <img src="../../assets/img/page/pessoa2.png" class="person rounded-circle" alt="">
                     <h5 class="font-weight-bold text-center mt-4 mb-3">Guilherme Vieira</h5>
-                    <p class="text-blue text-center">Trabalhou na programação, design do site e desenvolvimento do
-                        sistema.
+                    <p class="text-blue text-center">Trabalhou na programação, design do site, desenvolvimento do
+                        sistema, entre outros.
                     </p>
                 </div>
 
@@ -377,7 +352,6 @@
             </div>
         </div>
     </div>
-
     <footer id="footer" class="footerPage">
         <div class="container">
             <div class="content-section-heading text-center">
@@ -425,9 +399,10 @@
                             Visitas ao site:
                         </p>
                         <div align=center>
-                            <img src='https://www.counter12.com/img-dW7yYDZ09Yxdbayc-79.gif' border='0' alt='estatisticas gratis'>
-                            <script type='text/javascript' src='https://www.counter12.com/ad.js?id=dW7yYDZ09Yxdbayc'></script>
-                          </div>
+                            <img src='https://www.counter12.com/img-Dbddb5zCDAzBbZD0-79.gif' border='0' alt='conter12'>
+                            <script type='text/javascript'
+                                src='https://www.counter12.com/ad.js?id=Dbddb5zCDAzBbZD0'></script><br>
+                        </div>
                     </div>
                 </div>
             </div>

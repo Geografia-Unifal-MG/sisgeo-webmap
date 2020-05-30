@@ -34,6 +34,7 @@ import { TopografiaComponent } from './topografia/topografia.component';
 import { HomeComponent } from './home/home.component';
 import { BaciaComponent } from './bacia/bacia.component';
 import { MapeamentoComponent } from './mapeamento/home/mapeamento.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 /**
  * Services
@@ -84,7 +85,8 @@ import * as gridstack from 'gridstack';
     TopografiaComponent,
     HomeComponent,
     BaciaComponent,
-    MapeamentoComponent
+    MapeamentoComponent,
+    NavbarComponent
   ],
   imports: [
     PipeSharedModule,

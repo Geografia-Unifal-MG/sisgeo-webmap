@@ -12,33 +12,22 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.initjQuery();
+     this.initjQuery();
+  }
+
+   scroll(el: HTMLElement) {
+    el.scrollTo(0, 100);
   }
 
   initjQuery() {
-    let scroll_link = $(".scroll");
-    //smooth scrolling -----------------------
-    scroll_link.click(function (e) {
-      e.preventDefault();
-      let url = $(".content").find($(this).attr("href")).offset().top;
-      $("html, .content").animate(
-        {
-          scrollTop: url,
-        },
-        700
-      );
-      $(this).parent().addClass("active");
-      $(this).parent().siblings().removeClass("active");
-      return false;
-    });
-
-    $('.content').append('<div id="toTop" style="position: fixed;bottom: 10px;right: 25px;cursor: pointer;border-radius: 35px;"' + 
+    $('.content').append('<div id="toTop" style="position: fixed; display:none;bottom: 10px;right: 25px;cursor: pointer;border-radius: 35px;"' + 
                           'class="toTop btn btn-info"><i class="fa fa-arrow-up"></i></div>');
-    $(window).scroll(function () {
+
+    $('.content').scroll(function () {
       if ($(this).scrollTop() != 0) {
-        $('toTop').fadeIn();
+        $('#toTop').fadeIn();
       } else {
-        $('toTop').fadeOut();
+        $('#toTop').fadeOut();
       }
     });
     $('#toTop').click(function () {
@@ -46,5 +35,4 @@ export class HomeComponent implements OnInit {
       return false;
     });
   }
-
 }

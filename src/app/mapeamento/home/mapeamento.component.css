@@ -1,273 +1,114 @@
-:root {
-    --blue: #0c2461;
-    --blue-footer: #07263c;
-  }
-  
-  .content {
-    height: 100vh;
-    overflow-y: auto;
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-  }
-  
-  .paragraph p {
-    color: var(--navbar-color);
-    text-indent: 3em;
-    margin: 0;
-    /*font-family: 'Crimson Pro', serif;*/
-  }
-  
-  .paragraph span {
-    width: 100%;
-    color: var(--navbar-color);
-    padding-left: 15px;
-  }
-  
-  .team-sisgeo {
-    margin-top: 20px;
-  }
-  
-  /* Navbar and Header */
-  
-  .navbar-custom {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: var(--navbar-color);
-  }
-  
-  .navbar-custom .navbar-brand {
-    font-size: 1.2rem;
-    letter-spacing: 0.1rem;
-    font-weight: 700;
-  }
-  
-  .navbar-custom .navbar-nav .nav-item .nav-link {
-    font-family: "Patua One";
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    padding-right: 15px;
-    color: #fffffff2;
-  }
-  
-  .nav-link:hover {
-    opacity: 0.8;
-  }
-  
-  .nav-item.active .nav-link {
-    color: #cb356b;
-  }
-  
-  header {
-    height: 50vh;
-  }
-  
-  header img {
-    width: 100%;
-    height: 50vh;
-    opacity: 0.4;
-    object-fit: cover;
-  }
-  
-  .caption {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    top: -260px;
-  }
-  
-  @media only screen and (max-width: 320px) {
-    .caption {
-      top: -227px;
-    }
-  }
-  
-  .caption h1 {
-    font-size: 65px;
-    color: var(--navbar-color);
-    font-family: "Patua One";
-    text-align: center;
-  }
-  
-  .caption h4 {
-    color: var(--navbar-color);
-    font-family: "Patua One";
-    text-align: center;
-    padding-top: 33px;
-  }
-  
-  .caption .btn {
-    background-color: var(--navbar-color);
-    color: #fff;
-    border-color: var(--navbar-color);
-    margin-top: 38px;
-    border-radius: 0px;
-  }
-  
-  .caption .btn:hover {
-    opacity: 0.9;
-  }
-  
-  /* About */
-  .about {
-    padding: 6rem 0;
-  }
-  
-  .about .container .row .col-lg-5 {
-    padding-left: 0px;
-  }
-  
-  .about .container .row .initial {
-    padding-left: 15px !important;
-  }
-  
-  .about .container .row .col-md-6 {
-    padding-left: 0px;
-  }
-  
-  .about .container .row .col-md-6 .paragraph p {
-    padding-left: 0px;
-  }
-  
-  .text-blue {
-    color: var(--navbar-color);
-    padding: 15px;
-  }
-  
-  .desc-ferramenta {
-    /*font-family: 'Crimson Pro', serif;*/
-    position: relative;
-    top: -28px;
-    left: 15px;
-    font-size: 13px;
-  }
-  
-  .img-about {
-    padding: 30px;
-  }
-  
-  /* Projects */
-  .bg-project {
-    background-color: aliceblue;
-    padding: 20px;
-    padding-bottom: 35px;
-    height: 47%;
-    padding-top: 35px;
-    box-shadow: 0px 1px 1px 1px #b3d7ffcc;
-  }
-  
-  .project-img {
-    height: 230px;
-  }
-  
-  .project-img:hover {
-    opacity: 0.8;
-  }
-  
-  .projects {
-    padding-bottom: 6rem;
-  }
-  
-  /*Technologies*/
-  .technologies {
-    padding-bottom: 6rem;
-  }
-  
-  .tech-imgs {
-    align-items: center;
-    justify-content: space-around;
-  }
-  
-  .nginx {
-    position: relative;
-    left: 20px;
-  }
-  
-  .fluxo {
-    padding: 30px;
-  }
-  
-  @media only screen and (max-width: 768px) {
-    .fluxo {
-      padding: 0px;
-    }
-  }
-  
-  @media only screen and (max-width: 575px) {
-    .img-fluxo {
-      height: 370px;
-    }
-  }
-  
-  /*Parceiros*/
-  .partners {
-    padding-bottom: 6rem;
-  }
-  
-  .partner-img {
-    width: 175px;
-  }
-  
-  .partner-img:hover {
-    opacity: 0.7;
-  }
-  
-  /*Equipe*/
-  .team {
-    padding-bottom: 6rem;
-  }
-  
-  .person {
-    width: 165px;
-    margin: 0 auto;
-    display: block;
-  }
-  
-  /*Footer*/
-  .footerPage {
-    background-color: var(--blue-footer);
-  }
-  
-  .white-text {
-    color: #fff;
-  }
-  
-  .footer-copyright {
-    padding-bottom: 25px;
-  }
-  
-  .center-copyright {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .contact {
-    color: #ffffff9c;
-    padding-left: 0px;
-  }
-  
-  #toTop {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    cursor: pointer;
-    display: none;
-    border-radius: 35px;
-  }
-  
-  .textGroup {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .textGroup h5,
-  p {
-    color: var(--navbar-color);
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15.5px;
+  line-height: 1.8;
+}
+
+.paragraph p {
+  color: var(--navbar-color);
+  text-indent: 3em;
+  margin: 0;
+  /*font-family: 'Crimson Pro', serif;*/
+}
+
+.paragraph span {
+  width: 100%;
+  color: var(--navbar-color);
+  padding-left: 15px;
+}
+
+.team-sisgeo {
+  margin-top: 20px;
+}
+
+/* About */
+.about {
+  padding: 6rem 0;
+}
+
+.about .container .row .col-lg-5 {
+  padding-left: 0px;
+}
+
+.about .container .row .initial {
+  padding-left: 15px !important;
+}
+
+.about .container .row .col-md-6 {
+  padding-left: 0px;
+}
+
+.about .container .row .col-md-6 .paragraph p {
+  padding-left: 0px;
+}
+
+.text-blue {
+  color: var(--navbar-color);
+  padding: 15px;
+}
+
+.desc-ferramenta {
+  /*font-family: 'Crimson Pro', serif;*/
+  position: relative;
+  top: -28px;
+  left: 15px;
+  font-size: 13px;
+}
+
+.img-about {
+  padding: 30px;
+}
+
+/*Footer*/
+.footerPage {
+  background-color: var(--blue-footer);
+}
+
+.white-text {
+  color: #fff;
+}
+
+.footer-copyright {
+  padding-bottom: 25px;
+}
+
+.center-copyright {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.contact {
+  color: #ffffff9c;
+  padding-left: 0px;
+}
+
+#toTop {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  display: none;
+  border-radius: 35px;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.textGroup h5,
+p {
+  color: var(--navbar-color);
+  padding-left: 15px;
+  padding-right: 15px;
+}
