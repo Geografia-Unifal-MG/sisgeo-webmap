@@ -170,6 +170,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "terrabrasilis"
+    }
+  },
+  "defaultProject": "terrabrasilis",
+  "cli": {
+    "analytics": false
+  }
 }

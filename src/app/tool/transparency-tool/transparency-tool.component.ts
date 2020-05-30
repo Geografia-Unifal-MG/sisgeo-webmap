@@ -53,7 +53,7 @@ export class TransparencyToolComponent extends ToolComponent implements OnInit, 
     public max = 1;
     public min = 0;
     public step = 0.01;
-    private show: boolean;
+    public show: boolean;
     
     constructor(private dialog: MatDialog, private dom: DomSanitizer, private cdRef: ChangeDetectorRef) {   
         super();

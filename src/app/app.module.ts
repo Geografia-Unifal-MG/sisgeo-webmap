@@ -14,7 +14,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialCoreModule } from './core-modules/material-core.module';
 import { AppRoutingModule } from './app.routing.module';
-import { LocalStorageModule } from '@ngx-pwa/local-storage';
+import { StorageModule } from '@ngx-pwa/local-storage';
 import { DynamicComponentModule } from './core-modules/dynamic-component';
 import { SharedModule } from './core-modules/shared.module';
 import { PipeSharedModule } from './core-modules/pipe-shared.module';
@@ -39,11 +39,6 @@ import { LocalStorageService } from './services/local-storage.service';
 import { DatasourceService } from './services/datasource.service';
 import { LayerService } from './services/layer.service';
 import { VisionService } from './services/vision.service';
-
-/**
- * Providers
- */
-import { localStorageProviders } from '@ngx-pwa/local-storage';
 
 /**
  * Translate tool
@@ -96,7 +91,9 @@ import { AboutComponent } from './about/about.component';
    /**
     * Enable local storage module
     */
-   LocalStorageModule,
+   StorageModule.forRoot({
+    LSPrefix: 'TBV01_', // prefix when in `localStorage` fallback
+  }),
    CommonModule,
    SharedModule,
    /**
@@ -113,7 +110,6 @@ import { AboutComponent } from './about/about.component';
     WmsCapabilitiesProviderService,
     MapWmsSearchDialogService,
     LocalStorageService,
-    localStorageProviders({ prefix: 'TBV01_' }),
     DatasourceService,
     LayerService,
     VisionService,

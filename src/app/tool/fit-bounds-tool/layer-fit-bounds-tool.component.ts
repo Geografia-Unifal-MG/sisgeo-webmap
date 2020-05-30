@@ -15,7 +15,7 @@ import { TerrabrasilisApiComponent } from '../terrabrasilis-api/terrabrasilis-ap
   selector: 'fit-bounds-tool',
   template: `
               <dfn class="layer-tool" attr.data-info="{{ 'tools.fitBounds' | translate }}" #innerContent>
-                <button type="button" class="btn" *ngIf="layer !== null" (click)="fitBounds(layer)"><i class="material-icons md-dark ">zoom_out_map</i></button>
+                <button type="button" class="btn" *ngIf="layer !== null" (click)="fitBounds()"><i class="material-icons md-dark ">zoom_out_map</i></button>
                 <ng-content></ng-content> 
               </dfn>
             `

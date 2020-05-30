@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { LocalStorage, JSONSchema } from '@ngx-pwa/local-storage';
+import { JSONSchema, StorageMap } from '@ngx-pwa/local-storage';
 
 const schema: JSONSchema = {
+  type: 'object',
   properties: {
     key: { type: 'string' },
     value: { type: 'string' }
@@ -20,20 +21,20 @@ export class LocalStorageService {
   private toStorage: any = {};
   private prefix = 'tbv01_';
 
-  constructor(private localStorage: LocalStorage) { }
+  constructor(private localStorage: StorageMap) { }
 
   setValue(key: any, value: any) {
     this.toStorage.key = key;
     this.toStorage.value = value;
 
-    this.localStorage.setItem(this.prefix + key, JSON.stringify(this.toStorage)).subscribe(() => {
+    this.localStorage.set(this.prefix + key, JSON.stringify(this.toStorage)).subscribe(() => {
       // console.log("Object storaged!");
       // console.log(this.toStorage);
     });
   }
 
   getValue(key: any): any {
-    return this.localStorage.getItem(this.prefix + key);
+    return this.localStorage.get(this.prefix + key);
   }
 
   clearAll(): void {
@@ -41,6 +42,6 @@ export class LocalStorageService {
   }
 
   removeItem(key: any): void {
-    this.localStorage.removeItem(this.prefix + key).subscribe(() => {});
+    this.localStorage.delete(this.prefix + key).subscribe(() => {});
   }
 }
