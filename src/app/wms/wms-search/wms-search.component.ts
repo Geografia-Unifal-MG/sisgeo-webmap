@@ -90,7 +90,7 @@ export class WmsSearchComponent implements OnInit {
 
   ngOnInit() {
     this.Terrabrasilis = Terrabrasilis;
-    this.defaultUrl = 'http://terrabrasilis.dpi.inpe.br/geoserver/ows';
+    this.defaultUrl = 'https://sisgeo.unifal-mg.edu.br/geoserver';
     this.selectedValue = this.defaultUrl;
     this.jsonix = Jsonix.Jsonix;
 
