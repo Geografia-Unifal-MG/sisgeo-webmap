@@ -128,6 +128,7 @@ import { AboutComponent } from './about/about.component';
   ],
   entryComponents: [
     DialogComponent,
+    WmsSearchComponent,
     TerrabrasilisApiComponent
   ],
   exports: [

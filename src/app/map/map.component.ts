@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material';
  * components
  */
 import { DialogComponent } from '../dialog/dialog.component';
+import { WmsSearchComponent } from '../wms/wms-search/wms-search.component';
 
 /**
  * services
@@ -177,6 +178,11 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                     }).catch(error => {
                         this.spinner.hide();
                     });
+                        
+                    // Timeout para caso terrabrasilisApi.fitBounds demore muito a responder
+                    setTimeout(function(){
+                        this.spinner.hide();
+                    }, 30000)
                 });
 
             this.localStorageService.getValue(this.languageKey)
@@ -394,6 +400,16 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     ///////////////////////////////////////////////////////////////
     fullScreen() {
         this.terrabrasilisApi.fullScreen();
+    }
+
+    showDialogCapabilities() {
+        this.cdRef.detectChanges();
+        this.dialog.open(WmsSearchComponent, {
+            width : '950px',
+            minWidth: '690px',
+            height: '630px',
+            minHeight: '400px'
+        });
     }
 
     resetMap() {
