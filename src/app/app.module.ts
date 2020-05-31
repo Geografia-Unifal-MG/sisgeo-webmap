@@ -24,8 +24,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
  * Custom component imports
  */
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
 import { TerrabrasilisApiComponent } from './tool/terrabrasilis-api/terrabrasilis-api.component';
@@ -39,7 +37,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 /**
  * Services
  */
-import { UserProviderService } from './services/user-provider.service';
 import { LayerInfoProviderService } from './services/layer-info-provider.service'; 
 import { WmsCapabilitiesProviderService } from './services/wms-capabilities-provider.service';
 import { MapWmsSearchDialogService } from './services/map-wms-search-dialog.service';
@@ -77,8 +74,6 @@ import * as gridstack from 'gridstack';
   declarations: [
     AppComponent,
     MapComponent,
-    LoginComponent,
-    UserComponent,
     DialogComponent,
     WmsSearchComponent,
     TerrabrasilisApiComponent,
@@ -123,7 +118,6 @@ import * as gridstack from 'gridstack';
    }),
   ],
   providers: [
-    UserProviderService,
     LayerInfoProviderService,
     WmsCapabilitiesProviderService,
     MapWmsSearchDialogService,
@@ -142,6 +136,7 @@ import * as gridstack from 'gridstack';
   ],
   entryComponents: [
     DialogComponent,
+    WmsSearchComponent,
     TerrabrasilisApiComponent
   ],
   exports: [

@@ -58,6 +58,12 @@
         <dfn attr.data-info="{{ 'tools.fullscreen' | translate }}">
             <button type="button" class="btn" (click)="fullScreen()"><i class="material-icons md-light">fullscreen</i></button>
         </dfn>
+        <!-- Esse trecho foi deixado comentado, para que fique mais fácil de habilitar essa função no futuro.
+        WmsSearchComponent não está funcionando no Sisgeo, por isso não foi habilitado, e por falta de tempo
+        não foi possível fazer com que funcionasse.  -->
+        <!-- <dfn attr.data-info="{{ 'tools.addLayer' | translate }}">
+            <button type="button" class="btn" (click)="showDialogCapabilities()"><i class="material-icons md-light">add_box</i></button>
+        </dfn> -->
     </div>
     <!-- Overlayers -->
     <div *ngFor="let project of overlayers">

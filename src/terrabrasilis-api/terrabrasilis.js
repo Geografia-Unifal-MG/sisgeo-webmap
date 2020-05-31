@@ -1,6 +1,5 @@
 const { Stack, Queue } = require('terrabrasilis-util')
 const L = require('leaflet')
-require('terrabrasilis-timedimension')
 require('terrabrasilis-map-plugins')
 const leafletEsriGeocoding = require('esri-leaflet-geocoder')
 const utils = require('../terrabrasilis-api/utils')
@@ -28,9 +27,6 @@ Terrabrasilis = (function () {
   const defaultLon = -11.678782
   const defaultZoom = 5
   const defaultMapContainer = 'map'
-  const constants = {
-    PROXY: 'http://terrabrasilis.dpi.inpe.br/proxy'
-  }
   let resultsGetFeatureInfo
 
   /* dashboard map */
@@ -38,22 +34,6 @@ Terrabrasilis = (function () {
   const legend = L.control({ position: 'bottomright' })
   const grades = []
   let colors = []
-
-  /* to control the enable or disable TimeDimension component */
-  const _ctrlTimer = {
-    // The Time Dimension control
-    control: null,
-    // The layer name of the activated Time Dimension layer
-    layerName: null,
-    // The exists instance of the Leaflet Layer used to restore into map
-    leafletLayer: null,
-    // The created instance of the TimeDimension layer
-    timeDimensionLayer: null,
-    // The Time Dimension instance
-    timeDimension: null
-  }
-  const _timeConfigLayers = {}// store the default configurations for construct the TimeDimension layers when its needed.
-  // let _overLayers = {};// The created instances of the WMS Leaflet Layer.
 
   // For Drawing tools
   let drawnItems
@@ -576,13 +556,7 @@ Terrabrasilis = (function () {
           const host = ol.datasource.host //.replace('ows', 'gwc/service/wms')
           var overlayer = L.tileLayer.wms(host, options)
           // overlayers[ol.title] = overlayer;
-          overlayers[ol.id] = overlayer          
-          if (ol.timeDimension) {
-            // Show one button to enable/disable the TimerControl over map.
-            console.log('The layer ' + ol.name + ' have time dimension.')
-            // _timeConfigLayers[ol.title] = ol;
-            _timeConfigLayers[ol.id] = ol
-          }
+          overlayers[ol.id] = overlayer;
         }
       }
     };
@@ -1074,16 +1048,6 @@ Terrabrasilis = (function () {
       drawnItems.addLayer(layer)
     })
 
-    // map.on(L.Draw.Event.EDITED, function (event) {
-    //   const editedLayers = event.layers
-    // editedLayers.eachLayer(function (l) {
-    // const layer = event.layer
-    // console.log(JSON.stringify(layer.toGeoJSON()));
-    // let wkt = getTerraformerWKT(l);
-    // console.log(wkt);
-    // })
-    // })
-
     map.on(L.Draw.Event.DELETED, function (event) {
       const deletedLayers = event.layers
 
@@ -1215,17 +1179,6 @@ Terrabrasilis = (function () {
       map.toggleFullscreen()
     }
   }
-
-  /**
-     * http://terraformer.io/
-     *
-     * This method receive a GeoJSON string and return the Terraformer WKT
-     *
-     * @param layer
-     */
-  // const getTerraformerWKT = function (layer) {
-  //   return Terraformer.WKT.convert(layer.toGeoJSON().geometry)
-  // }
 
   /**
      * This method show the lat lon - just test with context menu
@@ -1523,12 +1476,7 @@ Terrabrasilis = (function () {
       return false
     }
 
-    // if time dimension is enabled for this layer, remove it.
     let layerName=layer.workspace+':'+layer.name;
-    if (layerName === _ctrlTimer.layerName) {
-      removeTimerControl()
-    }
-
     const ll = getLayerByName(layerName)
     if (ll) {
       map.removeLayer(ll)
@@ -1876,148 +1824,6 @@ Terrabrasilis = (function () {
     };
   }
 
-  /* Start of the Time Dimension support methods. */
-
-  /**
-     * Enable or disable the TimeDimension layer for a WMS layer.
-     * Optionally, you may use the option to aggregate times when walking through the timeline of a Layer.
-     *
-     * @param {string} layerName The name of one layer that is already added in to map.
-     * @param {boolean} aggregateTimes The control parameter to set the time aggregate option. Default is false.
-     */
-  const onOffTimeDimension = function (layerName, aggregateTimes = false) {
-    const isNewLayer = _ctrlTimer.layerName !== layerName
-    removeTimerControl()
-    if (isNewLayer) addTimerControl(layerName, aggregateTimes)
-  }
-
-  /**
-     * Removes the Leaflet TimeDimension control from the map.
-     * Uses the general reference of the last active control only if the _ctrlTimer.layerName it is into the Time Dimension layer list.
-     */
-  const removeTimerControl = function () {
-    if (_ctrlTimer.control) {
-      var l = getTimeLayer(_ctrlTimer.layerName)
-      if (l) {
-        // remove both control and layer TimeDimension from map.
-        _ctrlTimer.control.remove(map)
-        _ctrlTimer.timeDimensionLayer.removeFrom(map)
-
-        // restore Leaflet Layer to map
-        _ctrlTimer.leafletLayer.options.time = null
-        _ctrlTimer.leafletLayer._visible = true
-        _ctrlTimer.leafletLayer.addTo(map)
-
-        // clear all referencies
-        _ctrlTimer.control = null
-        _ctrlTimer.timeDimensionLayer = null
-        _ctrlTimer.layerName = null
-        _ctrlTimer.leafletLayer = null
-        _ctrlTimer.timeDimension = null
-      }
-    }
-  }
-
-  /**
-     * Add the Time Dimension control into the map for one specific layer.
-     * Optionally, you may use the option to aggregate times when walking through the timeline of a Layer.
-     *
-     * @param {string} layerName The layer name to enable the Time Dimension tool over the map. Compose by "workspace:layername"
-     * @param {boolen} aggregateTimes The control parameter to set the time aggregate option.
-     */
-  const addTimerControl = function (layerName, aggregateTimes) {
-    if (!_ctrlTimer.timeDimension) {
-      const tdOptions = {
-        aggregateTimes: aggregateTimes
-      }
-      _ctrlTimer.timeDimension = new L.TimeDimension(tdOptions)
-    }
-
-    var options = {
-      timeDimension: _ctrlTimer.timeDimension,
-      limitSliders: false,
-      formatDate: {
-        formatMatcher: { year: 'numeric', month: 'numeric', day: 'numeric' },
-        locale: 'pt-BR'
-      }
-    }
-
-    _ctrlTimer.control = L.control.timeDimension(options).addTo(map)
-    _ctrlTimer.layerName = layerName
-    let workspace=layerName.split(":")[0];
-    let name=layerName.split(":")[1];
-    if (addLayerTimeDimension(workspace,name)) {
-      console.log('Enable TimeDimension support to the ' + layerName + ' Layer.')
-      return true
-    } else {
-      console.log('Failure TimeDimension support to the ' + layerName + ' Layer.')
-      removeTimerControl()
-      return false
-    }
-  }
-
-  /**
-     * Used to create the TimeDimension Layer that encapsulate the Default WMS Leaflet Layer.
-     * @param {JSON} layerConfig The JSON layer config from external app.
-     */
-  const createTimeDimensionLayerFromConfig = function (layerConfig) {
-    var tdOptions = {
-      timeDimension: _ctrlTimer.timeDimension,
-      requestTimeFromCapabilities: true,
-      getCapabilitiesUrl: layerConfig.datasource.host.replace('ows', layerConfig.workspace + '/' + layerConfig.name + '/ows'),
-      setDefaultTime: true,
-      getCapabilitiesLayerName: layerConfig.name,
-      wmsVersion: '1.3.0',
-      proxy: constants.PROXY
-    }
-
-    const ll = getLayerByName(layerConfig.workspace+':'+layerConfig.name)
-    return L.timeDimension.layer.wms(ll, tdOptions)
-  }
-  /**
-     * Create TimeDimension Layer if it not exists and add it to map.
-     * Before add TimeDimension to map, removes the default Leaflef Layer from the map.
-     *
-     * @param {string} layerName, the layer name
-     */
-  const addLayerTimeDimension = function (workspace,layerName) {
-    var hasTimeLayer = getTimeLayer(layerName)
-
-    if (hasTimeLayer && isLayerActived({ name: layerName, workspace: workspace })) {
-      if (!_ctrlTimer.timeDimensionLayer) {
-        _ctrlTimer.timeDimensionLayer = createTimeDimensionLayerFromConfig(hasTimeLayer)
-      }
-
-      _ctrlTimer.leafletLayer = getLayerByName(workspace+':'+layerName)
-
-      // Removing the default Leaflet Layer from the map.
-      map.removeLayer(_ctrlTimer.leafletLayer)
-
-      // Adding TimeDimension Layer to the map.
-      _ctrlTimer.timeDimensionLayer.addTo(map)
-    }
-
-    return hasTimeLayer
-  }
-
-  const getTimeLayer = function (layerName) {
-    if (layerName) {
-      if (layerName.indexOf(':') > 0) {
-        layerName = layerName.split(':')[1]
-      }
-
-      for (const key in _timeConfigLayers) {
-        if (_timeConfigLayers.hasOwnProperty(key)) {
-          const layer = _timeConfigLayers[key]
-          if (layer.name === layerName) {
-            return layer
-          }
-        }
-      }
-    }
-    return null
-  }
-
   /* The end of the Time Dimension support methods. */
 
   const resizeMap = function () {
@@ -2147,10 +1953,7 @@ Terrabrasilis = (function () {
     enableLoading: enableLoading,
     disableLoading: disableLoading,
     fitBounds: fitBounds,
-    getDimensions: getDimensions,
-
-    /* TimeDimension tool */
-    onOffTimeDimension: onOffTimeDimension
+    getDimensions: getDimensions
   }
 })(Terrabrasilis || {})
 

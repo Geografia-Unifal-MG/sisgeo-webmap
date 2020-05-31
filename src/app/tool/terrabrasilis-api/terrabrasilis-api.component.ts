@@ -118,6 +118,7 @@ export class TerrabrasilisApiComponent implements OnInit {
         this.showDialog(html, "dialog.title.download");
     }
 
+    /* era utilizado por um componente que foi removido, não foi removido porque pode ser util no futuro */
     getLegend(layer: any, urlOrCompleteSrcImgElement: boolean): Promise<any> {
       return this.localStorageService.getValue('translate').toPromise()
         .then((item: any) => {
@@ -125,7 +126,6 @@ export class TerrabrasilisApiComponent implements OnInit {
             return Utils.getLegend(layer, urlOrCompleteSrcImgElement, language)
         });
     }
-
 
     getLayerInfo(layer: any) {
 
@@ -233,15 +233,6 @@ export class TerrabrasilisApiComponent implements OnInit {
             dialogRef.componentInstance.title = title;
 
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
-    }
-
-    /**
-     * Enable or disable TimeDimension tool for one layer.
-     * @param layer A layer with time dimension available.
-     */
-    onOffTimeDimension(layer: Layer) {
-        // verify if layer is raster or vector type and use it to set aggregate times value.
-        Terrabrasilis.onOffTimeDimension(layer.name, layer.isAggregatable /*aggregateTimes*/);
     }
 
     fitBounds(layer: Layer) {
