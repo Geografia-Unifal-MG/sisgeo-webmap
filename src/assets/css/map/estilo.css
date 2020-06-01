@@ -133,6 +133,7 @@ a:focus {
   padding: 15px 10px 10px 10px;
   background-color: var(--sidebar-primary-color);
   color: #fff;
+  border-bottom: 1px solid;
 }
 
 .ferramentas div {
