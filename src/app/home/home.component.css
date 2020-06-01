@@ -1,6 +1,7 @@
 .content {
   height: 100vh;
   overflow-y: auto;
+  scroll-behavior: smooth;
   position: absolute;
   z-index: 1;
   width: 100%;
@@ -9,7 +10,7 @@
 p {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15.5px;
-  line-height: 1.8;
+  text-align: justify;
 }
 
 .paragraph p {
@@ -30,32 +31,6 @@ p {
 }
 
 /* Navbar and Header */
-
-.navbar-custom {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: var(--navbar-color);
-}
-
-.navbar-custom .navbar-brand {
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  font-weight: 700;
-}
-
-.navbar-custom .navbar-nav .nav-item .nav-link {
-  font-family: "Patua One";
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  padding-right: 15px;
-  color: #fffffff2;
-}
-
-.nav-link:hover {
-  opacity: 0.8;
-}
-
 header {
   height: 50vh;
 }
@@ -72,12 +47,18 @@ header img {
   align-items: center;
   flex-direction: column;
   position: relative;
-  top: -260px;
+  top: -270px;
 }
 
 @media only screen and (max-width: 320px) {
   .caption {
     top: -227px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .caption h4 {
+    width: 90% !important;
   }
 }
 
@@ -93,14 +74,17 @@ header img {
   font-family: "Patua One";
   text-align: center;
   padding-top: 33px;
+  width: 450px;
 }
 
 .caption .btn {
   background-color: var(--navbar-color);
   color: #fff;
   border-color: var(--navbar-color);
-  margin-top: 38px;
+  margin-top: 30px;
   border-radius: 0px;
+  font-weight: 600;
+  padding: 9px;
 }
 
 .caption .btn:hover {
@@ -243,7 +227,6 @@ header img {
 .center-copyright {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .contact {
@@ -270,4 +253,8 @@ p {
   color: var(--navbar-color);
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.counter {
+  margin-left: 0;
 }

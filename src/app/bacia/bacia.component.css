@@ -2,6 +2,7 @@
   height: 100vh;
   overflow-y: auto;
   position: absolute;
+  scroll-behavior: smooth;
   z-index: 1;
   width: 100%;
 }
@@ -9,7 +10,7 @@
 p {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15.5px;
-  line-height: 1.8;
+  text-align: justify;
 }
 
 .paragraph p {
@@ -120,4 +121,8 @@ p {
   color: var(--navbar-color);
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.counter {
+  margin-left: 0;
 }

@@ -13,9 +13,4 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  scroll(el: HTMLElement) {
-    el.scrollTo(0, 100);
-  }
-   
 }

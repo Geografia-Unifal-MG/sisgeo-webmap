@@ -15,10 +15,6 @@ export class HomeComponent implements OnInit {
      this.initjQuery();
   }
 
-   scroll(el: HTMLElement) {
-    el.scrollTo(0, 100);
-  }
-
   initjQuery() {
     $('.content').append('<div id="toTop" style="position: fixed; display:none;bottom: 10px;right: 25px;cursor: pointer;border-radius: 35px;"' + 
                           'class="toTop btn btn-info"><i class="fa fa-arrow-up"></i></div>');
