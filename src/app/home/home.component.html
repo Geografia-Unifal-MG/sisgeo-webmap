@@ -252,7 +252,10 @@
                     framework Angular, código do biblioteca Leaflet para requisitar e desenhar as layers no navegador,
                     além
                     de
-                    outros. Nesse momento, ele também faz requisições Http para a API REST: Business API que por sua vez
+                    outros.
+                </p>
+                <p>
+                    Nesse momento, ele também faz requisições Http para a API REST: Business API que por sua vez
                     requisita
                     dados de layers que estão armazenados no banco de dados "mongo". Esses dados especificam quais
                     layers
@@ -321,7 +324,7 @@
                     <img src="../../assets/img/page/pessoa.png" class="person rounded-circle img-responsive"
                         alt="Sample ">
                     <h5 class="font-weight-bold text-center mt-4 mb-3">Sylvester Henrique</h5>
-                    <p class="text-blue text-center">Trabalhou na configuração do servidor, deploy dos containers do
+                    <p class="text-blue text-center">Configuração o servidor, realizou deploy dos containers do
                         docker,
                         design do site, modificações
                         no código fonte da ferramenta, entre outros..
@@ -331,7 +334,7 @@
                 <div class="col-lg-3 col-md-6">
                     <img src="../../assets/img/page/pessoa2.png" class="person rounded-circle" alt="">
                     <h5 class="font-weight-bold text-center mt-4 mb-3">Guilherme Vieira</h5>
-                    <p class="text-blue text-center">Trabalhou na programação, design do site, desenvolvimento do
+                    <p class="text-blue text-center">Atuou na programação, design do site, desenvolvimento do
                         sistema, entre outros.
                     </p>
                 </div>
@@ -339,15 +342,13 @@
                 <div class="col-lg-3 col-md-6 mb-md-0 mb-5">
                     <img src="../../assets/img/page/pessoa3.png" class="person rounded-circle" alt="">
                     <h5 class="font-weight-bold text-center mt-4 mb-3">Marcelo de Oliveira Latuf</h5>
-                    <p class="text-blue text-center">Trabalhou na coordenação das ações de estruturação do SisGEO e na
-                        produção
-                        dos dados espaciais.</p>
+                    <p class="text-blue text-center">Coordenou ações na estruturação do SisGEO e na produção de dados.</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <img src="../../assets/img/page/pessoa4.png" class="person rounded-circle" alt="">
                     <h5 class="font-weight-bold text-center mt-4 mb-3">Rodrigo Martins Pagliares</h5>
-                    <p class="text-blue text-center">Trabalhou na orientação do projeto.</p>
+                    <p class="text-blue text-center">Orientou nas ações e desenvolvimento do projeto.</p>
                 </div>
             </div>
         </div>
@@ -367,16 +368,16 @@
                         Laboratório de Cartografia <br>
                         Prédio B, Sala 212 <br>
                         Telefone: (35) 3701-1932-1933</p><br>
-                    </div>
-                    <div class="col-md-4">
-                        <h5 class="white-text">Laboratório de Cartografia</h5>
-                        <p class="contact">
-                            Prof. Marcelo de Oliveira Latuf<br>
-                            marcelo.latuf@unifal-mg.edu.br<br>
-                            Unidade Santa Clara - Prédio B Sala 402 L<br>
-                            Telefone: (35)3701-1932, (35)3701-1933
-                        </p>
-                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="white-text">Laboratório de Cartografia</h5>
+                    <p class="contact">
+                        Prof. Marcelo de Oliveira Latuf<br>
+                        marcelo.latuf@unifal-mg.edu.br<br>
+                        Unidade Santa Clara - Prédio B Sala 402 L<br>
+                        Telefone: (35)3701-1932, (35)3701-1933
+                    </p>
+                </div>
                 <div class="col-md-4">
                     <h5 class="white-text">Departamento de Ciência da Computação</h5>
                     <p class="contact">
@@ -384,15 +385,12 @@
                         pagliares@bcc.unifal-mg.edu.br<br>
                         Prédio C, Sala 301-I<br>
                         Telefone: (35)3701-1949</p>
-                    <div class="row counter">
+                    <!--Visits deveria vir de um service do core reporting do google e ser um número da api-->
+                    <div *ngIf="visits > 0" class="row counter">
                         <p class="contact">
                             Visitas:
                         </p>
-                        <div align=center>
-                            <img src='https://www.counter12.com/img-Dbddb5zCDAzBbZD0-79.gif' border='0' alt='conter12'>
-                            <script type='text/javascript'
-                                src='https://www.counter12.com/ad.js?id=Dbddb5zCDAzBbZD0'></script><br>
-                        </div>
+                        <animated-digit [digit]="visits" [duration]="3000"></animated-digit>
                     </div>
                 </div>
             </div>

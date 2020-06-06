@@ -95,7 +95,7 @@
     <footer id="footer" class="footerPage">
         <div class="container">
             <div class="content-section-heading text-center">
-                <h2 class="white-text mb-5 pt-4">Contatos</h2>
+                <h2 class="white-text mb-4 pt-3">Contatos</h2>
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -107,6 +107,8 @@
                         Laboratório de Cartografia <br>
                         Prédio B, Sala 212 <br>
                         Telefone: (35) 3701-1932-1933</p><br>
+                </div>
+                <div class="col-md-4">
                     <h5 class="white-text">Laboratório de Cartografia</h5>
                     <p class="contact">
                         Prof. Marcelo de Oliveira Latuf<br>
@@ -122,33 +124,19 @@
                         pagliares@bcc.unifal-mg.edu.br<br>
                         Prédio C, Sala 301-I<br>
                         Telefone: (35)3701-1949</p>
-                </div>
-                <div class="col-md-4">
-                    <!-- Widget Previs&atilde;o de Tempo CPTEC/INPE -->
-                    <iframe allowtransparency="true" marginwidth="0" marginheight="0" hspace="0" vspace="0"
-                        frameborder="0" scrolling="no"
-                        src="https://www.cptec.inpe.br/widget/widget.php?p=356&w=h&c=748ccc&f=ffffff" height="200px"
-                        width="215px">
-                    </iframe>
-                    <noscript>Previs&atilde;o de <a href="http://www.cptec.inpe.br/cidades/tempo/356">Alfenas/MG</a>
-                        oferecido por
-                        <a href="http://www.cptec.inpe.br">CPTEC/INPE</a></noscript>
-                    <!-- Widget Previs&atilde;o de Tempo CPTEC/INPE -->
-                    <div class="row">
+                    <!--Visits deveria vir de um service do core reporting do google e ser um número da api-->
+                    <div *ngIf="visits > 0" class="row counter">
                         <p class="contact">
-                            Visitas ao site:
+                            Visitas:
                         </p>
-                        <div align=center>
-                            <img src='https://www.counter12.com/img-D2D3z5w8Wa5z304c-79.gif' border='0' alt='free counter'>
-                            <script type='text/javascript' src='https://www.counter12.com/ad.js?id=D2D3z5w8Wa5z304c'></script>
-                        </div>
+                        <animated-digit [digit]="visits" [duration]="3000"></animated-digit>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container center-copyright">
-                <span class="white-text">© 2020 Copyright</span>
+            <div class="footer-copyright">
+                <div class="container center-copyright">
+                    <span class="white-text">© 2020 Copyright</span>
+                </div>
             </div>
         </div>
     </footer>

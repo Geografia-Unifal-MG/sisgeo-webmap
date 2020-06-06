@@ -24,6 +24,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
  * Custom component imports
  */
 import { AppComponent } from './app.component';
+import { AnimatedDigitComponent } from './animated-digit/animated-digit.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
 import { TerrabrasilisApiComponent } from './tool/terrabrasilis-api/terrabrasilis-api.component';
@@ -44,6 +45,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { DatasourceService } from './services/datasource.service';
 import { LayerService } from './services/layer.service';
 import { VisionService } from './services/vision.service';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 /**
  * Providers
@@ -81,7 +83,8 @@ import * as gridstack from 'gridstack';
     HomeComponent,
     BaciaComponent,
     MapeamentoComponent,
-    NavbarComponent
+    NavbarComponent,
+    AnimatedDigitComponent
   ],
   imports: [
     PipeSharedModule,
@@ -125,6 +128,7 @@ import * as gridstack from 'gridstack';
     localStorageProviders({ prefix: 'TBV01_' }),
     DatasourceService,
     LayerService,
+    GoogleAnalyticsService,
     VisionService,
     // {
     //   provide: APP_BASE_HREF, 

@@ -9,6 +9,8 @@ declare var $: any
 })
 export class HomeComponent implements OnInit {
 
+  visits = 0;
+
   constructor() { }
 
   ngOnInit() {
