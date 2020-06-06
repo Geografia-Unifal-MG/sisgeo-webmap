@@ -140,7 +140,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         );
 
         combinedResult$.subscribe(result => {
-            this.language = result.queryParams.hl !== 'undefined' ? result.queryParams.hl : null;
+            this.language = result.queryParams.hl !== undefined ? result.queryParams.hl : 'pt-br';
 
             this.visionService.getVisionAndAllRelationshipmentByName(this.mainVision)
                 .subscribe(visions => {
