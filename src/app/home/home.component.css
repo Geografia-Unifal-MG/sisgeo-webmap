@@ -46,14 +46,11 @@ header img {
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: relative;
-  top: -270px;
-}
-
-@media only screen and (max-width: 320px) {
-  .caption {
-    top: -227px;
-  }
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  height: 50vh;
+  width: 100%;
 }
 
 @media only screen and (max-width: 500px) {
@@ -67,6 +64,7 @@ header img {
   color: var(--navbar-color);
   font-family: "Patua One";
   text-align: center;
+  margin-top: 70px;
 }
 
 .caption h4 {
@@ -84,16 +82,29 @@ header img {
   margin-top: 30px;
   border-radius: 0px;
   font-weight: 600;
-  padding: 9px;
+  font-size: 19px;
+  padding: 12px 18px 12px 18px;
 }
 
 .caption .btn:hover {
   opacity: 0.9;
 }
 
+@media only screen and (max-width: 320px) {
+  .caption h4 {
+    padding-top: 0px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .caption .btn {
+    margin-top: 0px !important;
+  }
+}
+
 /* About */
 .about {
-  padding: 6rem 0;
+  padding-top: 6rem;
 }
 
 .about .container .row .col-lg-5 {
@@ -153,12 +164,12 @@ header img {
 }
 
 .projects {
-  padding-bottom: 6rem;
+  padding-top: 6rem;
 }
 
 /*Technologies*/
 .technologies {
-  padding-bottom: 6rem;
+  padding-top: 6rem;
 }
 
 .tech-imgs {
@@ -189,7 +200,7 @@ header img {
 
 /*Parceiros*/
 .partners {
-  padding-bottom: 6rem;
+  padding-top: 6rem;
 }
 
 .partner-img {
@@ -202,6 +213,7 @@ header img {
 
 /*Equipe*/
 .team {
+  padding-top: 6rem;
   padding-bottom: 6rem;
 }
 
