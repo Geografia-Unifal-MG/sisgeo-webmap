@@ -107,50 +107,51 @@
 
   <footer id="footer" class="footerPage">
     <div class="container">
-      <div class="content-section-heading text-center">
-        <h2 class="white-text mb-5 pt-4">Contatos</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <h5 class="white-text">Unidade Educacional Santa Clara</h5>
-          <p class="contact">
-            Bairro Santa Clara - Alfenas <br>
-            Av. Jovino Fernandes Sales, 2600 <br>
-            CEP: 37133-840 <br>
-            Laboratório de Cartografia <br>
-            Prédio B, Sala 212 <br>
-            Telefone: (35) 3701-1932-1933</p><br>
+        <div class="content-section-heading text-center">
+            <h2 class="white-text mb-5 pt-4">Contatos</h2>
         </div>
-        <div class="col-md-4">
-          <h5 class="white-text">Laboratório de Cartografia</h5>
-          <p class="contact">
-            Prof. Marcelo de Oliveira Latuf<br>
-            marcelo.latuf@unifal-mg.edu.br<br>
-            Unidade Santa Clara - Prédio B Sala 402 L<br>
-            Telefone: (35)3701-1932, (35)3701-1933
-          </p>
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="white-text">Unidade Educacional Santa Clara</h5>
+                <p class="contact">
+                    Bairro Santa Clara - Alfenas <br>
+                    Av. Jovino Fernandes Sales, 2600 <br>
+                    CEP: 37133-840 <br>
+                    Laboratório de Cartografia <br>
+                    Prédio B, Sala 212 <br>
+                    Telefone: (35) 3701-1932-1933</p><br>
+            </div>
+            <div class="col-md-4">
+                <h5 class="white-text">Laboratório de Cartografia</h5>
+                <p class="contact">
+                    Prof. Marcelo de Oliveira Latuf<br>
+                    marcelo.latuf@unifal-mg.edu.br<br>
+                    Unidade Santa Clara - Prédio B Sala 402 L<br>
+                    Telefone: (35)3701-1932, (35)3701-1933
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="white-text">Departamento de Ciência da Computação</h5>
+                <p class="contact">
+                    Prof. Rodrigo Martins Pagliares<br>
+                    pagliares@bcc.unifal-mg.edu.br<br>
+                    Prédio C, Sala 301-I<br>
+                    Telefone: (35)3701-1949</p>
+                <!--Visits deveria vir de um service do core reporting do google e ser um número da api-->
+                <div *ngIf="visits > 0" class="row counter">
+                    <p class="contact">
+                        Visitas:
+                    </p>
+                    <animated-digit [digit]="visits" [duration]="3000"></animated-digit>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-          <h5 class="white-text">Departamento de Ciência da Computação</h5>
-          <p class="contact">
-            Prof. Rodrigo Martins Pagliares<br>
-            pagliares@bcc.unifal-mg.edu.br<br>
-            Prédio C, Sala 301-I<br>
-            Telefone: (35)3701-1949</p>
-          <!--Visits deveria vir de um service do core reporting do google e ser um número da api-->
-          <div *ngIf="visits > 0" class="row counter">
-            <p class="contact">
-              Visitas:
-            </p>
-            <animated-digit [digit]="visits" [duration]="3000"></animated-digit>
-          </div>
+        <div class="footer-copyright">
+            <div class="container center-copyright">
+                <img class="img-fluid logo" src="../../assets/img/page/sisgeo.png" alt="">
+                <!--span class="white-text">© 2020 Copyright</span-->
+            </div>
         </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container center-copyright">
-          <span class="white-text">© 2020 Copyright</span>
-        </div>
-      </div>
     </div>
-  </footer>
+</footer>
 </div>

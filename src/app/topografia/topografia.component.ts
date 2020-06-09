@@ -25,7 +25,7 @@ export class TopografiaComponent implements OnInit {
       }
     });
     $('#toTop').click(function () {
-      $("html, .content").animate({ scrollTop: 0 }, 600);
+      $("html, .content").animate({ scrollTop: 0 }, 50);
       return false;
     });
   }

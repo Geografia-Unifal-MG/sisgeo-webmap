@@ -125,6 +125,7 @@ header img {
 
 .text-blue {
   color: var(--navbar-color);
+  font-family: "Patua One";
   padding: 15px;
 }
 
@@ -269,4 +270,8 @@ p {
 
 .counter {
   margin-left: 0;
+}
+
+.logo {
+  height: 35px;
 }
