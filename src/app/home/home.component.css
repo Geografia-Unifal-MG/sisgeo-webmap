@@ -143,12 +143,17 @@ header img {
 
 /* Projects */
 .bg-project {
-  background-color: aliceblue;
+  background-color: #e5e8eb;
   padding: 20px;
   padding-bottom: 35px;
-  height: 47%;
+  height: 53%;
   padding-top: 35px;
   box-shadow: 0px 1px 1px 1px #b3d7ffcc;
+}
+
+.bg-project p {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .bg-project a:hover {
@@ -167,6 +172,21 @@ header img {
 .projects {
   padding-top: 6rem;
 }
+
+.projects .container .row {
+  padding: 25px;
+}
+
+.projects .container .row .col-md-4 {
+  padding: 0 35px 0 35px;
+}
+
+@media only screen and (max-width: 992px) {
+  .projects .container .row .col-md-4 {
+    padding: 0 15px 0 15px;
+  }
+}
+
 
 /*Technologies*/
 .technologies {
@@ -222,6 +242,10 @@ header img {
   width: 165px;
   margin: 0 auto;
   display: block;
+}
+
+.team .container .row .col-lg-3 p {
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 /*Footer*/
