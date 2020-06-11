@@ -1,8 +1,9 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './services/local-storage.service';
 
+declare let gtag: Function;
 /**
  * To use localStorage with angular:
  * 1 - https://github.com/zoomsphere/ngx-store
@@ -21,15 +22,24 @@ export class AppComponent implements OnInit {
   
   imgPath:string=( process.env.ENV === 'production' )?('/app/'):('');
 
-  public title:string = '';
-  public type:string = '';
+  public title: string = '';
+  public type: string = '';
   private languageKey: string = "translate";
 
-  constructor(private router: Router    
+  constructor(private router: Router
     , private _translate: TranslateService
-    , private localStorageService: LocalStorageService ) {
+    , private localStorageService: LocalStorageService) {
 
     this.loadDefaultLanguage();
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+
+        console.log(event.urlAfterRedirects);
+        gtag('config', 'UA-164898157-1', { 'page_path': event.urlAfterRedirects });
+      }
+    })
+
   }
 
   ngOnInit() {

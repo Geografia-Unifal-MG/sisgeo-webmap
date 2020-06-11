@@ -7,7 +7,9 @@
 
 :root {
   --sidebar-primary-color: #2590c3;
-  --sidebar-second-color: #00d0ff;--navbar-color: #0c2461;
+  --sidebar-second-color: #00d0ff;
+  --navbar-color: #0c2461;
+  --blue-footer: #07263c;
 }
 
 body {
@@ -908,7 +910,7 @@ a.article:hover {
     FOOTER
 ---------------------------------------------------------*/
 
-footer {
+.footer {
   background-color: var(--sidebar-primary-color);
   position: fixed;
   bottom: 0;
@@ -1186,7 +1188,7 @@ footer {
   }
 }
 
-footer {
+.footer {
   background-color: var(--navbar-color);
   position: fixed;
   bottom: 0;

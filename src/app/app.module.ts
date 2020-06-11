@@ -24,10 +24,17 @@ import { NgxSpinnerModule } from "ngx-spinner";
  * Custom component imports
  */
 import { AppComponent } from './app.component';
+import { AnimatedDigitComponent } from './animated-digit/animated-digit.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
 import { TerrabrasilisApiComponent } from './tool/terrabrasilis-api/terrabrasilis-api.component';
 import { MapComponent } from './map/map.component';
+import { TopografiaComponent } from './topografia/topografia.component';
+import { HomeComponent } from './home/home.component';
+import { BaciaComponent } from './bacia/bacia.component';
+import { MapeamentoComponent } from './mapeamento/home/mapeamento.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterPageComponent } from './footer-page/footer-page.component';
 
 /**
  * Services
@@ -39,6 +46,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { DatasourceService } from './services/datasource.service';
 import { LayerService } from './services/layer.service';
 import { VisionService } from './services/vision.service';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 /**
  * Providers
@@ -64,7 +72,6 @@ import * as _ from 'lodash';
 import 'gridstack';
 
 import * as gridstack from 'gridstack';
-import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +80,13 @@ import { AboutComponent } from './about/about.component';
     DialogComponent,
     WmsSearchComponent,
     TerrabrasilisApiComponent,
-    AboutComponent
+    TopografiaComponent,
+    HomeComponent,
+    BaciaComponent,
+    MapeamentoComponent,
+    NavbarComponent,
+    FooterPageComponent,
+    AnimatedDigitComponent
   ],
   imports: [
     PipeSharedModule,
@@ -117,6 +130,7 @@ import { AboutComponent } from './about/about.component';
     localStorageProviders({ prefix: 'TBV01_' }),
     DatasourceService,
     LayerService,
+    GoogleAnalyticsService,
     VisionService,
     // {
     //   provide: APP_BASE_HREF, 
