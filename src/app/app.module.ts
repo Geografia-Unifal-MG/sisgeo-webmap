@@ -34,6 +34,7 @@ import { HomeComponent } from './home/home.component';
 import { BaciaComponent } from './bacia/bacia.component';
 import { MapeamentoComponent } from './mapeamento/home/mapeamento.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterPageComponent } from './footer-page/footer-page.component';
 
 /**
  * Services
@@ -84,6 +85,7 @@ import * as gridstack from 'gridstack';
     BaciaComponent,
     MapeamentoComponent,
     NavbarComponent,
+    FooterPageComponent,
     AnimatedDigitComponent
   ],
   imports: [
