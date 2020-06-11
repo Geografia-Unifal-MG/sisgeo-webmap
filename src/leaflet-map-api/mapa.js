@@ -2,9 +2,9 @@ const { Stack, Queue } = require('terrabrasilis-util')
 const L = require('leaflet')
 require('terrabrasilis-map-plugins')
 const leafletEsriGeocoding = require('esri-leaflet-geocoder')
-const utils = require('../terrabrasilis-api/utils')
+const utils = require('./utils')
 const { get, set } = require('lodash')
-const turf = require('../terrabrasilis-api/turf')
+const turf = require('./turf')
 
 /**
  * This class use the Revealing Module Pattern.

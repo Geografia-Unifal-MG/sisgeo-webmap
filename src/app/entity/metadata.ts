@@ -5,6 +5,4 @@ export class Metadata {
     public fonte: string;
     public autor: string;
     public informacoesAdicionais: string;
-
-    constructor() {}
 }

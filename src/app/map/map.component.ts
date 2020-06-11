@@ -21,6 +21,7 @@ import { WmsSearchComponent } from '../wms/wms-search/wms-search.component';
  */
 import { MapWmsSearchDialogService } from '../services/map-wms-search-dialog.service';
 import { VisionService } from '../services/vision.service';
+import { DatasourceService } from '../services/datasource.service';
 
 /**
  * entity
@@ -31,13 +32,13 @@ import { Vision } from '../entity/vision';
 /**
  * general
  */
-import { SubscriptionLike as ISubscription, combineLatest } from 'rxjs';
+import { SubscriptionLike as ISubscription, combineLatest, Observable } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from '../services/local-storage.service';
-import { Download, Datasource } from '../entity/datasource';
-import { TerrabrasilisApiComponent } from '../tool/terrabrasilis-api/terrabrasilis-api.component';
+import { Datasource } from '../entity/datasource';
+import { MapaService } from '../services/mapa.service';
 import { Tool } from '../entity/tool';
 import { OpenUrl } from '../util/open-url';
 import * as _ from 'lodash'; // using the _.uniqueId() method
@@ -98,29 +99,27 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     public languageKey = 'translate';
     public baselayers: Array<Layer> = new Array();
     public overlayers: Array<Vision> = new Array();
-    public downloads: Array<Download> = new Array();
     public thirdProject: Vision;
     public layersToLegend: Array<Vision> = new Array();
     public _subscription: Array<ISubscription> = new Array();
     @HostBinding() public thirdlayers: Array<Layer> = new Array();
+
+    private datasources: Array<Datasource>;
 
     constructor(
         private dialog: MatDialog
         , private dom: DomSanitizer
         , private mapWmsSearchDialogService: MapWmsSearchDialogService
         , private visionService: VisionService
+        , private datasourceService: DatasourceService
         , private cdRef: ChangeDetectorRef
         , private activeRoute: ActivatedRoute
         , private _translate: TranslateService
         , private localStorageService: LocalStorageService
         , @Inject(NgZone) private zone: NgZone
         , private spinner: NgxSpinnerService
+        , private mapaService: MapaService
     ) { }
-
-    ///////////////////////////////////////////////////////////////
-    /// Terrabrasilis component
-    ///////////////////////////////////////////////////////////////
-    private terrabrasilisApi: TerrabrasilisApiComponent = new TerrabrasilisApiComponent(this.dialog, this.dom, this.cdRef, this.localStorageService);
 
     ///////////////////////////////////////////////////////////////
     /// Angular lifeCycle hooks
@@ -135,55 +134,67 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
          * https://kamranahmed.info/blog/2018/02/28/dealing-with-route-params-in-angular-5/
          */
 
-        const combinedResult$ = combineLatest(this.activeRoute.queryParams,).pipe(
-            map(r => ({ queryParams: r[0] }))
+        const combinedResult$ = combineLatest([this.activeRoute.queryParams]).pipe(
+            map(([a$]) => ({
+                queryParams: a$
+            }))
         );
 
         combinedResult$.subscribe(result => {
             this.language = result.queryParams.hl !== undefined ? result.queryParams.hl : 'pt-br';
 
-            this.visionService.getVisionAndAllRelationshipmentByName(this.mainVision)
-                .subscribe(visions => {
+            let $results = combineLatest([
+                this.visionService.getVisionAndAllRelationshipmentByName(this.mainVision),
+                this.datasourceService.getAllDatasource()
+            ]).pipe(
+                map(([$visions, $datasources] : [any, Array<Datasource>]) => ({
+                    visions: $visions,
+                    datasources: $datasources
+                }))
+            );
 
-                    this.buildOverlayersAndBaselayers(visions);
+            $results.subscribe(results => {
 
-                    /**
-                     * treat overlayers array to send to leaflet
-                     */
-                    let layersToMap = new Array();
-                    this.overlayers.forEach(vision => {
-                        layersToMap = layersToMap.concat(this.gridStackInstance(vision));
-                    });
+                this.datasources = results.datasources;
+                this.buildOverlayersAndBaselayers(results.visions);
 
-                    this.zone.runOutsideAngular(() => {
-                        this.terrabrasilisApi.map({
-                            latitude: -20.926810577365917,
-                            longitude: -45.784149169921875
-                        }, this.baselayers, layersToMap);
-                    });
-
-                    this.updateOverlayerLegends();
-                    this.addLayerCollapseEvents();
-                    if (this.language != null)
-                        this.changeLanguage(this.language);
-                    
-                    this.firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
-                    if(this.firstLayer === undefined){
-                        this.spinner.hide();
-                        return;
-                    }
-
-                    this.terrabrasilisApi.fitBounds(this.firstLayer).then(result => {
-                        this.spinner.hide();
-                    }).catch(error => {
-                        this.spinner.hide();
-                    });
-                        
-                    // Timeout para caso terrabrasilisApi.fitBounds demore muito a responder
-                    setTimeout(function(){
-                        this.spinner.hide();
-                    }, 30000)
+                /**
+                 * treat overlayers array to send to leaflet
+                 */
+                let layersToMap = new Array();
+                this.overlayers.forEach(vision => {
+                    layersToMap = layersToMap.concat(this.gridStackInstance(vision));
                 });
+
+                this.zone.runOutsideAngular(() => {
+                    this.mapaService.map({
+                        latitude: -20.926810577365917,
+                        longitude: -45.784149169921875
+                    }, this.baselayers, layersToMap);
+                });
+
+                this.updateOverlayerLegends();
+                this.addLayerCollapseEvents();
+                if (this.language != null)
+                    this.changeLanguage(this.language);
+                
+                this.firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
+                if(this.firstLayer === undefined){
+                    this.spinner.hide();
+                    return;
+                }
+
+                this.mapaService.fitBounds(this.firstLayer).then(result => {
+                    this.spinner.hide();
+                }).catch(error => {
+                    this.spinner.hide();
+                });
+                    
+                // Timeout para caso terrabrasilisApi.fitBounds demore muito a responder
+                setTimeout(function(){
+                    this.spinner.hide();
+                }, 30000)
+            });
 
             this.localStorageService.getValue(this.languageKey)
                 .subscribe((item: any) => {
@@ -212,14 +223,14 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             }
 
             if (!wmsVision) {
-                wmsVision = new Vision(Date.now().toString(), l.workspace, '', true, '', [], [], [], false, this.overlayers.length);
+                wmsVision = new Vision(Date.now().toString(), l.workspace, '', true, '', [], [], false, this.overlayers.length);
                 this.overlayers.unshift(wmsVision);
             }
 
             const tools = new Array<Tool>();
             tools.push(
-                new Tool().addTarget('<app-transparency-tool [shared]="layer"></app-transparency-tool>'),
-                new Tool().addTarget('<app-metadata-tool [shared]="layer"></app-metadata-tool>')
+                Tool.Transparency,
+                Tool.Metadata
             );
 
             const datasource = new Datasource().addHost(l.geospatialHost);
@@ -228,7 +239,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 .addTitle(l.title)
                 .addWorkspace(l.workspace)
                 .addOpacity(0.9)
-                .addDownloads([])
                 .isBaselayer(l.baselayer)
                 .isActive(l.active)
                 .isEnable(true)
@@ -297,24 +307,18 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             // Define the initial state of the toggle button for layers group.
             vision.enabled = (layer.active && !vision.enabled) ? (true) : (vision.enabled);
 
-            layer.tools.push(new Tool().addTarget("<fit-bounds-tool [shared]=\"layer\"></fit-bounds-tool>"))
-
             rLayers.push(
                 new Layer(layer.id)
                     .addName(layer.name)
                     .addTitle(layer.title)
                     .addWorkspace(layer.workspace)
-                    .addCapabilitiesUrl(layer.capabilitiesUrl)
                     .addOpacity(layer.opacity)
-                    .addDashboardUrl(layer.dashboard)
                     .addDatasource(layer.datasource)
                     .addTools(layer.tools)
                     .isBaselayer(layer.baselayer)
                     .isActive(layer.active)
                     .isEnable(layer.enable)
                     .isTranslatable(true)
-                    .isTimeDimension(layer.timeDimension)
-                    .typeOfData(layer.isAggregatable)
                     .addStackOrder(layer.stackOrder)
             );
             // rLayers.push(layer);
@@ -372,7 +376,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                         }
                     });
                 });
-                this.terrabrasilisApi.reorderOverLayers(vision.layers);
+                this.mapaService.reorderOverLayers(vision.layers);
             }
         });
     }
@@ -399,7 +403,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     /// Tools used in sidebar header
     ///////////////////////////////////////////////////////////////
     fullScreen() {
-        this.terrabrasilisApi.fullScreen();
+        this.mapaService.fullScreen();
     }
 
     showDialogCapabilities() {
@@ -414,18 +418,18 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
     resetMap() {
         if (this.firstLayer !== undefined){
-            this.terrabrasilisApi.fitBounds(this.firstLayer);   
+            this.mapaService.fitBounds(this.firstLayer);   
             return;
         }
-        this.terrabrasilisApi.resetMap();
+        this.mapaService.resetMap();
     }
 
     undo() {
-        this.terrabrasilisApi.undo();
+        this.mapaService.undo();
     }
 
     redo() {
-        this.terrabrasilisApi.redo();
+        this.mapaService.redo();
     }
 
     getSingleLayerFeatureInfo(layer: any) {
@@ -434,27 +438,27 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     }
 
     getFeatureInfo(event: any) {
-        this.terrabrasilisApi.addGetLayerFeatureInfoEventToMap(event);
+        this.mapaService.addGetLayerFeatureInfoEventToMap(event);
     }
 
     showCoordinates(event: any) {
-        this.terrabrasilisApi.addShowCoordinatesEventToMap(event);
+        this.mapaService.addShowCoordinatesEventToMap(event);
     }
 
     layerBaseLayerChange(layerObject: any) {
-        let layer = this.terrabrasilisApi.getBaselayerByName(layerObject.name);
+        let layer = this.mapaService.getBaselayerByName(layerObject.name);
         if (typeof (layer) == 'undefined' || layer === null) { layer = null; }
 
         if (layer == null) {
-            const activeBaselayers = this.terrabrasilisApi.getTerrabrasilisBaselayers();
+            const activeBaselayers = this.mapaService.getTerrabrasilisBaselayers();
             activeBaselayers.forEach((bl: any) => {
 
                 const baselayer = this.baselayers.find(function (l) {
                     if (l.name == bl.options._name) { return true; }
                 });
-                this.terrabrasilisApi.deactiveBaselayer(baselayer);
+                this.mapaService.deactiveBaselayer(baselayer);
             });
-            this.terrabrasilisApi.activeLayer(layerObject);
+            this.mapaService.activeLayer(layerObject);
         }
     }
 
@@ -478,9 +482,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      */
     private mapLayerOnOff(layerObject: any) {
         if (layerObject.active) {
-            this.terrabrasilisApi.activeLayer(layerObject);
-        } else if (this.terrabrasilisApi.isLayerActived(layerObject)) {
-            this.terrabrasilisApi.deactiveLayer(layerObject);
+            this.mapaService.activeLayer(layerObject);
+        } else if (this.mapaService.isLayerActived(layerObject)) {
+            this.mapaService.deactiveLayer(layerObject);
         }
     }
 
@@ -490,7 +494,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      */
     updateThirdiesProject(thirdlayers: Array<Layer>) {
         if (!this.thirdProject) {
-            this.thirdProject = new Vision(_.uniqueId(), 'Uncategorized', '', true, '', [], thirdlayers, [], false, this.overlayers.length);
+            this.thirdProject = new Vision(_.uniqueId(), 'Uncategorized', '', true, '', [], thirdlayers, false, this.overlayers.length);
         } else {
             // this.thirdProject.updateLayers(thirdlayers);
             console.log('reimplement');
@@ -582,20 +586,20 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         /**
          * Force to remove layer from the map
          */
-        this.terrabrasilisApi.deactiveLayer(layer);
+        this.mapaService.deactiveLayer(layer);
     }
 
     removeLayer(layerObject: any, vision: Vision) {
         this.cdRef.detectChanges();
         if (layerObject && layerObject.name) {
-            this.terrabrasilisApi.deactiveLayer(layerObject);
+            this.mapaService.deactiveLayer(layerObject);
             this.removeLayerFromTreeView(layerObject, vision.id);
         }
     }
 
     bringLayerToFront(layerObject: any) {
         if (layerObject && layerObject.name) {
-            this.terrabrasilisApi.moveLayerToFront(layerObject);
+            this.mapaService.moveLayerToFront(layerObject);
         } else {
             this.showDialog('Falhou ao mover a camada.');
             return this;
@@ -604,7 +608,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
     bringLayerToBack(layerObject: any) {
         if (layerObject && layerObject.name) {
-            this.terrabrasilisApi.moveLayerToBack(layerObject);
+            this.mapaService.moveLayerToBack(layerObject);
         } else {
             this.showDialog('Falhou ao mover a camada.');
             return this;
@@ -631,7 +635,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
     processLegendForLayers(layers: any): Promise<any> {
         const promises = layers.map((layer) => {
-            return this.terrabrasilisApi.getLegend(layer, false)
+            return this.mapaService.getLegend(layer, false)
                 .then((url) => {
                     layer.addLegendURL(url)
                     return layer
@@ -668,7 +672,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
         this.overlayers.forEach(vision => {
             const l = vision.layers.slice();
-            const p = new Vision(vision.id, vision.name, '', vision.enabled, '', [], l, vision.downloads, true, vision.stackOrder, vision.isOpened);
+            const p = new Vision(vision.id, vision.name, '', vision.enabled, '', [], l, true, vision.stackOrder, vision.isOpened);
 
             self.processLegendForLayers(p.layers)
                 .then((layers) => {
@@ -753,9 +757,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 .addName(l.name)
                 .addTitle(l.title)
                 .addDescription(l.description)
-                .addAttribution(l.attribution)
                 .addSubdomains(domains)
-                .addDatasource(l.datasource)
+                .addDatasource(this.datasources.find(d => d.id == l.datasourceId))
                 .isBaselayer(l.baselayer)
                 .isActive(l.active)
                 .isEnable(l.enabled);
@@ -765,39 +768,33 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         this.baselayers.push(new Layer(_.uniqueId()).addName('Blank').addTitle('Blank').isBaselayer(true).isActive(false));
 
         visions.forEach((v: any) => {
-            v.downloads.forEach((d: any) => {
-                this.downloads.push(d);
-            });
 
             const layers: Array<any> = [];
             const isVisionEnabled: boolean = v.enabled;
             v.layers.forEach((l: any) => {
                 // replaces if exists, the workspace of the datasource host string
-                l.datasource.host = l.datasource.host.replace('/' + l.workspace + '/', '/');
+                let datasource = this.datasources.find(d => d.id == l.datasourceId);
+                datasource.host = datasource.host.replace('/' + l.workspace + '/', '/');
 
                 const layer = new Layer(l.id + v.id)
                     .addName(l.name)
                     .addTitle(l.title)
                     .addWorkspace(l.workspace)
-                    .addCapabilitiesUrl(l.capabilitiesUrl)
                     .addOpacity(l.opacity)
-                    .addDatasource(l.datasource)
-                    .addTools(l.tools)
-                    .addDownloads(l.downloads)
-                    .addMetadata(l.metadata)
+                    .addDatasource(datasource)
+                    .addToolsByIds(l.toolsIds)
                     .isBaselayer(l.baselayer)
                     .isActive(isVisionEnabled ? l.active : isVisionEnabled)
                     .isEnable(l.enabled)
                     .isTranslatable(true)
-                    .isTimeDimension(l.timeDimension)
-                    .typeOfData(l.aggregatable)
                     .addStackOrder(l.stackOrder)
-                    .addDashboardUrl(l.dashboard)
-                    .addDate(l.date);
+                    .addDate(l.date)
+                    .addDownloadId(l.downloadId)
+                    .addMetadataId(l.metadataId);
 
                 layers.push(layer);
             });
-            this.overlayers.unshift(new Vision(v.id, v.name, v.description, isVisionEnabled, v.created, v.tools, layers, v.downloads, true, v.stackOrder));
+            this.overlayers.unshift(new Vision(v.id, v.name, v.description, isVisionEnabled, v.created, v.tools, layers, true, v.stackOrder));
         });
     }
 }

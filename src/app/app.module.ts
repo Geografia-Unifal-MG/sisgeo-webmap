@@ -26,7 +26,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { AppComponent } from './app.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
-import { TerrabrasilisApiComponent } from './tool/terrabrasilis-api/terrabrasilis-api.component';
 import { MapComponent } from './map/map.component';
 
 /**
@@ -36,9 +35,12 @@ import { LayerInfoProviderService } from './services/layer-info-provider.service
 import { WmsCapabilitiesProviderService } from './services/wms-capabilities-provider.service';
 import { MapWmsSearchDialogService } from './services/map-wms-search-dialog.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { MapaService } from './services/mapa.service';
 import { DatasourceService } from './services/datasource.service';
 import { LayerService } from './services/layer.service';
 import { VisionService } from './services/vision.service';
+import { DownloadService } from './services/download.service';
+import { MetadataService } from './services/metadata.service';
 
 /**
  * Providers
@@ -65,6 +67,7 @@ import 'gridstack';
 
 import * as gridstack from 'gridstack';
 import { AboutComponent } from './about/about.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,6 @@ import { AboutComponent } from './about/about.component';
     MapComponent,
     DialogComponent,
     WmsSearchComponent,
-    TerrabrasilisApiComponent,
     AboutComponent
   ],
   imports: [
@@ -118,6 +120,9 @@ import { AboutComponent } from './about/about.component';
     DatasourceService,
     LayerService,
     VisionService,
+    DownloadService,
+    MetadataService,
+    MapaService
     // {
     //   provide: APP_BASE_HREF, 
     //   useValue: '/map' /**https://angular.io/api/common/APP_BASE_HREF */
@@ -128,8 +133,7 @@ import { AboutComponent } from './about/about.component';
   ],
   entryComponents: [
     DialogComponent,
-    WmsSearchComponent,
-    TerrabrasilisApiComponent
+    WmsSearchComponent
   ],
   exports: [
   ],

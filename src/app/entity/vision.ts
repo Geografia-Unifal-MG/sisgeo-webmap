@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
 import { Tool } from './tool';
 import { Layer } from './layer';
-import { Download } from './datasource';
 
 export class Vision {
     public id = '';
@@ -18,10 +17,6 @@ export class Vision {
      * Layers of Vision
      */
     public layers: Layer[] = [];
-    /**
-     *  Downloads of Vision
-     */
-    public downloads: Download[] = [];
 
     /**
      * UI parameters
@@ -43,7 +38,6 @@ export class Vision {
         created: string = '',
         tools: Tool[] = [],
         layers: Layer[] = [],
-        downloads: Download[] = [],
         hasTranslate: boolean = false,
         stackOrder: number,
         isOpened: boolean = false
@@ -55,7 +49,6 @@ export class Vision {
         this.enabled = enabled;
         this.created = created;
         this.tools = tools;
-        this.downloads = downloads;
         this.layers = layers;
         this.stackOrder = stackOrder;
         this.isOpened = isOpened;
