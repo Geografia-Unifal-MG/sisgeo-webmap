@@ -1,0 +1,88 @@
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  position: absolute;
+  scroll-behavior: smooth;
+  z-index: 1;
+  width: 100%;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15.5px;
+  text-align: justify;
+}
+
+.paragraph p {
+  color: var(--navbar-color);
+  text-indent: 3em;
+  margin: 0;
+  /*font-family: 'Crimson Pro', serif;*/
+}
+
+.paragraph span {
+  width: 100%;
+  color: var(--navbar-color);
+  padding-left: 15px;
+}
+
+.team-sisgeo {
+  margin-top: 20px;
+}
+
+/* About */
+.about {
+  padding: 6rem 0;
+}
+
+.about .container .row .col-lg-5 {
+  padding-left: 0px;
+}
+
+.about .container .row .initial {
+  padding-left: 15px !important;
+}
+
+.about .container .row .col-md-6 {
+  padding-left: 0px;
+}
+
+.text-blue {
+  color: var(--navbar-color);
+  font-family: "Patua One";
+  padding: 15px;
+}
+
+.desc-ferramenta {
+  /*font-family: 'Crimson Pro', serif;*/
+  position: relative;
+  top: -28px;
+  left: 15px;
+  font-size: 13px;
+}
+
+.img-about {
+  padding: 30px;
+}
+
+/* Projects */
+.bg-project {
+  background-color: aliceblue;
+  padding: 20px;
+  padding-bottom: 35px;
+  height: 47%;
+  padding-top: 35px;
+  box-shadow: 0px 1px 1px 1px #b3d7ffcc;
+}
+
+.project-img {
+  height: 230px;
+}
+
+.project-img:hover {
+  opacity: 0.8;
+}
+
+.projects {
+  padding-bottom: 6rem;
+}

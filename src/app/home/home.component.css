@@ -1,0 +1,317 @@
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15.5px;
+  text-align: justify;
+}
+
+.paragraph p {
+  color: var(--navbar-color);
+  text-indent: 3em;
+  margin: 0;
+  /*font-family: 'Crimson Pro', serif;*/
+}
+
+.paragraph span {
+  width: 100%;
+  color: var(--navbar-color);
+  padding-left: 15px;
+}
+
+.team-sisgeo {
+  margin-top: 20px;
+}
+
+/* Navbar and Header */
+header {
+  height: 50vh;
+}
+
+header img {
+  width: 100%;
+  height: 50vh;
+  opacity: 0.4;
+  object-fit: cover;
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  height: 50vh;
+  width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+  .caption h4 {
+    width: 90% !important;
+  }
+}
+
+.caption h1 {
+  font-size: 65px;
+  color: var(--navbar-color);
+  font-family: "Patua One";
+  text-align: center;
+  margin-top: 70px;
+}
+
+.caption h4 {
+  color: var(--navbar-color);
+  font-family: "Patua One";
+  text-align: center;
+  padding-top: 33px;
+  width: 450px;
+}
+
+.caption .btn {
+  background-color: var(--navbar-color);
+  color: #fff;
+  margin-top: 30px;
+  border-radius: 0px;
+  font-weight: 600;
+  font-size: 19px;
+  padding: 11px 16px 11px 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.48);
+  transition: top ease 1.2s;
+}
+
+.caption .btn:hover {
+  box-shadow: 4px 5px 12px 4px rgba(0, 0, 0, 0.48);
+  transform: scale(1.02);
+  border-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 414px) {
+  .caption h4 {
+    padding-top: 20px;
+    font-size: 20px;
+  }
+
+  .caption h1 {
+    font-size: 55px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .caption .btn {
+    margin-top: 10px !important;
+    padding: 8px;
+  }
+}
+
+/* About */
+.about {
+  padding-top: 6rem;
+}
+
+.about .container .row .col-lg-5 {
+  padding-left: 0px;
+}
+
+.about .container .row .initial {
+  padding-left: 15px !important;
+}
+
+.about .container .row .col-md-6 {
+  padding-left: 0px;
+}
+
+.about .container .row .col-md-6 .paragraph p {
+  padding-left: 0px;
+}
+
+.text-blue {
+  color: var(--navbar-color);
+  font-family: "Patua One";
+  padding: 15px;
+}
+
+.desc-ferramenta {
+  /*font-family: 'Crimson Pro', serif;*/
+  position: relative;
+  top: -28px;
+  left: 15px;
+  font-size: 13px;
+}
+
+.img-about {
+  padding: 30px;
+}
+
+/* Projects */
+.bg-project {
+  background-color: #e5e8eb;
+  padding: 20px;
+  padding-bottom: 35px;
+  height: 47%;
+  padding-top: 35px;
+  box-shadow: 0px 1px 1px 1px #b3d7ffcc;
+}
+
+.bg-project p {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.bg-project a:hover {
+  text-decoration: underline;
+  text-decoration-color: #2590c4;
+}
+
+.project-img {
+  height: 230px;
+}
+
+.project-img:hover {
+  opacity: 0.8;
+}
+
+.projects {
+  padding-top: 6rem;
+}
+
+.projects .container .row {
+  padding: 25px;
+}
+
+.projects .container .row .col-md-4 {
+  padding: 0 25px 0 25px;
+}
+
+@media only screen and (max-width: 992px) {
+  .projects .container .row .col-md-4 {
+    padding: 0 15px 0 15px;
+  }
+
+  .bg-project {
+    height: 53%;
+  }
+}
+
+
+/*Technologies*/
+.technologies {
+  padding-top: 6rem;
+}
+
+.tech-imgs {
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nginx {
+  position: relative;
+  left: 20px;
+}
+
+.fluxo {
+  padding: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+  .fluxo {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .img-fluxo {
+    height: 370px;
+  }
+}
+
+/*Parceiros*/
+.partners {
+  padding-top: 6rem;
+}
+
+.partner-img {
+  width: 175px;
+}
+
+.partner-img:hover {
+  opacity: 0.7;
+  transform: scale(1.02);
+}
+
+/*Equipe*/
+.team {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.person {
+  width: 165px;
+  margin: 0 auto;
+  display: block;
+}
+
+.team .container .row .col-lg-3 p {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/*Footer*/
+.footerPage {
+  background-color: var(--blue-footer);
+}
+
+.white-text {
+  color: #fff;
+}
+
+.footer-copyright {
+  padding-bottom: 25px;
+}
+
+.center-copyright {
+  display: flex;
+  justify-content: center;
+}
+
+.contact {
+  color: #ffffff9c;
+  padding-left: 0px;
+}
+
+#toTop {
+  position: fixed;
+  bottom: 10px;
+  right: 25px;
+  cursor: pointer;
+  border-radius: 35px;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.textGroup h5,
+p {
+  color: var(--navbar-color);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.counter {
+  margin-left: 0;
+}
+
+.logo {
+  height: 35px;
+}

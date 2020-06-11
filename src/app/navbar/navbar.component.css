@@ -1,0 +1,33 @@
+.navbar-custom {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 99%;
+  background-color: var(--navbar-color);
+}
+
+.navbar-custom .navbar-brand {
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 700;
+}
+
+.navbar-custom .navbar-nav .nav-item .nav-link {
+  font-family: "Patua One";
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding-right: 15px;
+  color: #fffffff2 !important;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 978px) {
+  .navbar-collapse {
+    background-color: var(--navbar-color);
+    padding: 15px;
+    z-index: 9999;
+  }
+}
