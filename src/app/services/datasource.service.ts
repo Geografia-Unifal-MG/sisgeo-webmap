@@ -22,8 +22,8 @@ export class DatasourceService {
   /**
    * API: GET datasource/all
    */
-  public getAllDatasource(): Observable<Datasource[]> {
-    return this.http.get<Datasource[]>(this.hostApi + 'datasource/all')
+  public getAllDatasource(): Observable<Array<Datasource>> {
+    return this.http.get<Array<Datasource>>(this.hostApi + 'datasource/all')
                     .pipe(
                         map(res => res),
                         catchError(err => observableThrowError(err.message))
