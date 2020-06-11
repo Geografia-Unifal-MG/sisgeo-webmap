@@ -78,27 +78,38 @@ header img {
 .caption .btn {
   background-color: var(--navbar-color);
   color: #fff;
-  border-color: var(--navbar-color);
   margin-top: 30px;
   border-radius: 0px;
   font-weight: 600;
   font-size: 19px;
-  padding: 12px 18px 12px 18px;
+  padding: 11px 16px 11px 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.48);
+  transition: top ease 1.2s;
 }
 
 .caption .btn:hover {
-  opacity: 0.9;
+  box-shadow: 4px 5px 12px 4px rgba(0, 0, 0, 0.48);
+  transform: scale(1.02);
+  border-color: transparent;
+  position: relative;
+  z-index: 1;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 414px) {
   .caption h4 {
-    padding-top: 0px;
+    padding-top: 20px;
+    font-size: 20px;
+  }
+
+  .caption h1 {
+    font-size: 55px;
   }
 }
 
 @media only screen and (max-width: 360px) {
   .caption .btn {
-    margin-top: 0px !important;
+    margin-top: 10px !important;
+    padding: 8px;
   }
 }
 
@@ -146,7 +157,7 @@ header img {
   background-color: #e5e8eb;
   padding: 20px;
   padding-bottom: 35px;
-  height: 53%;
+  height: 47%;
   padding-top: 35px;
   box-shadow: 0px 1px 1px 1px #b3d7ffcc;
 }
@@ -178,12 +189,16 @@ header img {
 }
 
 .projects .container .row .col-md-4 {
-  padding: 0 35px 0 35px;
+  padding: 0 25px 0 25px;
 }
 
 @media only screen and (max-width: 992px) {
   .projects .container .row .col-md-4 {
     padding: 0 15px 0 15px;
+  }
+
+  .bg-project {
+    height: 53%;
   }
 }
 
@@ -230,6 +245,7 @@ header img {
 
 .partner-img:hover {
   opacity: 0.7;
+  transform: scale(1.02);
 }
 
 /*Equipe*/

@@ -13,4 +13,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  scroll() {
+    $("html, .content").animate({ scrollTop: $(document).height() * 1000}, 0.1);
+  }
 }
