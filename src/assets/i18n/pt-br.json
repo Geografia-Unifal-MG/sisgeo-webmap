@@ -10,7 +10,11 @@
         "title": {
             "default": "Informações Gerais",
             "download": "Download da Camada",
-            "metadata": "Metadados"
+            "metadata": "Metadados",
+            "warning": "Aviso"
+        },
+        "body": {
+            "maximumLayersActiveWarning": "Não é possível ativar mais que {{limit}} camadas ao mesmo tempo para essa vision!"
         }
     },
     "menu" : {
