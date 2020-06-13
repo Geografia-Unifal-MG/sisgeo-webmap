@@ -463,10 +463,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         }
     }
 
-    canActivateLayer() {
-
-    }
-
     layerOnOff(input: HTMLInputElement, layerObject: any, vision: Vision) {
         if (input.checked) {
             if (vision.nActiveLayers >= vision.maxLayersActive){
