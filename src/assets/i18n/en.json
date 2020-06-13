@@ -10,7 +10,11 @@
         "title": {
             "default": "General Informations",
             "download": "Layer Download",
-            "metadata": "Metadata"
+            "metadata": "Metadata",
+            "warning": "Warning"
+        },
+        "body": {
+            "maximumLayersActiveWarning": "It's not possible to activate more than {{limit}} layers at the same time for this vision!"
         }
     },
     "menu" : {

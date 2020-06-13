@@ -9,6 +9,7 @@ export class Vision {
     public enabled = false;
     public created = '';
     public hasTranslate = false;
+    public maxLayersActive: number;
     /**
      * Tools of Vision
      */
@@ -23,6 +24,7 @@ export class Vision {
      */
     public stackOrder = 0;
     public isOpened = false;
+    public nActiveLayers: number;
 
     /**
      *

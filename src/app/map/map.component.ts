@@ -44,6 +44,7 @@ import { OpenUrl } from '../util/open-url';
 import * as _ from 'lodash'; // using the _.uniqueId() method
 import { map } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
+import { isUndefined } from 'util';
 
 @Component({
     selector: 'app-map',
@@ -463,14 +464,23 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     }
 
     layerOnOff(input: HTMLInputElement, layerObject: any, vision: Vision) {
-        layerObject.active = input.checked;
-        if (layerObject.active) {
+        if (input.checked) {
+            if (vision.nActiveLayers >= vision.maxLayersActive){
+                this.maximumLayersActiveWarning(vision.nActiveLayers)
+                input.checked = false;
+                return;
+            }
+
+            vision.nActiveLayers++;
             vision.enabled = true;
         } else {
+            vision.nActiveLayers--;
             vision.enabled = vision.layers.some(layer => {
                 if (layer.active) { return true; }
             });
         }
+
+        layerObject.active = input.checked;
         this.mapLayerOnOff(layerObject);
         this.updateOverlayerLegends();
         if(!this.overlayerChecked) this.overlayerChecked = true
@@ -516,6 +526,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      */
     projectGroupOnOff(input: HTMLInputElement, vision: Vision) {
         if (!input.checked) {
+            vision.nActiveLayers = 0;
             this.overlayerChecked = false
             vision.enabled = input.checked;
             vision.layers.forEach(layer => {
@@ -615,11 +626,28 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         }
     }
 
+    maximumLayersActiveWarning(limit: number){
+        this._translate.get('dialog.body.maximumLayersActiveWarning', { limit: limit }).subscribe(text => {
+            var content =
+            '<div class="container">' +
+            '    <div class="card">' +
+            '        <div class="card-body">' +
+            '           <p class="card-text">' + text + '</p>' +
+            '    </div>' +
+            '</div>';
+    
+            this.showDialog(content, 'dialog.title.warning');            
+        });
+    }
+
     ///////////////////////////////////////////////////
     /// Tools to use directly on map.component
     ///////////////////////////////////////////////////
-    showDialog(content: string): void {
+    showDialog(content: string, title?: string): void {
         const dialogRef = this.dialog.open(DialogComponent, { width: '450px' });
+        if(!isUndefined(title))
+            dialogRef.componentInstance.title = title;
+
         dialogRef.componentInstance.content = this.dom.bypassSecurityTrustHtml(content);
     }
 
@@ -769,12 +797,15 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
         visions.forEach((v: any) => {
 
+            let nActiveLayers = 0;
             const layers: Array<any> = [];
             const isVisionEnabled: boolean = v.enabled;
             v.layers.forEach((l: any) => {
                 // replaces if exists, the workspace of the datasource host string
                 let datasource = this.datasources.find(d => d.id == l.datasourceId);
                 datasource.host = datasource.host.replace('/' + l.workspace + '/', '/');
+                if (l.active)
+                    nActiveLayers++;
 
                 const layer = new Layer(l.id + v.id)
                     .addName(l.name)
@@ -794,7 +825,10 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
 
                 layers.push(layer);
             });
-            this.overlayers.unshift(new Vision(v.id, v.name, v.description, isVisionEnabled, v.created, v.tools, layers, true, v.stackOrder));
+            let vision = new Vision(v.id, v.name, v.description, isVisionEnabled, v.created, v.tools, layers, true, v.stackOrder);
+            vision.nActiveLayers = nActiveLayers;
+            vision.maxLayersActive = v.maxLayersActive;
+            this.overlayers.unshift(vision);
         });
     }
 }
