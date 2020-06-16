@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { GoTopButtonModule } from 'ng2-go-top-button';
 
 /**
  * Custom module created imports
@@ -92,6 +93,7 @@ import * as gridstack from 'gridstack';
     PipeSharedModule,
     BrowserModule,
     BrowserAnimationsModule,
+    GoTopButtonModule,
     MaterialCoreModule,
     AppRoutingModule,
     HttpModule,

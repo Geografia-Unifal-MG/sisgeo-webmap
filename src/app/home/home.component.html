@@ -2,9 +2,11 @@
     <app-navbar></app-navbar>
     <header>
         <img src="../../assets/img/page/background-image.png" alt="">
-        <div class="caption">
-            <h1 class="font-weight-bold">SisGEO</h1>
-            <h4>Sistema de compartilhamento de dados geoespaciais</h4>
+        <div class="container">
+            <div class="heading">SisGEO</div>
+            <div class="subheading">
+                <h4>Sistema de compartilhamento de dados geoespaciais</h4>
+            </div>
             <a [routerLink]="['/webmap']" target="_blank" class="btn btn-primary">Acesse a
                 ferramenta</a>
         </div>
@@ -13,9 +15,9 @@
     <div id="about" class="about">
         <div class="container">
             <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-5">Sobre</h2>
+                <h2 class="text-blue mb-3">Sobre</h2>
             </div>
-            <div class="row align-items-center mb-4 mb-lg-5">
+            <div class="row">
                 <div class="col-md-6 initial">
                     <div class="paragraph text-lg-left">
                         <p>O portal SisGEO é uma plataforma web desenvolvida pela Universidade Federal de
@@ -135,18 +137,17 @@
     <div id="projects" class="projects">
         <div class="container">
             <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-5">Projetos</h2>
+                <h2 class="text-blue mb-3">Projetos</h2>
             </div>
             <div class="row">
                 <div class="col-md-4 mb-5 text-center">
                     <div class="card">
-                        <a [routerLink]="['/mapeamento']"><img
-                                class="project-img img-fluid card-img-top" src="../../assets/img/page/mapeamento.png"
-                                alt=""></a>
+                        <a [routerLink]="['/mapeamento']"><img class="project-img img-fluid card-img-top"
+                                src="../../assets/img/page/mapeamento.png" alt=""></a>
                     </div>
                     <div class="bg-project">
                         <a [routerLink]="['/mapeamento']">
-                            <h4 class="text-blue mb-2">Mapeamento do lago de furnas</h4>
+                            <h4 class="text-blue mb-2">Mapeamento do Lago de Furnas</h4>
                         </a>
                         <p class="text-muted mb-0">Monitoramento da área do espelho d' água e volume útil por imagens de
                             satélite
@@ -168,8 +169,7 @@
                 </div>
                 <div class="col-md-4 mb-5 text-center">
                     <div class="card">
-                        <a [routerLink]="['/topografia']"><img
-                                class="project-img img-fluid card-img-top"
+                        <a [routerLink]="['/topografia']"><img class="project-img img-fluid card-img-top"
                                 src="../../assets/img/page/projeto-topografia.png" alt=""></a>
                     </div>
                     <div class="bg-project">
@@ -186,9 +186,9 @@
     <div id="technologies" class="technologies">
         <div class="container">
             <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-5">Tecnologias</h2>
+                <h2 class="text-blue mb-3">Tecnologias</h2>
             </div>
-            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+            <div class="row align-items-center no-gutters mb-4">
                 <div class="col-xl-6 col-lg-6">
                     <div class="paragraph text-lg-left">
                         <p>O SisGEO utiliza tecnologias gratuitas sob diferentes licenças de software: <br>
@@ -281,9 +281,9 @@
     <div id="partners" class="partners">
         <div class="container">
             <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-5">Parceiros</h2>
+                <h2 class="text-blue mb-3">Parceiros</h2>
             </div>
-            <div class="row align-items-center mb-5">
+            <div class="row align-items-center">
                 <div class="col-md-4 mb-5 text-center">
                     <a href="http://www.unifal-mg.edu.br" target="_blank"><img class="partner-img img-fluid"
                             src="../../assets/img/page/unifal.png" alt=""></a>
@@ -342,7 +342,8 @@
                 <div class="col-lg-3 col-md-6 mb-md-0 mb-5">
                     <img src="../../assets/img/page/pessoa3.png" class="person rounded-circle" alt="">
                     <h5 class="font-weight-bold text-center mt-4 mb-3">Marcelo de Oliveira Latuf</h5>
-                    <p class="text-blue text-center">Coordenou ações na estruturação do SisGEO e na produção de dados.</p>
+                    <p class="text-blue text-center">Coordenou ações na estruturação do SisGEO e na produção de dados.
+                    </p>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
@@ -354,4 +355,7 @@
         </div>
     </div>
     <app-footer-page></app-footer-page>
+    <go-top-button [speed]="50000" [scrollDistance]="300" [classNames]="'className'" [styles]="goTopBtnStyle">
+        <i class="fa fa-arrow-up"></i>
+    </go-top-button>
 </div>

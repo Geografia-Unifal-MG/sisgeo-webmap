@@ -1,7 +1,6 @@
 .navbar-custom {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  width: 99%;
   background-color: var(--navbar-color);
 }
 
