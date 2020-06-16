@@ -1,11 +1,9 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Layer } from '../../entity/layer';
 import { RegisterComponent } from '../../util/component-decorator';
 import { ToolComponent } from '../tool-component-interface';
 import { OnMount } from '../../core-modules/dynamic-html';
-import { MatDialog } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
-import { TerrabrasilisApiComponent } from '../terrabrasilis-api/terrabrasilis-api.component';
+import { MapaService } from '../../services/mapa.service';
 
 /**
  * LayerFitBoundsToolComponent
@@ -32,20 +30,15 @@ export class LayerFitBoundsToolComponent extends ToolComponent implements OnInit
     this.layer = this.shared;
   }
   
-  constructor(private dialog: MatDialog, private dom: DomSanitizer, private cdRef: ChangeDetectorRef) { 
+  constructor(private mapaService: MapaService) { 
     super();        
   }
-
-  /**
-   * TerraBrasilis
-   */    
-  private terrabrasilisApi: TerrabrasilisApiComponent = new TerrabrasilisApiComponent(this.dialog, this.dom, this.cdRef, null);
 
   ngOnInit() {      
     this.layer = this.shared;
   }
 
   fitBounds() {
-    this.terrabrasilisApi.fitBounds(this.layer);
+    this.mapaService.fitBounds(this.layer);
   }
 }

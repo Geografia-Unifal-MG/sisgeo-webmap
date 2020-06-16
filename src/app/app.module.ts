@@ -28,7 +28,6 @@ import { AppComponent } from './app.component';
 import { AnimatedDigitComponent } from './animated-digit/animated-digit.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
-import { TerrabrasilisApiComponent } from './tool/terrabrasilis-api/terrabrasilis-api.component';
 import { MapComponent } from './map/map.component';
 import { TopografiaComponent } from './topografia/topografia.component';
 import { HomeComponent } from './home/home.component';
@@ -44,9 +43,12 @@ import { LayerInfoProviderService } from './services/layer-info-provider.service
 import { WmsCapabilitiesProviderService } from './services/wms-capabilities-provider.service';
 import { MapWmsSearchDialogService } from './services/map-wms-search-dialog.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { MapaService } from './services/mapa.service';
 import { DatasourceService } from './services/datasource.service';
 import { LayerService } from './services/layer.service';
 import { VisionService } from './services/vision.service';
+import { DownloadService } from './services/download.service';
+import { MetadataService } from './services/metadata.service';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 /**
@@ -80,7 +82,6 @@ import * as gridstack from 'gridstack';
     MapComponent,
     DialogComponent,
     WmsSearchComponent,
-    TerrabrasilisApiComponent,
     TopografiaComponent,
     HomeComponent,
     BaciaComponent,
@@ -134,6 +135,9 @@ import * as gridstack from 'gridstack';
     LayerService,
     GoogleAnalyticsService,
     VisionService,
+    DownloadService,
+    MetadataService,
+    MapaService
     // {
     //   provide: APP_BASE_HREF, 
     //   useValue: '/map' /**https://angular.io/api/common/APP_BASE_HREF */
@@ -144,8 +148,7 @@ import * as gridstack from 'gridstack';
   ],
   entryComponents: [
     DialogComponent,
-    WmsSearchComponent,
-    TerrabrasilisApiComponent
+    WmsSearchComponent
   ],
   exports: [
   ],

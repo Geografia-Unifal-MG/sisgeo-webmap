@@ -103,6 +103,14 @@
                   "maximumError": "100kb"
                 }
               ]
+            },
+            "augury": {
+              "fileReplacements": [
+                {
+                  "replace": "src/main.ts",
+                  "with": "src/main.augury.ts"
+                }
+              ]
             }
           }
         },
@@ -117,6 +125,9 @@
             },
             "staging": {
               "browserTarget": "terrabrasilis:build:staging"
+            },
+            "augury": {
+              "browserTarget": "terrabrasilis:build:augury"
             }
           }
         },
@@ -172,6 +183,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "terrabrasilis"
 }

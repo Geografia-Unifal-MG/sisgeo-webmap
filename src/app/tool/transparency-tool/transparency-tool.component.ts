@@ -1,10 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, ViewContainerRef, ViewChild, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
 import { ToolComponent } from '../tool-component-interface';
 import { RegisterComponent } from '../../util/component-decorator';
-import { TerrabrasilisApiComponent } from '../terrabrasilis-api/terrabrasilis-api.component';
-import { MatDialog } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MapaService } from '../../services/mapa.service';
 import { Layer } from '../../entity/layer';
+import { Tool } from '../../entity/tool';
 import { OnMount } from '../../core-modules/dynamic-html';
 
 /**
@@ -55,14 +54,9 @@ export class TransparencyToolComponent extends ToolComponent implements OnInit, 
     public step = 0.01;
     private show: boolean;
     
-    constructor(private dialog: MatDialog, private dom: DomSanitizer, private cdRef: ChangeDetectorRef) {   
+    constructor(private mapaService: MapaService) {   
         super();
     }
-
-    /**
-     * TerraBrasilis
-     */    
-    private terrabrasilisApi: TerrabrasilisApiComponent = new TerrabrasilisApiComponent(this.dialog, this.dom, this.cdRef, null);
 
     ngOnInit() {
         this.layer = this.shared;
@@ -71,7 +65,7 @@ export class TransparencyToolComponent extends ToolComponent implements OnInit, 
 
     layerOpacity(layerObject:any, event:any) {
         this.layer.opacity = event.value;
-        this.terrabrasilisApi.layerOpacity(layerObject, event);
+        this.mapaService.layerOpacity(layerObject, event);
     }
 
     showSlider() {
@@ -86,11 +80,9 @@ export class TransparencyToolComponent extends ToolComponent implements OnInit, 
 
     private handleToolButtons(display: boolean){
         var gridStack = $('#' + this.layer.name + '_opacity').parents('.grid-stack-item');
-        gridStack.find("app-transparency-tool").find("button").toggle(display);
-
-        //TODO: buscar as tools no banco
-        gridStack.find("app-metadata-tool").toggle(display);
-        gridStack.find("app-layer-download-tool").toggle(display);
-        gridStack.find("fit-bounds-tool").toggle(display);
+        gridStack.find(Tool.Transparency.selector).find("button").toggle(display);
+        gridStack.find(Tool.Metadata.selector).toggle(display);
+        gridStack.find(Tool.Download.selector).toggle(display);
+        gridStack.find(Tool.FitBounds.selector).toggle(display);
     }
 }

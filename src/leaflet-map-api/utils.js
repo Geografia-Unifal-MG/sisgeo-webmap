@@ -1,6 +1,6 @@
 const { get, find, head, isString } = require('lodash')
 const axios = require('axios')
-const { xmlToJson } = require('../terrabrasilis-api/xmlToJson')
+const { xmlToJson } = require('./xmlToJson')
 
 const Utils = {
   /*

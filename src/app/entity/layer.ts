@@ -1,8 +1,7 @@
 import * as _ from 'lodash';
 import { Subdomain } from './subdomain';
 import { Tool } from './tool';
-import { Datasource, Download } from './datasource';
-import { Metadata } from './metadata';
+import { Datasource } from './datasource';
 
 /**
  * Layer define the parameters to mount automatically the layers (Baselayer and Overlayer)
@@ -16,25 +15,20 @@ export class Layer {
     name = '';
     title = '';
     description = '';
-    attribution = '';
     workspace = '';
-    capabilitiesUrl = '';
     opacity = 0.9;
     baselayer = false;
     active = false;
     enable = false;
-    created = '';
-    timeDimension = false;
     legendURL = '';
     date = '';
+    metadataId = '';
+    downloadId = '';
 
     datasource: Datasource = null;
     tools: Tool[] = [];
     subdomains: Subdomain[] = [];
-    downloads: Download[] = [];
-    metadata: Metadata = null;
 
-    dashboard: string = null;
     thirdHost = '';
 
     /**
@@ -51,7 +45,6 @@ export class Layer {
                     .addName(l.name)
                     .addTitle(l.title)
                     .addWorkspace(l.workspace)
-                    .addCapabilitiesUrl(l.capabilitiesUrl)
                     .addOpacity(0.9)
                     .addDatasource(l.datasource)
                     .addTools(l.tools)
@@ -59,17 +52,10 @@ export class Layer {
                     .isActive(l.active)
                     .isEnable(l.enabled)
                     .isTranslatable(true)
-                    .isTimeDimension(l.timeDimension)
-                    .typeOfData(l.aggregatable)
                     .addStackOrder(l.stackOrder)
                     .isTranslatable(l.hasTranslate)
                     .addDate(l.date);
     }
-
-    // addId(id:string) {
-    //     this.id = id;
-    //     return this;
-    // }
 
     addTitle(title: string) {
         this.title = title;
@@ -91,18 +77,8 @@ export class Layer {
         return this;
     }
 
-    addAttribution(attribution: string) {
-        this.attribution = attribution;
-        return this;
-    }
-
     addWorkspace(workspace: string) {
         this.workspace = workspace;
-        return this;
-    }
-
-    addCapabilitiesUrl(capabilitiesUrl: string) {
-        this.capabilitiesUrl = capabilitiesUrl;
         return this;
     }
 
@@ -126,11 +102,6 @@ export class Layer {
         return this;
     }
 
-    addCreated(created: string) {
-        this.created = created;
-        return this;
-    }
-
     addDatasource(datasource: Datasource) {
         this.datasource = datasource;
         return this;
@@ -141,25 +112,20 @@ export class Layer {
         return this;
     }
 
-    addDownloads(downloads: Download[]) {
-        this.downloads = downloads;
-        return this;
-    }
-
     addTools(tools: Tool[]) {
         this.tools = tools;
         return this;
     }
 
-    addMetadata(metadata: Metadata) {
-        this.metadata = metadata;
+    addToolsByIds(toolIds: string[]){
+        for (let i = 0; i < toolIds.length; i++) {
+            var tool = Tool.getTool(toolIds[i]);
+            if (tool) {
+                this.tools.push(tool);
+            }
+        }
         return this;
-    }
-
-    addDashboardUrl(dashboard: string) {
-        this.dashboard = dashboard;
-        return this;
-    }
+    }    
 
     addThirdHost(thirdHost: string) {
         this.thirdHost = thirdHost;
@@ -177,18 +143,18 @@ export class Layer {
         return this;
     }
 
+    addDownloadId(downloadId: string){
+        this.downloadId = downloadId;
+        return this;
+    }
+
+    addMetadataId(metadataId: string){
+        this.metadataId = metadataId;
+        return this;
+    }
+
     isTranslatable(hasTranslate: boolean) {
         this.hasTranslate = hasTranslate;
-        return this;
-    }
-
-    typeOfData(isAggregatable: boolean) {
-        this.isAggregatable = isAggregatable;
-        return this;
-    }
-
-    isTimeDimension(hasTimeDimension: boolean) {
-        this.timeDimension = hasTimeDimension;
         return this;
     }
 
