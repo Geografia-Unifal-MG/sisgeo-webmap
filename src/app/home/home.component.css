@@ -26,6 +26,7 @@ header {
   height: 50vh;
   padding-top: 7rem;
   padding-bottom: 2rem;
+  margin-bottom: -25px;
   text-align: center;
   color: #fff;
 }
