@@ -6,7 +6,6 @@ import {
     , ChangeDetectorRef
     , OnDestroy
     , HostBinding
-    , DoCheck
 } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
@@ -51,7 +50,7 @@ import { isUndefined } from 'util';
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
+export class MapComponent implements OnInit, OnDestroy, OpenUrl {
 
     imgPath: string = (process.env.ENV === 'production') ? ('/app/') : ('');
 
@@ -80,11 +79,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      * radio button
      */
     public baselayerChecked = false;
-
-    /**
-     * toggle slide
-     */
-    public overlayerChecked = true;
 
     /**
      * Slider value
@@ -120,15 +114,18 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         , @Inject(NgZone) private zone: NgZone
         , private spinner: NgxSpinnerService
         , private mapaService: MapaService
-    ) { }
+    ) {
+        this.cdRef.detach();
+    }
 
     ///////////////////////////////////////////////////////////////
     /// Angular lifeCycle hooks
     ///////////////////////////////////////////////////////////////
     ngOnInit() {
-        this.spinner.show();
-        this.cdRef.detectChanges();
-
+        this.spinner.show().then(() => {
+            this.cdRef.detectChanges();
+        });
+        
         /**
          * The best way to combine the param and queryParams url navigate
          *
@@ -144,6 +141,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         combinedResult$.subscribe(result => {
             this.language = result.queryParams.hl !== undefined ? result.queryParams.hl : 'pt-br';
 
+            if (this.language != null)
+                this.changeLanguage(this.language);            
+
             let $results = combineLatest([
                 this.visionService.getVisionAndAllRelationshipmentByName(this.mainVision),
                 this.datasourceService.getAllDatasource()
@@ -157,11 +157,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             $results.subscribe(results => {
 
                 this.datasources = results.datasources;
+
                 this.buildOverlayersAndBaselayers(results.visions);
 
-                /**
-                 * treat overlayers array to send to leaflet
-                 */
                 let layersToMap = new Array();
                 this.overlayers.forEach(vision => {
                     layersToMap = layersToMap.concat(this.gridStackInstance(vision));
@@ -172,29 +170,17 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                         latitude: -20.926810577365917,
                         longitude: -45.784149169921875
                     }, this.baselayers, layersToMap);
+
+                    this.firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
+                    this.mapaService.fitBounds(this.firstLayer);
                 });
 
-                this.updateOverlayerLegends();
+                this.cdRef.detectChanges();
                 this.addLayerCollapseEvents();
-                if (this.language != null)
-                    this.changeLanguage(this.language);
-                
-                this.firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
-                if(this.firstLayer === undefined){
-                    this.spinner.hide();
-                    return;
-                }
 
-                this.mapaService.fitBounds(this.firstLayer).then(result => {
-                    this.spinner.hide();
-                }).catch(error => {
-                    this.spinner.hide();
+                this.spinner.hide().then(() => {
+                    this.cdRef.detectChanges();
                 });
-                    
-                // Timeout para caso terrabrasilisApi.fitBounds demore muito a responder
-                setTimeout(function(){
-                    this.spinner.hide();
-                }, 30000)
             });
 
             this.localStorageService.getValue(this.languageKey)
@@ -250,10 +236,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 .addStackOrder(0)
                 .addDatasource(datasource);
 
-            wmsVision.addLayer(
-                nLayer
-            );
-            console.log(nLayer);
+            wmsVision.addLayer(nLayer);
+
             if (wmsVision.layers.length == 1) {
                 this.gridStackInstance(wmsVision);
             } else {
@@ -274,7 +258,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             }
             this.updateOverlayerLegends();
         });
-        this.cdRef.detectChanges();
     }
 
     ngOnDestroy() {
@@ -287,8 +270,6 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     ngAfterContentInit() {
         // this.terrabrasilisApi.disableLoading();
     }
-
-    ngDoCheck() { }
 
     ///////////////////////////////////////////////////////////////
     /// GridStack interactions
@@ -346,8 +327,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             const gsStack: any = $(gridId);
             gsStack.gridstack(options);
             gsStack.on('change', function (event: any, items: any) {
-                self.gridStackOnChange(this.id, items);
-                self.updateOverlayerLegends();
+                self.gridStackOnChange(this.dataset.visionId, items);
+                self.cdRef.detectChanges();
             });
             gsStack.on('removed', function (event: any, items: any) {
                 self.gridStackOnRemoved(this.id, items);
@@ -364,22 +345,26 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
      * The stackOrder is used to set the zIndex for each layer when added in Leaflet Map,
      * so the smallest values is displayed below and the biggest values is displayed above of the stacked layers in the Map.
      */
-    gridStackOnChange(gsId: string, changedItems: any) {
-        this.overlayers.forEach(vision => {
-            if (changedItems && gsId == 'grid-stack-' + vision.id) {
-                changedItems.forEach((gsitem: any) => {
-                    vision.layers.some(layer => {
-                        if (gsitem.el.length && gsitem.el[0].id == layer.id + '_gslayer') {
-                            // See stackOrder notes above
-                            layer.stackOrder = (vision.stackOrder * 100) + (vision.layers.length - gsitem.y);
-                            layer.uiOrder = gsitem.y;
-                            return true;
-                        }
-                    });
-                });
-                this.mapaService.reorderOverLayers(vision.layers);
+    gridStackOnChange(visionId: string, changedItems: any) {
+
+        if (changedItems == undefined)
+            return;
+
+        //lógica para quando o grid lançar o 'change' por causa do collapse
+        //nesse caso não há troca de ordem entre os grids
+        for(var i = 1; i < changedItems.length; i++){
+            if (changedItems[i].y - changedItems[i-1].y > 1){
+                return;
             }
+        }
+
+        let vision = this.overlayers.find(o => o.id == visionId);
+        changedItems.forEach((gsitem: any) => {
+            let layer = vision.layers.find(l => l.id == gsitem.el[0].dataset.layerId);
+            layer.stackOrder = (vision.stackOrder * 100) + (vision.layers.length - gsitem.y);
+            layer.uiOrder = gsitem.y;
         });
+        this.mapaService.reorderOverLayers(vision.layers);
     }
 
     /**
@@ -463,7 +448,8 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
         }
     }
 
-    layerOnOff(input: HTMLInputElement, layerObject: any, vision: Vision) {
+    layerOnOff(input: HTMLInputElement, layer: Layer, vision: Vision) {
+
         if (input.checked) {
             if (vision.nActiveLayers >= vision.maxLayersActive){
                 this.maximumLayersActiveWarning(vision.nActiveLayers)
@@ -471,31 +457,19 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
                 return;
             }
 
+            this.mapaService.activeLayer(layer);
             vision.nActiveLayers++;
             vision.enabled = true;
+            layer.active = true;
         } else {
+            this.mapaService.deactiveLayer(layer);
             vision.nActiveLayers--;
+            layer.active = false;
             vision.enabled = vision.layers.some(layer => {
                 if (layer.active) { return true; }
             });
         }
-
-        layerObject.active = input.checked;
-        this.mapLayerOnOff(layerObject);
-        this.updateOverlayerLegends();
-        if(!this.overlayerChecked) this.overlayerChecked = true
-    }
-
-    /**
-     * Apply layer state on TerraBrasilis Map component
-     * @param layerObject A reference to one Layer instance
-     */
-    private mapLayerOnOff(layerObject: any) {
-        if (layerObject.active) {
-            this.mapaService.activeLayer(layerObject);
-        } else if (this.mapaService.isLayerActived(layerObject)) {
-            this.mapaService.deactiveLayer(layerObject);
-        }
+        this.cdRef.detectChanges();
     }
 
     /**
@@ -527,16 +501,15 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     projectGroupOnOff(input: HTMLInputElement, vision: Vision) {
         if (!input.checked) {
             vision.nActiveLayers = 0;
-            this.overlayerChecked = false
-            vision.enabled = input.checked;
+            vision.enabled = false;
             vision.layers.forEach(layer => {
-                layer.active = vision.enabled;
-                // apply layer status on map
-                this.mapLayerOnOff(layer);
+                if (layer.active){
+                    layer.active = false;
+                    this.mapaService.deactiveLayer(layer);
+                }
             });
-
+            this.cdRef.detectChanges();
         }
-        this.updateOverlayerLegends();
     }
 
     /**
@@ -579,7 +552,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
             ($('#' + groupName + '_titlegroup') as any).switchClass('group-title-opened', 'group-title-closed');
         }
 
-        this.updateOverlayerLegends();
+        this.cdRef.detectChanges();
     }
 
     removeLayerFromTreeView(layer: any, projectId: string) {
@@ -654,7 +627,7 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck, OpenUrl {
     changeLanguage(value: string) {
         this.localStorageService.setValue(this.languageKey, value);
         this._translate.use(value);
-        this.updateOverlayerLegends();
+        this.cdRef.detectChanges();
     }
 
     goTo(url: string) {

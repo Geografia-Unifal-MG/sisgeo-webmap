@@ -81,12 +81,12 @@
             </ng-template>
             <div class="material-switch grp-prj pull-right">
                 <input id="{{(project.id | cleanWhiteSpace) + '_grp-crtl' }}" name="someSwitchOption002" type="checkbox" (change)="projectGroupOnOff($event.srcElement, project)" checked="{{ (project.enabled) ? 'checked' : null }}"/>
-                <label *ngIf="!overlayerChecked" class="bg-white" style="cursor: default;"></label>
-                <label *ngIf="overlayerChecked" for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label>
+                <label *ngIf="!project.enabled" class="bg-white" style="cursor: default;"></label>
+                <label *ngIf="project.enabled" for="{{(project.id | cleanWhiteSpace)  + '_grp-crtl' }}" class="bg-white"></label>
             </div>
 
-            <div class="grid-stack" id="{{ 'grid-stack-' + project.id }}">
-                <div *ngFor="let layer of project.layers" class="grid-stack-item" id="{{ (layer.id | cleanWhiteSpace) + '_gslayer' }}" data-gs-x="0" data-gs-y="{{ layer.uiOrder }}" data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack" id="{{ 'grid-stack-' + project.id }}" attr.data-vision-id="{{project.id}}">
+                <div *ngFor="let layer of project.layers" class="grid-stack-item" id="{{ (layer.id | cleanWhiteSpace) + '_gslayer' }}" attr.data-layer-id="{{layer.id}}" data-gs-x="0" data-gs-y="{{ layer.uiOrder }}" data-gs-width="12" data-gs-height="1">
                     <div class="grid-stack-item-content">
                         <ul class="list-unstyled components list h-100 layer-list">
                             <li>
