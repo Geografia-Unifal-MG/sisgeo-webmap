@@ -25,7 +25,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
  * Custom component imports
  */
 import { AppComponent } from './app.component';
-import { AnimatedDigitComponent } from './animated-digit/animated-digit.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
 import { MapComponent } from './map/map.component';
@@ -88,7 +87,6 @@ import * as gridstack from 'gridstack';
     MapeamentoComponent,
     NavbarComponent,
     FooterPageComponent,
-    AnimatedDigitComponent
   ],
   imports: [
     PipeSharedModule,

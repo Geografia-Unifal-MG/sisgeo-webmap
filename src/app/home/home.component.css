@@ -91,6 +91,20 @@ header .container .btn:hover {
   }
 }
 
+@media (min-height: 800px) {
+  header {
+    padding-top: 9rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (min-height: 900px) {
+  header {
+    padding-top: 10rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
 @media (max-height: 680px) {
   header .container .btn {
     margin-top: 0px !important;
@@ -259,8 +273,10 @@ header .container .btn:hover {
 
 .person {
   width: 165px;
+  height: 165px;
   margin: 0 auto;
   display: block;
+  object-fit: cover;
 }
 
 .team .container .row .col-lg-3 p {
