@@ -69,9 +69,6 @@ export class MapComponent implements OnInit, OnDestroy, OpenUrl {
     public type = '';
     public language = '';
     public template: any;
-    public sisgeoAboutUrl = "https://sisgeo.unifal-mg.edu.br";
-    public sisgeoContactUrl = 'https://sisgeo.unifal-mg.edu.br';
-    public sisgeoHelpUrl: 'https://sisgeo.unifal-mg.edu.br';
     public mainVision = 'furnas';
     public firstLayer = null;
 
