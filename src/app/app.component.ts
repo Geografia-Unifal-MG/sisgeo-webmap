@@ -19,8 +19,8 @@ declare let gtag: Function;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
-  imgPath:string=( process.env.ENV === 'production' )?('/app/'):('');
+
+  imgPath: string = (process.env.ENV === 'production') ? ('/app/') : ('');
 
   public title: string = '';
   public type: string = '';
@@ -48,23 +48,27 @@ export class AppComponent implements OnInit {
     });   
   }
 
+  onActivate(event) {
+    window.scroll(0, 0);
+  }
+
   callLogin() {
     this.router.navigate(["login"]);
   }
-  
-  private loadDefaultLanguage(): void {        
-    this.localStorageService.getValue(this.languageKey).subscribe((item:any) => {      
+
+  private loadDefaultLanguage(): void {
+    this.localStorageService.getValue(this.languageKey).subscribe((item: any) => {
       let toUse = JSON.parse(item);
       //console.log(toUse);
-      
-      if(toUse === null) {      
+
+      if (toUse === null) {
         this._translate.setDefaultLang('pt-br');
         this._translate.use('pt-br');
         return;
-      } 
-      
+      }
+
       this._translate.setDefaultLang(toUse.value);
       this._translate.use(toUse.value);
-    });              
+    });
   }
 }

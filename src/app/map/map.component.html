@@ -128,6 +128,7 @@
  <div class="btnbaselayer">
     <div class="baselayer custom-radios">
         <i class="material-icons md-light">layers</i>
+        <span class="baselayerTitle">Mapas Base</span>
         <ul>
             <li class="icon" *ngFor="let layer of baselayers">
                 <input type="radio" 
@@ -136,8 +137,10 @@
                   value="{{layer.active}}" 
                   checked="{{ (layer.active) ? 'checked' : null }}"
                   (change)="layerBaseLayerChange(layer)">
-                <label for="{{layer.title}}"><span></span></label>              
-                <span class="text">{{layer.title}}<br *ngIf="layer.description" /></span>
+                <label for="{{layer.title}}">
+                    <span class="checkBtn"></span>
+                    <span class="text">{{layer.title}}<br *ngIf="layer.description" /></span>
+                </label>    
             </li>                                      
         </ul>
     </div>

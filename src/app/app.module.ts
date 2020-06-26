@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { GoTopButtonModule } from 'ng2-go-top-button';
 
 /**
  * Custom module created imports
@@ -24,7 +25,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
  * Custom component imports
  */
 import { AppComponent } from './app.component';
-import { AnimatedDigitComponent } from './animated-digit/animated-digit.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { WmsSearchComponent } from './wms/wms-search/wms-search.component';
 import { MapComponent } from './map/map.component';
@@ -87,12 +87,12 @@ import * as gridstack from 'gridstack';
     MapeamentoComponent,
     NavbarComponent,
     FooterPageComponent,
-    AnimatedDigitComponent
   ],
   imports: [
     PipeSharedModule,
     BrowserModule,
     BrowserAnimationsModule,
+    GoTopButtonModule,
     MaterialCoreModule,
     AppRoutingModule,
     HttpModule,

@@ -6,7 +6,7 @@
         <h2 class="text-blue">Projeto:</h2>
         <h5 class="text-blue mb-5">Mapeamento do Lago de Furnas</h5>
       </div>
-      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+      <div class="row no-gutters">
         <div class="col-md-6">
           <div class="paragraph text-lg-left">
             <p>A represa da Usina Hidrelétrica de Furnas teve sua construção iniciada no final da
@@ -105,4 +105,7 @@
     </div>
   </section>
   <app-footer-page></app-footer-page>
+  <go-top-button [speed]="50000" [scrollDistance]="150" [classNames]="'className'" [styles]="goTopBtnStyle">
+    <i class="fa fa-arrow-up"></i>
+  </go-top-button>
 </div>

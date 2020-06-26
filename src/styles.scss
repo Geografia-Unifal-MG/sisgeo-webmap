@@ -6,12 +6,13 @@
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: Roboto, sans-serif;
-    position: fixed;
-    top:0 ;
-    left: 0;
     height: 90%;
     width: 100%;
 }
