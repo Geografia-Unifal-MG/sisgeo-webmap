@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { ToolComponent } from '../tool-component-interface';
 import { RegisterComponent } from '../../util/component-decorator';
 import { MapaService } from '../../services/mapa.service';
@@ -54,7 +54,7 @@ export class TransparencyToolComponent extends ToolComponent implements OnInit, 
     public step = 0.01;
     private show: boolean;
     
-    constructor(private mapaService: MapaService) {   
+    constructor(private mapaService: MapaService, private cdRef: ChangeDetectorRef) {   
         super();
     }
 
@@ -66,16 +66,19 @@ export class TransparencyToolComponent extends ToolComponent implements OnInit, 
     layerOpacity(layerObject:any, event:any) {
         this.layer.opacity = event.value;
         this.mapaService.layerOpacity(layerObject, event);
+        this.cdRef.detectChanges();
     }
 
     showSlider() {
         this.handleToolButtons(false);
         this.show = true;
+        this.cdRef.detectChanges();
     }
 
     hideSlider() {
         this.handleToolButtons(true);
         this.show = false;
+        this.cdRef.detectChanges();
     }
 
     private handleToolButtons(display: boolean){
