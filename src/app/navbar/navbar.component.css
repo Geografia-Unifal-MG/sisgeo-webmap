@@ -2,6 +2,7 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: var(--navbar-color);
+  height: 9%;
 }
 
 .navbar-custom .navbar-brand {
