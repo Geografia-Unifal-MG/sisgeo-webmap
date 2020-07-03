@@ -25,6 +25,7 @@ export class Vision {
     public stackOrder = 0;
     public isOpened = false;
     public nActiveLayers: number;
+    public loaded = false;
 
     /**
      *

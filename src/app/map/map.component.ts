@@ -173,8 +173,6 @@ export class MapComponent implements OnInit, OnDestroy, OpenUrl {
                 });
 
                 this.cdRef.detectChanges();
-                this.addLayerCollapseEvents();
-
                 this.spinner.hide().then(() => {
                     this.cdRef.detectChanges();
                 });
@@ -514,6 +512,12 @@ export class MapComponent implements OnInit, OnDestroy, OpenUrl {
      * @param groupName The vision name from configurations defined in layer.service.ts
      */
     swapGroupLayer(vision: Vision) {
+
+        if (!vision.loaded){
+            vision.loaded = true;
+            this.cdRef.detectChanges();
+            this.addLayerCollapseEvents();
+        }
 
         // let groupName = vision.name.replace(/\s/g, "");
         const groupName = vision.id;
