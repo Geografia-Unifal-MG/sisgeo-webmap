@@ -43,35 +43,28 @@ header img {
 }
 
 .subheading {
-  display: flex;
-  justify-content: center;
-}
-
-.subheading h4 {
   color: var(--navbar-color);
   font-family: "Patua One";
-  text-align: center;
-  width: 450px;
-  padding-top: 33px;
+  max-width: 30vh;
+  font-size: 2vh;
 }
 
 .heading {
   color: var(--navbar-color);
   font-family: "Patua One";
   font-size: 9vh;
-  font-weight: bold;
-  line-height: 1.5rem;
-  margin-bottom: 25px;
+  font-weight: normal;
+  margin-bottom: 0;
+  line-height: 1;
 }
 
 header .container .btn {
-  padding: 0.7rem 1.2rem;
-  font-size: 2.5vh;
+  padding: 1.5vh 3.5vh;
+  font-size: 1.9vh;
   background-color: var(--navbar-color);
   color: #fff;
   border-radius: 0px;
   font-weight: 600;
-  margin-top: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.48);
   transition: top ease 1.2s;
 }

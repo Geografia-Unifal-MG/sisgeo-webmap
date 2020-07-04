@@ -2,7 +2,7 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: var(--navbar-color);
-  height: 9%;
+  height: 7.5vh;
 }
 
 .navbar-custom .navbar-brand {
@@ -13,7 +13,7 @@
 
 .navbar-custom .navbar-nav .nav-item .nav-link {
   font-family: "Patua One";
-  font-size: 1.1rem;
+  font-size: 2vh;
   font-weight: 600;
   letter-spacing: 1px;
   padding-right: 15px;
