@@ -5,6 +5,8 @@
 */
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import '../node_modules/font-awesome/css/font-awesome.css';
 
 html {
     scroll-behavior: smooth;
@@ -79,7 +81,6 @@ mat-toolbar-row {
 @import '~assets/css/map/jquery.mCustomScrollbar.min.css';
 @import '~assets/css/map/mCS-sisgeo-theme.css';
 @import '~assets/css/jquery-scrolling/jquery.scrolling-tabs.min.css';
-@import '../node_modules/font-awesome/css/font-awesome.css';
 
 @font-face {
     font-family: 'icon';

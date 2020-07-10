@@ -149,11 +149,13 @@ header .container .btn:hover {
 .bg-project a:hover {
   text-decoration: underline;
   text-decoration-color: #2590c4;
+  cursor: pointer;
 }
 
 .project-img {
   height: 230px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .project-img:hover {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -26,8 +27,19 @@ export class HomeComponent implements OnInit {
     'opacity': '1'
  }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('scrollPosition')) {
+      const scrollTo = JSON.parse(localStorage.getItem('scrollPosition'));
+      window.scroll(0, scrollTo);
+      localStorage.removeItem('scrollPosition');
+    }
+  }
+
+  goToProject(url){    
+    const scrollPosition = window.pageYOffset;
+    localStorage.setItem('scrollPosition', JSON.stringify(scrollPosition));
+    this.router.navigate([url]);
   }
 }
