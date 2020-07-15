@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('scrollPosition')) {
       const scrollTo = JSON.parse(localStorage.getItem('scrollPosition'));
-      window.scroll(0, scrollTo);
+      $("html, body").animate({ scrollTop: scrollTo }, 0);
       localStorage.removeItem('scrollPosition');
     }
   }

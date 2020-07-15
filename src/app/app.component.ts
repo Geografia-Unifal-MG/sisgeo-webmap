@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './services/local-storage.service';
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   ngOnInit() { }
 
   onActivate(event) {
-    window.scroll(0, 0);
+    $("html, body").animate({ scrollTop: 0 }, 100);
   }
 
   callLogin() {
