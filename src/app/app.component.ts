@@ -40,13 +40,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this._translate.get('app.title').subscribe((translated: string) => {
-      //this.title = this._translate.instant('app.title');
-      //this.title = translated;
-      //console.log(translated);
-    });   
-  }
+  ngOnInit() { }
 
   onActivate(event) {
     window.scroll(0, 0);
@@ -59,7 +53,6 @@ export class AppComponent implements OnInit {
   private loadDefaultLanguage(): void {
     this.localStorageService.getValue(this.languageKey).subscribe((item: any) => {
       let toUse = JSON.parse(item);
-      //console.log(toUse);
 
       if (toUse === null) {
         this._translate.setDefaultLang('pt-br');
