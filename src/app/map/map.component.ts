@@ -159,6 +159,9 @@ export class MapComponent implements OnInit, OnDestroy, OpenUrl {
 
                 let layersToMap = new Array();
                 this.overlayers.forEach(vision => {
+                    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+                        vision.layers.sort(function (a,b) {return a.uiOrder-b.uiOrder});
+                    }     
                     layersToMap = layersToMap.concat(this.gridStackInstance(vision));
                 });
 
@@ -168,7 +171,7 @@ export class MapComponent implements OnInit, OnDestroy, OpenUrl {
                         longitude: -45.784149169921875
                     }, this.baselayers, layersToMap);
 
-                    this.firstLayer = this.overlayers[0].layers.find(l => l.uiOrder == 0);
+                    this.firstLayer = this.overlayers[0].layers[0];
                     this.mapaService.fitBounds(this.firstLayer);
                 });
 

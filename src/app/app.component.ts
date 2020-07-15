@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './services/local-storage.service';
@@ -40,13 +40,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this._translate.get('app.title').subscribe((translated: string) => {
-      //this.title = this._translate.instant('app.title');
-      //this.title = translated;
-      //console.log(translated);
-    });
-  }
+  ngOnInit() { }
 
   onActivate(event) {
     $("html, body").animate({ scrollTop: 0 }, 100);
@@ -59,7 +53,6 @@ export class AppComponent implements OnInit {
   private loadDefaultLanguage(): void {
     this.localStorageService.getValue(this.languageKey).subscribe((item: any) => {
       let toUse = JSON.parse(item);
-      //console.log(toUse);
 
       if (toUse === null) {
         this._translate.setDefaultLang('pt-br');
