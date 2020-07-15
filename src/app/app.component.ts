@@ -45,11 +45,11 @@ export class AppComponent implements OnInit {
       //this.title = this._translate.instant('app.title');
       //this.title = translated;
       //console.log(translated);
-    });   
+    });
   }
 
   onActivate(event) {
-    window.scroll(0, 0);
+    $("html, body").animate({ scrollTop: 0 }, 100);
   }
 
   callLogin() {
