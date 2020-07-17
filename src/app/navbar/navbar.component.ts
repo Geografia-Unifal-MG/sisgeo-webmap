@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $: any
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -16,5 +14,12 @@ export class NavbarComponent implements OnInit {
 
   scroll() {
     $("html, .content").animate({ scrollTop: $(document).height() * 1000}, 0.1);
+  }
+
+  goToSection(url) {
+    if (localStorage.getItem('scrollPosition')) {
+      localStorage.removeItem('scrollPosition');
+    }
+    document.getElementById('#' + url).scrollIntoView();
   }
 }

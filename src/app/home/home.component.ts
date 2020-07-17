@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   goTopBtnStyle = {
-    'position': 'fixed', 
+    'position': 'fixed',
     'bottom': '10px',
     'right': '25px',
     'cursor': 'pointer',
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     'line-height': '1.5',
     'outline': 'none',
     'opacity': '1'
- }
+  }
 
   constructor(private router: Router) { }
 
@@ -34,10 +34,14 @@ export class HomeComponent implements OnInit {
       const scrollTo = JSON.parse(localStorage.getItem('scrollPosition'));
       $("html, body").animate({ scrollTop: scrollTo }, 0);
       localStorage.removeItem('scrollPosition');
+    } else {
+      setTimeout(() => {
+        document.querySelector(this.router.url.substring(1)).scrollIntoView(true);
+      }, 200);
     }
   }
 
-  goToProject(url){    
+  goToProject(url) {
     const scrollPosition = window.pageYOffset;
     localStorage.setItem('scrollPosition', JSON.stringify(scrollPosition));
     this.router.navigate([url]);
