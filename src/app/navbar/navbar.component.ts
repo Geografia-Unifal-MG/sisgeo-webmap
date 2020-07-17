@@ -20,6 +20,6 @@ export class NavbarComponent implements OnInit {
     if (localStorage.getItem('scrollPosition')) {
       localStorage.removeItem('scrollPosition');
     }
-    document.getElementById('#' + url).scrollIntoView();
+    document.querySelector('#' + url).scrollIntoView();
   }
 }
