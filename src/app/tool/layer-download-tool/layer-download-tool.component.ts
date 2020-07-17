@@ -7,6 +7,7 @@ import { Layer } from '../../entity/layer';
 import { DownloadService } from '../../services/download.service';
 import { isUndefined } from 'util';
 import { DialogComponent } from '../../dialog/dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * LayerDownloadToolComponent
@@ -25,16 +26,13 @@ export class LayerDownloadToolComponent extends ToolComponent implements OnInit,
     @Input() shared: any;  
     @ViewChild('innerContent', {static: true}) innerContent: ElementRef;
 
-    private downloadService: DownloadService;
-
     dynamicOnMount(attr: Map<string, any>, innerHTML: string, el: any) {
         this.innerContent.nativeElement.innerHTML = innerHTML;    
         this.layer = this.shared;
     }
     
-    constructor(private dialog: MatDialog, private dom: DomSanitizer, private cdRef: ChangeDetectorRef, downloadService: DownloadService) {
+    constructor(private dialog: MatDialog, private dom: DomSanitizer, private downloadService: DownloadService, private translateService: TranslateService) {
         super();
-        this.downloadService = downloadService;
     }
 
     ngOnInit() {    
@@ -43,17 +41,19 @@ export class LayerDownloadToolComponent extends ToolComponent implements OnInit,
 
     download(layer: Layer) {
         this.downloadService.getDownloadById(layer.downloadId).subscribe(download => {
-            const html =
-            '<div class="container">' +
-            '    <div class="card">' +
-            '        <div class="card-body">' +
-            '           <div><h5 class="card-title">Obter ' + layer.title + '</h5>' +
-            '               <p class="card-text">' + download.name + ': ' + download.description + '</p>' +
-            '               <a href="' + download.link + '" class="btn btn-primary btn-success">Download</a><div>' +
-            '           </div>' +
-            '    </div>' +
-            '</div>';
-            this.showDialog(html, "dialog.title.download");            
+            this.translateService.get('dialog.body.get').subscribe(getText => {
+                const html =
+                '<div class="container">' +
+                '    <div class="card">' +
+                '        <div class="card-body">' +
+                '           <div><h5 class="card-title">' + getText + ' ' + layer.title + '</h5>' +
+                '               <p class="card-text">' + download.name + ': ' + download.description + '</p>' +
+                '               <a href="' + download.link + '" class="btn btn-primary btn-success">Download</a><div>' +
+                '           </div>' +
+                '    </div>' +
+                '</div>';
+                this.showDialog(html, "dialog.title.download");
+            });        
         });	
     }
 

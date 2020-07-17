@@ -1,5 +1,7 @@
 <ngx-spinner type="square-spin" bdColor = "rgba(0,0,0,0.4)" color="rgba(37,144,195,0.65)" size="large">
-    <p class="loading-text">Carregando...</p>
+    <p class="loading-text">
+        {{ 'map.loading' | translate }}
+    </p>
 </ngx-spinner>
 <!-- navbar -->
 <div id="content">
@@ -14,7 +16,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" rel="noopener" style="cursor: pointer;" href="/#footer">
+                    <a class="nav-link" target="_blank" rel="noopener" style="cursor: pointer;" href="/#contacts">
                         {{ 'menu.contact' | translate }}
                     </a>
                 </li>
@@ -88,7 +90,7 @@
             <div class="grid-stack" id="{{ 'grid-stack-' + project.id }}" attr.data-vision-id="{{project.id}}">
                 <div *ngFor="let layer of project.layers" class="grid-stack-item" id="{{ (layer.id | cleanWhiteSpace) + '_gslayer' }}" attr.data-layer-id="{{layer.id}}" data-gs-x="0" data-gs-y="{{ layer.uiOrder }}" data-gs-width="12" data-gs-height="1">
                     <div class="grid-stack-item-content">
-                        <ul class="list-unstyled components list h-100 layer-list">
+                        <ul *ngIf="project.loaded" class="list-unstyled components list h-100 layer-list">
                             <li>
                                 <a href="{{'#' + (layer.id | cleanWhiteSpace)}}" id="{{ (layer.id | cleanWhiteSpace) + '_gstoggle' }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle dropdown-layer">
                                     <dfn class="ferramenta-camada" attr.data-info="{{ 'tools.layerOptions' | translate }}">
