@@ -19,7 +19,8 @@ export class NavbarComponent implements OnInit {
   goToSection(url) {
     if (localStorage.getItem('scrollPosition')) {
       localStorage.removeItem('scrollPosition');
+    } else {
+      document.querySelector('#' + url).scrollIntoView();
     }
-    document.querySelector('#' + url).scrollIntoView();
   }
 }

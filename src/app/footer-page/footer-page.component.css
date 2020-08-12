@@ -13,6 +13,10 @@ p {
   color: #fff;
 }
 
+.col-md-4 h5 {
+  font-size: 1.174rem;
+}
+
 .footer-copyright {
   padding-bottom: 25px;
 }

@@ -34,11 +34,11 @@ export class HomeComponent implements OnInit {
       const scrollTo = JSON.parse(localStorage.getItem('scrollPosition'));
       $("html, body").animate({ scrollTop: scrollTo }, 0);
       localStorage.removeItem('scrollPosition');
-    } else {
-      setTimeout(() => {
-        document.querySelector(this.router.url.substring(1)).scrollIntoView(true);
-      }, 200);
-    }
+    } else if (this.router.url.substring(1).length > 0) {
+        setTimeout(() => {
+          document.querySelector(this.router.url.substring(1)).scrollIntoView(true);
+        }, 200);
+      }
   }
 
   goToProject(url) {

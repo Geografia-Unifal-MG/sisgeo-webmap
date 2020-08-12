@@ -1,3 +1,7 @@
+@import '../../assets/css/jquery-scrolling/jquery.scrolling-tabs.min.css';
+@import '../../assets/css/map/jquery.mCustomScrollbar.min.css';
+@import '../../assets/css/map/mCS-sisgeo-theme.css';
+
 .container-icon {
   padding: 0 14px;
 }
