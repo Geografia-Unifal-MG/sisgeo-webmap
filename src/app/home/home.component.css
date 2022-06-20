@@ -336,3 +336,8 @@ header .container .btn:hover {
     margin-bottom: 30px;
   }
 }
+
+.publications {
+  padding-bottom: 3rem;
+  background: #e5e8eb;
+} 
