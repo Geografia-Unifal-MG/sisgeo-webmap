@@ -236,7 +236,7 @@ header .container .btn:hover {
 /*Equipe*/
 .team {
   padding-top: 5rem;
-  padding-bottom: 3rem;
+  margin-bottom: -4rem;
 }
 
 .person {
@@ -335,4 +335,28 @@ header .container .btn:hover {
   .box {
     margin-bottom: 30px;
   }
+}
+
+/* Publicações */
+.publications {
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+.publications .paragraph p {
+  padding: 0 15px;
+  text-indent: inherit;
+}
+
+.publications .paragraph span {
+  padding: 0;
+}
+
+.link-publication {
+  text-decoration: underline;
+}
+
+.link-publication:hover {
+  color:#2590c4;
+  text-decoration: underline;
 }
