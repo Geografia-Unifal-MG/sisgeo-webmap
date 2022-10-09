@@ -35,6 +35,19 @@ The vision and layer definition on the .json file for a layer with id `5e49d55c5
 
 ## Build
 
+Install nvm
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+```
+
+Install and select the ```14.16.0``` node version
+
+```bash
+nvm install 14.16.0
+npm use 14.16.0
+```
+
 For installing dependencies defined at package.json, run the following command
 
 ```bash
