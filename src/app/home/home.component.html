@@ -1,472 +1,673 @@
 <div class="content">
-    <app-navbar></app-navbar>
-    <header>
-        <img src="../../assets/img/page/background-image.png" alt="">
-        <div class="container">
-            <div class="row justify-content-center">
-                <h1 class="heading">SisGEO</h1>
-            </div>
-            <div class="row justify-content-center">
-                <h4 class="subheading">Sistema de compartilhamento de dados geoespaciais</h4>
-            </div>
-            <div class="row justify-content-center mt-4">
-                <a [routerLink]="['/webmap']" class="btn btn-primary">Acesse a
-                    ferramenta</a>
-            </div>
-        </div>
-    </header>
-
-    <div id="about" class="about">
-        <div class="container">
-            <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-3">Sobre</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6 initial">
-                    <div class="paragraph text-lg-left">
-                        <p>O portal SisGEO é uma plataforma web desenvolvida pela Universidade Federal de
-                            Alfenas(UNIFAL-MG)
-                            em parceria com o INPE para acesso, consulta, análise e disseminação de dados geográficos
-                            gerados elos
-                            projetos de monitoramento do Lago de Furnas. Através do SisGeo qualquer pessoa pode acessar
-                            os
-                            mapas e
-                            realizar
-                            análises sobre os dados diretamente do portal, sem necessitar de ferramentas específicas.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <img class="img-fluid img-about" src="../../assets/img/page/ferramenta-original.png" alt="">
-                    <span class="desc-ferramenta text-blue mb-3">Captura de tela da ferramenta SisGeo v1.0</span>
-                </div>
-            </div>
-            <div class="row paragraph text-lg-left">
-                <p>
-                    A algumas décadas atrás, pelos idos da década de 1990, o compartilhamento de dados - sejam espaciais
-                    ou
-                    não -
-                    esbarrava na
-                    ineficiente ou até mesmo inexistente, estrutura de tecnologia de informação.
-                    Com o desenvolvimento e popularização de novos componentes de hardware e software em computadores
-                    pessoais,
-                    aliado ao
-                    investimento na infraestrutura de comunicações em servidores, plataformas de comunicações e redes, o
-                    tráfego
-                    de dados
-                    obteve um expressivo incremento. A maior referência com relação ao tráfego de dados em rede e
-                    conectividade
-                    entre empresas e pessoas
-                    foi, sem dúvida a internet, que popularizou-se no Brasil no início da década de 2000.
-                </p>
-                <p>
-                    No Brasil, investimentos foram realizados a fim de se estruturar redes de alta velocidade e que
-                    conectassem
-                    institutos de pesquisas e órgãos das esferas administrativas.
-                    A Rede Nacional de Pesquisa (RNP) foi responsável por introduzir a internet em diversos locais
-                    interioranos no
-                    Brasil, realizando a
-                    inclusão digital de milhares de discentes nas instituições de ensino e pesquisa, possibilitando, o
-                    compartilhamento de dados e
-                    conhecimento. Entretanto, muitos dados são de difícil acesso à sociedade até os dias atuais e, tendo
-                    o
-                    foco de
-                    diminuir a distância
-                    entre os dados produzidos pelas instituições de ensino e pesquisa e a sociedade, o curso de
-                    Geografia
-                    por meio
-                    do Laboratório de
-                    Cartografia e o curso de Bacharelado em Ciência da Computação da Universidade Federal de Alfenas
-                    (UNIFAL-MG),
-                    desenvolvem em cooperação
-                    com o Instituto Nacional de Pesquisas Espaciais (INPE) e apoio do Núcleo de Tecnologia da Informação
-                    da
-                    UNIFAL-MG, o Sistema de
-                    Compartilhamento de Dados Geoespaciais (SisGEO).
-                </p>
-                <p>
-                    O SisGEO possui como objetivo compartilhar dados
-                    espaciais
-                    produzidos pelo curso de
-                    Graduação e Pós-graduação em Geografia, nos mais diferentes recortes espaciais, por meio de
-                    estágios,
-                    iniciações científicas, trabalhos
-                    de conclusão de curso, dissertações de Mestrado e projetos de pesquisa realizadas(os). A coordenação
-                    do
-                    SisGEO
-                    está a cargo do
-                    Laboratório de Cartografia e do Grupo de Pesquisa em Geodinâmica de Bacias Hidrográficas (GeoHidro),
-                    que
-                    se
-                    responsabilizará pela
-                    atualização da plataforma e avaliação de dados a serem inseridos.
-                </p>
-                <p>
-                    O SisGEO encontra-se em sua versão 1.0 que ofertará o armazenamento, visualização e disponibilização
-                    de
-                    dados
-                    espaciais, seguindo padrões internacionais de dados espaciais
-                    definidos pela Open Geospatial
-                    Consortium (OGC). Ressalta-se que toda a estrutura do sistema está embasada em tecnologia de
-                    software
-                    livre, o
-                    que reduz custos com
-                    licenças e/ou permissões para seu desenvolvimento.
-                </p>
-                <p>
-                    A Equipe de Desenvolvimento do SisGEO gostaria de
-                    agradecer
-                    ao Instituto Nacional de
-                    Pesquisas Espaciais (INPE), mais especificamente à pesquisadora da Divisão de Processamento de
-                    Imagens
-                    (DPI) e
-                    uma das coordenadoras do
-                    TerraBrasilis, Dra. Karine Reis Ferreira, pela disponibilização de esforços em prol da elaboração de
-                    nosso
-                    sistema, Obrigado! Agradecemos também ao
-                    Prof. Dr. Marcio Abondanza Vitiello pela cessão de imagem de seu banco de imagens pessoal. Nosso
-                    agradecimento também é direcionado a André Fernando Araújo de Carvalho, pertencente à Equipe de
-                    Desenvolvimento do TerraBrasilis, pelo
-                    suporte nas diversas etapas de estruturação do SisGEO, Obrigado!
-                </p>
-                <p>Esperamos que você desfrute desta
-                    ferramenta
-                    e - que ela possa lhe
-                    auxiliar - na visualização e aquisição de dados espaciais para sua pesquisa!
-                </p><br>
-                <span>Bom trabalho a todos(as).</span>
-                <span class="team-sisgeo">Equipe SisGEO v1.0</span>
-            </div>
-        </div>
+  <app-navbar></app-navbar>
+  <header>
+    <img src="../../assets/img/page/background-image.png" alt="" />
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <h1 class="heading">SisGEO</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h4 class="subheading">
+          Sistema de Compartilhamento de Dados Geoespaciais
+        </h4>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <a [routerLink]="['/webmap']" class="btn btn-primary"
+          >Acesse a Plataforma</a
+        >
+      </div>
     </div>
+  </header>
 
-    <div id="projects" class="projects">
-        <div class="container">
-            <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-3">Projetos</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-5 text-center">
-                    <div class="card">
-                        <a (click)="goToProject('/mapeamento')"><img class="project-img img-fluid card-img-top"
-                                src="../../assets/img/page/mapeamento.png" alt=""></a>
-                    </div>
-                    <div class="bg-project">
-                        <a (click)="goToProject('/mapeamento')">
-                            <h4 class="text-blue mb-2">Mapeamento do Lago de Furnas</h4>
-                        </a>
-                        <p class="text-muted mb-0">Monitoramento da área do espelho d' água e volume útil por imagens de
-                            satélite
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5 text-center">
-                    <div class="card">
-                        <a (click)="goToProject('/bacia')"><img class="project-img img-fluid card-img-top"
-                                src="../../assets/img/page/bacia.png" alt=""></a>
-                    </div>
-                    <div class="bg-project">
-                        <a (click)="goToProject('/bacia')">
-                            <h4 class="text-blue mb-2">Bacia Hidrográfica de Furnas</h4>
-                        </a>
-                        <p class="text-muted mb-0">Repositório de dados cartográficos da bacia hidrográfica de Furnas
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5 text-center">
-                    <div class="card">
-                        <a (click)="goToProject('/topografia')"><img class="project-img img-fluid card-img-top"
-                                src="../../assets/img/page/projeto-topografia.png" alt=""></a>
-                    </div>
-                    <div class="bg-project">
-                        <a (click)="goToProject('/topografia')">
-                            <h4 class="text-blue mb-2">Topografia de Furnas</h4>
-                        </a>
-                        <p class="text-muted mb-0">Repositório de dados topográficos da bacia hidrográfica de Furnas</p>
-                    </div>
-                </div>
-            </div>
+  <div id="about" class="about">
+    <div class="container">
+      <div class="content-div-heading text-center">
+        <h2 class="text-blue mb-3">Sobre</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 initial">
+          <div class="paragraph text-lg-left">
+            <p>
+              O portal SisGEO é uma plataforma web desenvolvida pela
+              Universidade Federal de Alfenas(UNIFAL-MG) em parceria com o INPE
+              para acesso, consulta, análise e disseminação de dados geográficos
+              gerados elos projetos de monitoramento do Lago de Furnas. Através
+              do SisGeo qualquer pessoa pode acessar os mapas e realizar
+              análises sobre os dados diretamente do portal, sem necessitar de
+              ferramentas específicas.
+            </p>
+          </div>
         </div>
-    </div>
-
-    <div id="technologies" class="technologies">
-        <div class="container">
-            <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-3">Tecnologias</h2>
-            </div>
-            <div class="row align-items-center no-gutters mb-4">
-                <div class="col-xl-6 col-lg-6">
-                    <div class="paragraph text-lg-left">
-                        <p>O SisGEO utiliza tecnologias gratuitas sob diferentes licenças de software: <br>
-                            - Leaflet: bilioteca Javacript para exibir mapas na web e dispositivos móveis. Licença:
-                            "BSD-2-Clause”.<br>
-                            - Angular 5: framework voltado ao desenvolvimento de aplicações web. Licença: "MIT
-                            license”.<br>
-                            - Docker: plataforma de criação e administração e ambientes e serviços, facilitando o
-                            gerenciamento dos
-                            serviços utilizadas pelo SisGEO. Licença: "Apache 2.0 license”.<br>
-                            - MongoDB: banco de dados orientado a documentos. Licença: verificar versão para saber qual
-                            é a
-                            licença.<br>
-                            - Nginx: web server, que também pode ser utilizado para proxy reverso e balanceamento de
-                            carga.
-                            Licença:
-                            "BSD-2-Clause”.<br>
-                            - Geoserver: servidor que permite compartilhar, editar e processar dados geoespaciais.
-                            Licença:
-                            "GNU
-                            General Public License”.</p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6">
-                    <div class="row tech-imgs">
-                        <img class="img-fluid mb-3 mb-lg-0" src="../../assets/img/page/geoserver.png" alt="">
-                        <img class="img-fluid mb-3 mb-lg-0" src="../../assets/img/page/docker.png" alt="">
-                    </div>
-                    <div class="row tech-imgs">
-                        <img class="img-fluid mb-3 mb-lg-0" src="../../assets/img/page/leaflet.png" alt="">
-                        <img class="img-fluid mb-3 mb-lg-0" src="../../assets/img/page/angular.png" alt="">
-                    </div>
-                    <div class="row tech-imgs">
-                        <img class="img-fluid mb-3 mb-lg-0 nginx" src="../../assets/img/page/nginx.png" alt="">
-                        <img class="img-fluid mb-3 mb-lg-0" src="../../assets/img/page/mongodb.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row paragraph text-lg-left">
-                <p>
-                    O SisGEO utiliza a plataforma "docker", responsável pela criação e administração de aplicações em
-                    ambientes
-                    isolados, sendo que cada ambiente reúne todos os recursos necessários para a execução de uma
-                    aplicação.
-                    Com
-                    ele fica muito mais simples implantar e escalonar a aplicação, entre outras facilidades. Nele,
-                    existe o
-                    conceito de containers, que é uma virtualização em nível do sistema operacional, como se fosse uma
-                    máquina
-                    virtual, porém apenas com os recursos necessários para aquela aplicação, sendo assim, muito mais
-                    leve.
-                </p>
-                <p>Portainer é uma interface gráfica responsável por gerenciar os containers, realizando o deploy e
-                    escalonamento, além de facilitar a visualização dos logs. Além dele, temos outros três containers
-                    que
-                    participam diretamente do funcionamento da sistema: "Geoserver", "Business API" e "Webmap". O fluxo
-                    é
-                    basicamente o seguinte:
-                    quando o container Webmap recebe uma requisição, ele retorna uma página web que contém código gerado
-                    pelo
-                    framework Angular, código do biblioteca Leaflet para requisitar e desenhar as layers no navegador,
-                    além
-                    de
-                    outros.
-                </p>
-                <p>
-                    Nesse momento, ele também faz requisições Http para a API REST: Business API que por sua vez
-                    requisita
-                    dados de layers que estão armazenados no banco de dados "mongo". Esses dados especificam quais
-                    layers
-                    serão
-                    exibidas no "sidebar" da ferramenta, ordem das layers, em qual vision a layer se encontra, quais são
-                    os
-                    links
-                    de download das layers, links de "getFeatureInfo", que retornam informações da layer, entre outros.
-                </p>
-                <p>Quando o usuário clica no botão para exibir a layer, é feita uma requisição de "getMap" para o
-                    geoserver,
-                    que por sua vez retorna o arquivo correspondente a layer requisitada. Quando esse arquivo é baixado
-                    pelo
-                    navegador, a biblioteca em javascript, Leaflet, é responsável por desenhar a layer no mesmo.
-                </p>
-            </div>
-            <div class="row align-items-center fluxo">
-                <img class="img-fluxo img-fluid" src="../../assets/img/page/fluxo.jpeg" alt="">
-            </div>
+        <div class="col-md-6">
+          <img
+            class="img-fluid img-about"
+            src="../../assets/img/page/ferramenta-original.png"
+            alt=""
+          />
+          <span class="desc-ferramenta text-blue mb-3"
+            >Captura de tela da ferramenta SisGeo v1.0</span
+          >
         </div>
+      </div>
+      <div class="row paragraph text-lg-left">
+        A plataforma Sistema de Compartilhamento de Dados Geoespaciais (SisGEO)
+        é uma plataforma web desenvolvida pela Universidade Federal de Alfenas
+        (UNIFAL-MG) em parceria com o Instituto Nacional de Pesquisas Espaciais
+        (INPE) para acesso, consulta, análise e disseminação de dados
+        geográficos gerados pelos projetos de pesquisa sobre o reservatório de
+        Furnas e sua bacia hidrográfica, bem como de outros recortes
+        territoriais.
+        <br />
+        O SisGEO possui como objetivo compartilhar dados espaciais produzidos
+        pelos cursos de Graduação e Pós-graduação em Geografia, por meio de
+        estágios, iniciações científicas, trabalhos de conclusão de curso,
+        dissertações de Mestrado e projetos de pesquisa. A coordenação do SisGEO
+        está à cargo do Laboratório de Cartografia e do Grupo de Pesquisa em
+        Geodinâmica de Bacias Hidrográficas (GeoHidro), que se responsabilizará
+        pela atualização da plataforma e avaliação de dados a serem inseridos.
+        Através do SisGEO a sociedade poderá ter acesso aos dados das pesquisas
+        realizadas pelo GeoHidro e demais colaboradores.
+        <br />
+        O SisGEO encontra-se em sua versão 1.0 que ofertará o armazenamento,
+        visualização e disponibilização de dados espaciais, seguindo padrões
+        internacionais de dados espaciais definidos pela Open Geospatial
+        Consortium (OGC). Ressalta-se que toda a estrutura do sistema está
+        embasada em tecnologia de software livre, o que reduz custos com
+        licenças e/ou permissões para seu desenvolvimento. A Equipe de
+        Desenvolvimento do SisGEO gostaria de agradecer a pesquisadora da
+        Divisão de Processamento de Imagens do INPE e uma das coordenadoras do
+        TerraBrasilis, Dra. Karine Reis Ferreira, pela disponibilização de
+        esforços em prol da elaboração de nosso sistema, extensivo ao
+        Desenvolvedor de Software Sênior André Fernando Araújo de Carvalho,
+        pertencente à Equipe de Desenvolvimento do TerraBrasilis, pelo suporte
+        nas diversas etapas de estruturação. Agradecemos também ao Prof. Dr.
+        Marcio Abondanza Vitiello da UNIFAL-MG, pela cessão de imagem de seu
+        banco de imagens pessoal. Esperamos que a plataforma SisGEO possa lhe
+        auxiliar na visualização e aquisição de dados espaciais para sua
+        pesquisa! Bom trabalho a todos(as).
+        <br />
+        <span class="team-sisgeo">Equipe SisGEO</span>
+      </div>
     </div>
+  </div>
 
-    <div id="partners" class="partners">
-        <div class="container">
-            <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-3">Parceiros</h2>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-md-4 mb-5 text-center">
-                    <a href="http://www.unifal-mg.edu.br" target="_blank"><img class="partner-img img-fluid"
-                            src="../../assets/img/page/unifal.png" alt=""></a>
-                </div>
-                <div class="col-md-4 mb-5 text-center">
-                    <a href="http://www.inpe.br" target="_blank"><img class="partner-img img-fluid"
-                            src="../../assets/img/page/inpe.png" alt=""></a>
-                </div>
-                <div class="col-md-4 mb-5 text-center">
-                    <a href="http://www.bcc.unifal-mg.edu.br/portal/" target="_blank"><img class="partner-img img-fluid"
-                            src="../../assets/img/page/bcc.png" alt=""></a>
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-md-4 mb-5 text-center">
-                    <a href="https://www.unifal-mg.edu.br/geografia/" target="_blank"><img class="partner-img img-fluid"
-                            src="../../assets/img/page/geografia.png" alt=""></a>
-                </div>
-                <div class="col-md-4 mb-5 text-center">
-                    <a href="http://www.unifal-mg.edu.br/geohidro" target="_blank"><img class="partner-img img-fluid"
-                            src="../../assets/img/page/geohidro.png" alt=""></a>
-                </div>
-                <div class="col-md-4 mb-5 text-center">
-                    <a href="http://terrabrasilis.dpi.inpe.br/" target="_blank"><img class="partner-img img-fluid"
-                            src="../../assets/img/page/terrabrasilis.png" alt=""></a>
-                </div>
-            </div>
+  <div id="projects" class="projects">
+    <div class="container">
+      <div class="content-div-heading text-center">
+        <h2 class="text-blue mb-3">Projetos</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-5 text-center">
+          <div class="card">
+            <a (click)="goToProject('/mapeamento')"
+              ><img
+                class="project-img img-fluid card-img-top"
+                src="../../assets/img/page/mapeamento.png"
+                alt=""
+            /></a>
+          </div>
+          <div class="bg-project">
+            <a (click)="goToProject('/mapeamento')">
+              <h4 class="text-blue mb-2">
+                Mapeamento do reservatório de Furnas
+              </h4>
+            </a>
+            <p class="text-muted mb-0">
+              Monitoramento do espelho d’água, volume útil e recorrência por
+              imagens de satélite
+            </p>
+          </div>
         </div>
-    </div>
-
-    <div id="team" class="team">
-        <div class="container">
-            <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-5">Equipe</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="box">
-                        <img src="../../assets/img/page/sylvester.jpg" class="person rounded-circl img-responsive"
-                            alt="Sample ">
-                        <ul class="icon">
-                            <li>
-                                <a class="first" href="https://www.linkedin.com/in/sylvester-henrique/" target="_blank">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="second" href="https://github.com/SylvesterH13" target="_blank">
-                                    <i class="fa fa-github"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <h5 class="font-weight-bold text-center mt-4 mb-3">Sylvester Henrique</h5>
-                    <p class="text-blue text-center">Implantação do sistema, design do site,
-                        inserção de dados no banco e Geoserver,
-                        alterações da estrutura do BD, na api de lógica de negócios
-                        e no código fonte da ferramenta.
-                    </p>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="box">
-                        <img src="../../assets/img/page/guilherme.jpg" class="person rounded-circle" alt="">
-                        <ul class="icon">
-                            <li>
-                                <a class="first" href="https://www.linkedin.com/in/gu1lh3rmesv" target="_blank">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="second" href="https://github.com/gu1lh3rme" target="_blank">
-                                    <i class="fa fa-github"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <h5 class="font-weight-bold text-center mt-4 mb-3">Guilherme Vieira</h5>
-                    <p class="text-blue text-center">Atuou no desenvolvimento e design do site de projetos, alterações
-                        no código fonte da ferramenta e inserção de dados no Geoserver.
-                    </p>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-md-0 mb-5">
-                    <div class="box">
-                        <img src="../../assets/img/page/marcelo.jpeg" class="person rounded-circle img-responsive"
-                            alt="Sample ">
-                        <ul class="icon">
-                            <li>
-                                <a class="first" href="http://lattes.cnpq.br/5292636043289795" target="_blank">
-                                    <i class="fa fa-university"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="second" href="http://lattes.cnpq.br/5292636043289795" target="_blank">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <h5 class="font-weight-bold text-center mt-4 mb-3">Marcelo de Oliveira Latuf</h5>
-                    <p class="text-blue text-center">Coordenou ações na estruturação do SisGEO e na produção de dados.
-                    </p>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="box">
-                        <img src="../../assets/img/page/pagliares.jpg" class="person rounded-circle img-responsive"
-                            alt="Sample ">
-                        <ul class="icon">
-                            <li>
-                                <a class="first" href="https://www.bcc.unifal-mg.edu.br/portal/pessoas/docentes/prof-rodrigo-martins-pagliares/" target="_blank">
-                                    <i class="fa fa-university"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="second" href="http://lattes.cnpq.br/1194178136211401" target="_blank">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <h5 class="font-weight-bold text-center mt-4 mb-3">Rodrigo Martins Pagliares</h5>
-                    <p class="text-blue text-center">Deu suporte na fase de configuração do certificado SSL.</p>
-                </div>
-            </div>
+        <div class="col-md-4 mb-5 text-center">
+          <div class="card">
+            <a (click)="goToProject('/bacia')"
+              ><img
+                class="project-img img-fluid card-img-top"
+                src="../../assets/img/page/bacia.png"
+                alt=""
+            /></a>
+          </div>
+          <div class="bg-project">
+            <a (click)="goToProject('/bacia')">
+              <h4 class="text-blue mb-2">Bacia Hidrográfica de Furnas</h4>
+            </a>
+            <p class="text-muted mb-0">
+              Repositório de dados cartográficos da bacia hidrográfica de
+              Furnas
+            </p>
+          </div>
         </div>
-    </div>
-
-    <div id="publications" class="publications">
-        <div class="container">
-            <div class="content-div-heading text-center">
-                <h2 class="text-blue mb-5">Publicações</h2>
-            </div>
-            <div class="row paragraph">
-                <div class="col">
-                    <h4 class="text-blue">Artigo referência da plataforma SisGEO</h4>
-                    <p>ALVARENGA, S. H.; VIEIRA, G. S.; LATUF, M. O.; PAGLIARES, R. M. Sistema de compartilhamento de dados geoespaciais: SisGEO.
-                        <span class="font-weight-bold">Caderno de Geografia</span>, v.32, n.69, p.443-455, 2022. 
-                        <a href="http://periodicos.pucminas.br/index.php/geografia/article/view/27312" target="_blank" class="link-publication">
-                            Acesse aqui</a>.
-                    </p>
-                </div>
-            </div>
-            <br />
-            <div class="row paragraph">
-                <div class="col">
-                    <h4 class="text-blue">Demais Publicações</h4>
-                    <h5 class="text-blue">Base de dados topográfica da bacia de Furnas</h5>
-                    <p>CAMPOS, L. B.; LATUF, M. O. Base cartográfica digital da bacia hidrográfica do Lago de Furnas. In: PEREZ FILHO, A.; AMORIM, R. R.. (Org.). 
-                        <span class="font-weight-bold">Os Desafios da Geografia Física na Fronteira do Conhecimento.</span> 1ed. Campinas: INSTITUTO DE GEOCIÊNCIAS - UNICAMP, v. 1, p. 5732-5736, 2017.
-                        <a href="https://ocs.ige.unicamp.br/ojs/sbgfa/article/view/2275" target="_blank" class="link-publication">
-                            Acesse aqui</a>.
-                    </p>
-                    <h5 class="text-blue">Mapeamento do reservatório de Furnas</h5>
-                    <p>
-                        Artigo em processo final de avaliação.
-                    </p>
-                </div>
-            </div>
-            <br />
-            <div class="row paragraph">
-                <div class="col">
-                    <h4 class="text-blue">Política de compartilhamento de dados</h4>
-                    <p>O SisGEO possui por objetivo o compartilhamento de dados geoespaciais produzidos pelo curso de Geografia da Universidade Federal de Alfenas (UNIFAL-MG), 
-                        a partir de Trabalhos de Conclusão de Curso (nível graduação) e pelo Programa de Pós-Graduação em Geografia (PPGEO/UNIFAL-MG). Os dados a serem inseridos 
-                        na plataforma SisGEO passarão por avaliação preliminar de viabilidade, bem como necessitarão de já terem sido publicados em algum periódico indexado, 
-                        exceto no que tange ao repositório de dados acerca da bacia hidrográfica de Furnas, que será formado pela junção de variadas camadas advindas de múltiplas 
-                        bases cartográficas. A Equipe SisGEO não se responsabiliza pelo uso dos dados, cabendo diretamente a seus autores.
-                    </p>
-                </div>
-            </div>
+        <div class="col-md-4 mb-5 text-center">
+          <div class="card">
+            <a (click)="goToProject('/topografia')"
+              ><img
+                class="project-img img-fluid card-img-top"
+                src="../../assets/img/page/projeto-topografia.png"
+                alt=""
+            /></a>
+          </div>
+          <div class="bg-project">
+            <a (click)="goToProject('/topografia')">
+              <h4 class="text-blue mb-2">Topografia de Furnas</h4>
+            </a>
+            <p class="text-muted mb-0">
+              Repositório de dados topográficos da bacia hidrográfica de
+              Furnas
+            </p>
+          </div>
         </div>
+        <div class="col-md-4 mb-5 text-center">
+          <div class="card">
+            <a
+              ><img
+                class="project-img img-fluid card-img-top"
+                src="../../assets/img/page/bg-incendios.jpg"
+                alt=""
+            /></a>
+          </div>
+          <div class="bg-project">
+            <a>
+              <h4 class="text-blue mb-2">
+                Incêndios florestais em Minas Gerais
+              </h4>
+            </a>
+            <p class="text-muted mb-0">
+              Detecção de cicatrizes de incêndios utilizando dados do satélite
+              MODIS
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-5 text-center">
+          <div class="card">
+            <a
+              ><img
+                class="project-img img-fluid card-img-top"
+                src="../../assets/img/page/bg-recursos-hidricos.jpg"
+                alt=""
+            /></a>
+          </div>
+          <div class="bg-project">
+            <a>
+              <h4 class="text-blue mb-2">
+                Usos dos recursos hídricos no entorno de Furnas
+              </h4>
+            </a>
+            <p class="text-muted mb-0">
+              Subsídios ao planejamento e gestão dos recursos hídricos
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-5 text-center">
+          <div class="card">
+            <a
+              ><img
+                class="project-img img-fluid card-img-top"
+                src="../../assets/img/page/bg-geada-sul-de-minas.jpg"
+                alt=""
+            /></a>
+          </div>
+          <div class="bg-project">
+            <a>
+              <h4 class="text-blue mb-2">
+                Mapeamento de geada no Sul de Minas
+              </h4>
+            </a>
+            <p class="text-muted mb-0">
+              A partir de processamento digital de imagens do satélite
+              Sentinel-2
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <app-footer-page></app-footer-page>
-    <go-top-button [speed]="50000" [scrollDistance]="150" [classNames]="'className'" [styles]="goTopBtnStyle">
-        <i class="fa fa-arrow-up"></i>
-    </go-top-button>
+  <div id="technologies" class="technologies">
+    <div class="container">
+      <div class="content-div-heading text-center">
+        <h2 class="text-blue mb-3">Tecnologias</h2>
+      </div>
+      <div class="row align-items-center no-gutters mb-4">
+        <div class="col-xl-6 col-lg-6">
+          <div class="paragraph text-lg-left">
+            <p>
+              O SisGEO utiliza tecnologias gratuitas sob diferentes licenças de
+              software: <br />
+              - Leaflet: bilioteca Javacript para exibir mapas na web e
+              dispositivos móveis. Licença: "BSD-2-Clause”.<br />
+              - Angular 5: framework voltado ao desenvolvimento de aplicações
+              web. Licença: "MIT license”.<br />
+              - Docker: plataforma de criação e administração e ambientes e
+              serviços, facilitando o gerenciamento dos serviços utilizadas pelo
+              SisGEO. Licença: "Apache 2.0 license”.<br />
+              - MongoDB: banco de dados orientado a documentos. Licença:
+              verificar versão para saber qual é a licença.<br />
+              - Nginx: web server, que também pode ser utilizado para proxy
+              reverso e balanceamento de carga. Licença: "BSD-2-Clause”.<br />
+              - Geoserver: servidor que permite compartilhar, editar e processar
+              dados geoespaciais. Licença: "GNU General Public License”.
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <div class="row tech-imgs">
+            <img
+              class="img-fluid mb-3 mb-lg-0"
+              src="../../assets/img/page/geoserver.png"
+              alt=""
+            />
+            <img
+              class="img-fluid mb-3 mb-lg-0"
+              src="../../assets/img/page/docker.png"
+              alt=""
+            />
+          </div>
+          <div class="row tech-imgs">
+            <img
+              class="img-fluid mb-3 mb-lg-0"
+              src="../../assets/img/page/leaflet.png"
+              alt=""
+            />
+            <img
+              class="img-fluid mb-3 mb-lg-0"
+              src="../../assets/img/page/angular.png"
+              alt=""
+            />
+          </div>
+          <div class="row tech-imgs">
+            <img
+              class="img-fluid mb-3 mb-lg-0 nginx"
+              src="../../assets/img/page/nginx.png"
+              alt=""
+            />
+            <img
+              class="img-fluid mb-3 mb-lg-0"
+              src="../../assets/img/page/mongodb.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row paragraph text-lg-left">
+        <p>
+          O SisGEO utiliza a plataforma "docker", responsável pela criação e
+          administração de aplicações em ambientes isolados, sendo que cada
+          ambiente reúne todos os recursos necessários para a execução de uma
+          aplicação. Com ele fica muito mais simples implantar e escalonar a
+          aplicação, entre outras facilidades. Nele, existe o conceito de
+          containers, que é uma virtualização em nível do sistema operacional,
+          como se fosse uma máquina virtual, porém apenas com os recursos
+          necessários para aquela aplicação, sendo assim, muito mais leve.
+        </p>
+        <p>
+          Portainer é uma interface gráfica responsável por gerenciar os
+          containers, realizando o deploy e escalonamento, além de facilitar a
+          visualização dos logs. Além dele, temos outros três containers que
+          participam diretamente do funcionamento da sistema: "Geoserver",
+          "Business API" e "Webmap". O fluxo é basicamente o seguinte: quando o
+          container Webmap recebe uma requisição, ele retorna uma página web que
+          contém código gerado pelo framework Angular, código do biblioteca
+          Leaflet para requisitar e desenhar as layers no navegador, além de
+          outros.
+        </p>
+        <p>
+          Nesse momento, ele também faz requisições Http para a API REST:
+          Business API que por sua vez requisita dados de layers que estão
+          armazenados no banco de dados "mongo". Esses dados especificam quais
+          layers serão exibidas no "sidebar" da ferramenta, ordem das layers, em
+          qual vision a layer se encontra, quais são os links de download das
+          layers, links de "getFeatureInfo", que retornam informações da layer,
+          entre outros.
+        </p>
+        <p>
+          Quando o usuário clica no botão para exibir a layer, é feita uma
+          requisição de "getMap" para o geoserver, que por sua vez retorna o
+          arquivo correspondente a layer requisitada. Quando esse arquivo é
+          baixado pelo navegador, a biblioteca em javascript, Leaflet, é
+          responsável por desenhar a layer no mesmo.
+        </p>
+      </div>
+      <div class="row align-items-center fluxo">
+        <img
+          class="img-fluxo img-fluid"
+          src="../../assets/img/page/bg-fluxograma.png"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+
+  <div id="partners" class="partners">
+    <div class="container">
+      <div class="content-div-heading text-center">
+        <h2 class="text-blue mb-3">Parceiros</h2>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-5 text-center">
+          <a href="http://www.unifal-mg.edu.br" target="_blank"
+            ><img
+              class="partner-img img-fluid"
+              src="../../assets/img/page/unifal.png"
+              alt=""
+          /></a>
+        </div>
+        <div class="col-md-4 mb-5 text-center">
+          <a href="http://www.inpe.br" target="_blank"
+            ><img
+              class="partner-img img-fluid"
+              src="../../assets/img/page/inpe.png"
+              alt=""
+          /></a>
+        </div>
+        <div class="col-md-4 mb-5 text-center">
+          <a href="http://www.bcc.unifal-mg.edu.br/portal/" target="_blank"
+            ><img
+              class="partner-img img-fluid"
+              src="../../assets/img/page/bcc.png"
+              alt=""
+          /></a>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-5 text-center">
+          <a href="https://www.unifal-mg.edu.br/geografia/" target="_blank"
+            ><img
+              class="partner-img img-fluid"
+              src="../../assets/img/page/geografia.png"
+              alt=""
+          /></a>
+        </div>
+        <div class="col-md-4 mb-5 text-center">
+          <a href="http://www.unifal-mg.edu.br/geohidro" target="_blank"
+            ><img
+              class="partner-img img-fluid"
+              src="../../assets/img/page/geohidro.png"
+              alt=""
+          /></a>
+        </div>
+        <div class="col-md-4 mb-5 text-center">
+          <a href="http://terrabrasilis.dpi.inpe.br/" target="_blank"
+            ><img
+              class="partner-img img-fluid"
+              src="../../assets/img/page/terrabrasilis.png"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="team" class="team">
+    <div class="container">
+      <div class="content-div-heading text-center">
+        <h2 class="text-blue mb-5">Equipe</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="box">
+            <img
+              src="../../assets/img/page/sylvester.jpg"
+              class="person rounded-circl img-responsive"
+              alt="Sample "
+            />
+            <ul class="icon">
+              <li>
+                <a
+                  class="first"
+                  href="https://www.linkedin.com/in/sylvester-henrique/"
+                  target="_blank"
+                >
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="second"
+                  href="https://github.com/SylvesterH13"
+                  target="_blank"
+                >
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h5 class="font-weight-bold text-center mt-4 mb-3">
+            Sylvester Henrique
+          </h5>
+          <p class="text-blue text-center">
+            Implantação do sistema, design do site, inserção de dados no banco e
+            Geoserver, alterações da estrutura do BD, na api de lógica de
+            negócios e no código fonte da ferramenta.
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="box">
+            <img
+              src="../../assets/img/page/guilherme.jpg"
+              class="person rounded-circle"
+              alt=""
+            />
+            <ul class="icon">
+              <li>
+                <a
+                  class="first"
+                  href="https://www.linkedin.com/in/gu1lh3rmesv"
+                  target="_blank"
+                >
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="second"
+                  href="https://github.com/gu1lh3rme"
+                  target="_blank"
+                >
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h5 class="font-weight-bold text-center mt-4 mb-3">
+            Guilherme Vieira
+          </h5>
+          <p class="text-blue text-center">
+            Atuou no desenvolvimento e design do site de projetos, alterações no
+            código fonte da ferramenta e inserção de dados no Geoserver.
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-md-0 mb-5">
+          <div class="box">
+            <img
+              src="../../assets/img/page/marcelo.jpeg"
+              class="person rounded-circle img-responsive"
+              alt="Sample "
+            />
+            <ul class="icon">
+              <li>
+                <a
+                  class="first"
+                  href="http://lattes.cnpq.br/5292636043289795"
+                  target="_blank"
+                >
+                  <i class="fa fa-university"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="second"
+                  href="http://lattes.cnpq.br/5292636043289795"
+                  target="_blank"
+                >
+                  <i class="fa fa-link"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h5 class="font-weight-bold text-center mt-4 mb-3">
+            Marcelo de Oliveira Latuf
+          </h5>
+          <p class="text-blue text-center">
+            Coordena ações na estruturação do SisGEO e na produção/implantação
+            de dados.
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="box">
+            <img
+              src="../../assets/img/page/pagliares.jpg"
+              class="person rounded-circle img-responsive"
+              alt="Sample "
+            />
+            <ul class="icon">
+              <li>
+                <a
+                  class="first"
+                  href="https://www.bcc.unifal-mg.edu.br/portal/pessoas/docentes/prof-rodrigo-martins-pagliares/"
+                  target="_blank"
+                >
+                  <i class="fa fa-university"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="second"
+                  href="http://lattes.cnpq.br/1194178136211401"
+                  target="_blank"
+                >
+                  <i class="fa fa-link"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h5 class="font-weight-bold text-center mt-4 mb-3">
+            Rodrigo Martins Pagliares
+          </h5>
+          <p class="text-blue text-center">
+            Fornece suporte na configuração do certificado SSL.
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="box">
+            <img
+              src="../../assets/img/page/gabriel.jpeg"
+              class="person rounded-circle"
+              alt=""
+            />
+            <ul class="icon">
+              <li>
+                <a
+                  class="first"
+                  href="https://www.linkedin.com/in/gabriel-j%C3%BAnior-de-souza/"
+                  target="_blank"
+                >
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="second"
+                  href="hhttps://github.com/desouzagabriel"
+                  target="_blank"
+                >
+                  <i class="fa fa-github"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h5 class="font-weight-bold text-center mt-4 mb-3">
+            Gabriel Júnior de Souza
+          </h5>
+          <p class="text-blue text-center">
+            Atualização de website de inserção de dados no sistema.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="publications" class="publications">
+    <div class="container">
+      <div class="content-div-heading text-center">
+        <h2 class="text-blue mb-5">Publicações</h2>
+      </div>
+      <div class="row paragraph">
+        <div class="col">
+          <h4 class="text-blue">Artigo referência da plataforma SisGEO</h4>
+          <p>
+            ALVARENGA, S. H.; VIEIRA, G. S.; LATUF, M. O.; PAGLIARES, R. M.
+            Sistema de compartilhamento de dados geoespaciais: SisGEO.
+            <span class="font-weight-bold">Caderno de Geografia</span>, v.32,
+            n.69, p.443-455, 2022.
+            <a
+              href="http://periodicos.pucminas.br/index.php/geografia/article/view/27312"
+              target="_blank"
+              class="link-publication"
+            >
+              Acesse aqui</a
+            >.
+          </p>
+        </div>
+      </div>
+      <br />
+      <div class="row paragraph">
+        <div class="col">
+          <h4 class="text-blue">Demais Publicações</h4>
+          <h5 class="text-blue">
+            Base de dados topográfica da bacia de Furnas
+          </h5>
+          <p>
+            CAMPOS, L. B.; LATUF, M. O. Base cartográfica digital da bacia
+            hidrográfica do Lago de Furnas. In: PEREZ FILHO, A.; AMORIM, R. R..
+            (Org.).
+            <span class="font-weight-bold"
+              >Os Desafios da Geografia Física na Fronteira do
+              Conhecimento.</span
+            >
+            1ed. Campinas: INSTITUTO DE GEOCIÊNCIAS - UNICAMP, v. 1, p.
+            5732-5736, 2017.
+            <a
+              href="https://ocs.ige.unicamp.br/ojs/sbgfa/article/view/2275"
+              target="_blank"
+              class="link-publication"
+            >
+              Acesse aqui</a
+            >.
+          </p>
+          <h5 class="text-blue">Mapeamento do reservatório de Furnas</h5>
+          <p>Artigo em processo final de avaliação.</p>
+        </div>
+        <br />
+        <div class="row paragraph"></div>
+        <div class="col">
+          <h4 class="text-blue">Política de compartilhamento de dados</h4>
+          <p>
+            Os dados a serem inseridos na plataforma SisGEO passarão por
+            avaliação preliminar de viabilidade, bem como necessitarão de já
+            terem sido publicados em algum periódico indexado ou estarem em
+            processo de análise. Destaca-se a <b>obrigatoriedade</b> de citação
+            da plataforma SisGEO como fonte de disponibilização dos dados no
+            texto do artigo. A exceção a esta política reside no repositório de
+            dados acerca da bacia hidrográfica de Furnas, que será formado pela
+            junção de variadas camadas advindas de múltiplas bases
+            cartográficas. A Equipe SisGEO não se responsabiliza pelo uso dos
+            dados compartilhados pela plataforma.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer-page></app-footer-page>
+  <go-top-button
+    [speed]="50000"
+    [scrollDistance]="150"
+    [classNames]="'className'"
+    [styles]="goTopBtnStyle"
+  >
+    <i class="fa fa-arrow-up"></i>
+  </go-top-button>
 </div>
